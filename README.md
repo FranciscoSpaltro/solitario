@@ -37,19 +37,19 @@ Diego Essaya
 
 ## 2. Carta
 
-- private/public static final String[] PALOS = ["picas", "diamantes", "treboles", "corazones"]
-- private/public static final String[] NUMEROS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+- PALOS = ["picas", "diamantes", "treboles", "corazones"]
+- VALORES = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 
 ### Atributos:
 - palo [String]
 - numero [String]
-- bocaArriba [bool]
+- bocaArriba [boolean]
 
 ### Métodos:
 - String verPalo()
 - String verNumero()
-- bool estaBocaArriba()
-- void darVuelta()
+- boolean estaBocaArriba()
+- boolean darVuelta()
 
 
 ## 3. Mazo/Stock
