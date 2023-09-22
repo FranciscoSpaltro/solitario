@@ -10,6 +10,32 @@
 ## Corrector
 Diego Essaya
 
+# Definir
+- Clase abstracta PilaDeCartas: base para las pilas de cartas en el juego (Mazo, Basura, Cimiento y Pilas/Tableau). Tendría atributos de Stack de Carta y métodos cantidadCartas(), estaVacia(), extraer() [en principio, la última]
+
+- Clase Mazo (hereda de PilaDeCartas):
+Implementar: 
+  - mezclar()
+
+- Clase Basura (hereda de PilaDeCartas):
+Implementar:
+  - mostrarUltimasTres()
+  - agregarCarta()
+
+- Clase Cimiento (hereda de PilaDeCartas):
+Implementar:
+  - agregarCarta()
+
+- Clase Pilas/Tableau (hereda de PilaDeCartas):
+  - Hay que ver qué pasa con los dos arreglos en atributos
+Implementar:
+  - mostrarVisibles()
+  - agregarCartas(int n)
+  - cantidadCartasOcultas()
+  - cantidadCartasVisibles()
+
+Override:
+- extraer()
 ---------------------------------
 # Clases:
 ## 0. Solitario
