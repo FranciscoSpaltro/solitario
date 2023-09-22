@@ -8,4 +8,4 @@
 | Francisco Spaltro | 102098 | fspaltro@fi.uba.ar | fran855 |
 
 ## Corrector
-A designar
+Diego Essaya
