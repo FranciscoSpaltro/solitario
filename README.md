@@ -37,12 +37,9 @@ Diego Essaya
 
 ## 2. Carta
 
-- PALOS = ["picas", "diamantes", "treboles", "corazones"]
-- VALORES = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-
 ### Atributos:
 - palo [String]
-- numero [String]
+- numero ~~[String]~~ [char]
 - bocaArriba [boolean]
 
 ### Métodos:
@@ -53,11 +50,14 @@ Diego Essaya
 
 
 ## 3. Mazo/Stock
+- PALOS = ["picas", "diamantes", "treboles", "corazones"]
+- VALORES = ['1', '2'', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+
 ### Atributos:
 - cartas [Stack de Carta]
 
 ### Métodos
-- void inicializarMazo()
+- ~~void inicializarMazo()~~
 - void mezclar()		
 - Carta extraerUltima()
 - int cantidadCartas()

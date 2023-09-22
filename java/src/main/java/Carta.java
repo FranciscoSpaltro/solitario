@@ -2,12 +2,12 @@ public class Carta {
     // Ver como definir las constantes PALOS Y VALORES
 
     // Atributos
-    private String valor;
+    private char valor;
     private String palo;
     private boolean bocaArriba;
 
     // Métodos
-    public Carta(String valor, String palo, boolean bocaArriba){
+    public Carta(char valor, String palo, boolean bocaArriba){
         this.valor = valor;
         this.palo = palo;
         this.bocaArriba = bocaArriba;
@@ -17,7 +17,7 @@ public class Carta {
         return this.palo;
     }
 
-    public String verValor(){
+    public char verValor(){
         return this.valor;
     }
 
