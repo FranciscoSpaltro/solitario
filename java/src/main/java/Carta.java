@@ -1,7 +1,7 @@
 public class Carta {
     // CONSTANTES
     public static final String[] PALOS;
-    public static final char[] VALORES;
+    public static final int[] VALORES;
 
     static {
         PALOS = new String[]{"Corazones", "Diamantes", "Tréboles", "Picas"};
