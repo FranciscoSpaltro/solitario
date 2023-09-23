@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 import  java.util.List;
 import java.util.Stack;
+
 abstract class Solitario {
     //Atributos
     String variante;
     Mazo mazo;
     List<Cimiento> cimientos;
-    List<Stack<Carta>> pilas; // ? esto es así o que onda
+    List<PilaDelTableau> pilasTableau;
     Basura basura;
 
     //Métodos
@@ -29,7 +30,7 @@ abstract class Solitario {
         return true;
     }
 
-    protected abstract boolean jugadorPerdio();
+    // protected abstract boolean jugadorPerdio(); // ¿Se puede implementar?
 
     void reiniciar(){
         inicializarJuego();
@@ -37,12 +38,12 @@ abstract class Solitario {
 
     protected abstract void repartirCartas(Mazo mazo);
 
-    protected abstract boolean moverPilaAPila(Stack<Carta> pilaOrigen, Stack<Carta> pilaDestino, int n);
+    protected abstract boolean moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n);
 
     //protected abstract boolean moverPilaACimiento(Stack<Carta>pila, Cimiento cimiento);
-    protected abstract boolean moverPilaACimiento(Carta carta, Cimiento cimiento);
+    protected abstract boolean moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento);
 
-    protected abstract boolean moverBasuraAPila(Stack<Carta> pila);
+    protected abstract boolean moverBasuraAPila(PilaDelTableau pila);
 
     protected abstract boolean moverBasuraACimiento(Cimiento cimiento);
 

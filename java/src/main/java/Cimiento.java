@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Cimiento extends ListaDeCartas{
     //Atributos
-    private ArrayList<Carta> cimiento = new ArrayList<>();
+    int id;
 
     //Métodos
-    public void agregarCarta(Carta carta) {
-        cimiento.add(carta);
+    public Cimiento(int id) {
+        this.id = id;
     }
 
     public boolean estaCompleto(){
-        return cimiento.size() == 12; //¿hardcodeado?
+        return lista.size() == 12; //¿hardcodeado?
     }
 }

@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class Basura extends ListaDeCartas {
-    //Atributos
-    private ArrayList<Carta> basura = new ArrayList<>();
+    // Atributos
 
-    //Metodos
+    // Métodos
     public ArrayList<Carta> mostrarUltimasTres(){
         ArrayList<Carta> ultimasTres = new ArrayList<Carta>();
         for (int i = 0; i < 3; i++) {
@@ -16,8 +15,15 @@ public class Basura extends ListaDeCartas {
         return ultimasTres;
     }
 
-    public void agregarCarta(Carta carta){
-        basura.add(carta);
+    @Override
+    public void agregarCarta(Carta carta) {
+        if (this.cantidadCartasVisibles() == 3){
+            int primeraCartaVisible = this.cantidadCartas() - 3;
+            this.darVueltaIndex(primeraCartaVisible);
+        }
+        // La carta viene del mazo boca abajo
+        carta.darVuelta();
+        lista.add(carta);
     }
 
 }

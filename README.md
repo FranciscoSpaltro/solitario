@@ -33,7 +33,6 @@ Implementar:
   - agregarCartas(int n)
   - cantidadCartasOcultas()
   - cantidadCartasVisibles()
-
 Override:
 - extraer()
 ---------------------------------

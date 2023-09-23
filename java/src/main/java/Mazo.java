@@ -3,16 +3,15 @@ import java.util.Collections;
 
 public class Mazo extends ListaDeCartas{
     // Atributos
-    private ArrayList<Carta> mazo = new ArrayList<>();
 
     // Métodos
     public Mazo(){
-        for (String palo : PALOS)
-            for (char valor : VALORES) {
-                mazo.add(new Carta(valor, palo, false));
+        for (String palo : Carta.PALOS)
+            for (char valor : Carta.VALORES) {
+                super.agregarCarta(new Carta(valor, palo, false));
             }
     }
     public void mezclar(){
-        Collections.shuffle(mazo);
+        Collections.shuffle(lista);
     }
 }

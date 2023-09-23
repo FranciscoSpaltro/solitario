@@ -2,14 +2,7 @@ import java.util.ArrayList;
 
 abstract class ListaDeCartas {
     // CONSTANTES
-    public static final String[] PALOS;
-    public static final char[] VALORES;
     public int CANTIDAD_CARTAS = 52;
-
-    static {
-        PALOS = new String[]{"Corazones", "Diamantes", "Tréboles", "Picas"};
-        VALORES = new char[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'};
-    }
 
     // ATRIBUTOS
     protected ArrayList<Carta> lista = new ArrayList<>();
@@ -29,5 +22,51 @@ abstract class ListaDeCartas {
 
     public Carta verUltima(){
         return lista.get(lista.size() - 1);
+    }
+
+    public void agregarCarta(Carta carta) {
+        lista.add(carta);
+    }
+
+    public Carta mostrarCarta(int index) {
+        return lista.get(index);
+    }
+
+    public ArrayList<Carta> extraerUltimasN(int n){
+        int comienzoExtraccion = this.cantidadCartas() - n;
+        int finExtraccion = this.cantidadCartas() - 1;
+
+        ArrayList<Carta> cartasAExtraer = new ArrayList<Carta>(lista.subList(comienzoExtraccion, finExtraccion));
+        lista.removeAll(cartasAExtraer);
+
+        return cartasAExtraer;
+    }
+
+    public int cantidadCartasOcultas(){
+        int i;
+        if (this.estaVacia())
+            return 0;
+
+        for (i = 0; i < this.cantidadCartas(); i++) {
+            if(lista.get(i).estaBocaArriba())
+                break;
+        }
+        return i + 1;
+    }
+
+    public int cantidadCartasVisibles(){
+        return this.cantidadCartas() - this.cantidadCartasOcultas();
+    }
+
+    public boolean darVueltaIndex(int n){
+        Carta carta = lista.get(n);
+        boolean estadoFinal = carta.darVuelta();
+        lista.add(n, carta);
+        return estadoFinal;
+    }
+
+    public ArrayList<Carta> mostrarVisibles(){
+        int comienzoVisibles = this.cantidadCartasOcultas();
+        return (ArrayList<Carta>) lista.subList(comienzoVisibles, this.cantidadCartas() - 1);
     }
 }
