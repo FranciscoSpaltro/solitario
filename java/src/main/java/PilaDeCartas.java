@@ -12,7 +12,8 @@ abstract class PilaDeCartas {
     }
 
     // ATRIBUTOS
-    private Stack<Carta> pila = new Stack<>();
+    //private Stack<Carta> pila = new Stack<>();
+    protected Stack<Carta> pila = new Stack<>();
 
     // METODOS
     public int cantidadCartas(){
@@ -25,5 +26,9 @@ abstract class PilaDeCartas {
 
     public Carta extraerUltima(){
         return pila.pop();
+    }
+
+    public Carta verUltima(){
+        return pila.peek();
     }
 }
