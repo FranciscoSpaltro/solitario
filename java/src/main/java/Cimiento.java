@@ -1,13 +1,15 @@
-public class Cimiento extends PilaDeCartas{
+import java.util.ArrayList;
+
+public class Cimiento extends ListaDeCartas{
     //Atributos
-        //Extiende pila de PilaDeCartas
+    private ArrayList<Carta> cimiento = new ArrayList<>();
 
     //Métodos
     public void agregarCarta(Carta carta) {
-        pila.add(carta);
+        cimiento.add(carta);
     }
 
     public boolean estaCompleto(){
-        return pila.size() == 12; //¿hardcodeado?
+        return cimiento.size() == 12; //¿hardcodeado?
     }
 }

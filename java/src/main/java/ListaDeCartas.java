@@ -1,6 +1,6 @@
-import java.util.Stack;
+import java.util.ArrayList;
 
-abstract class PilaDeCartas {
+abstract class ListaDeCartas {
     // CONSTANTES
     public static final String[] PALOS;
     public static final char[] VALORES;
@@ -12,23 +12,22 @@ abstract class PilaDeCartas {
     }
 
     // ATRIBUTOS
-    //private Stack<Carta> pila = new Stack<>();
-    protected Stack<Carta> pila = new Stack<>();
+    protected ArrayList<Carta> lista = new ArrayList<>();
 
     // METODOS
     public int cantidadCartas(){
-        return pila.size();
+        return lista.size();
     }
 
     public boolean estaVacia(){
-        return pila.isEmpty();
+        return lista.isEmpty();
     }
 
     public Carta extraerUltima(){
-        return pila.pop();
+        return lista.remove(lista.size() - 1);
     }
 
     public Carta verUltima(){
-        return pila.peek();
+        return lista.get(lista.size() - 1);
     }
 }

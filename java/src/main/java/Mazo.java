@@ -1,15 +1,15 @@
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Stack;
 
-public class Mazo extends PilaDeCartas{
+public class Mazo extends ListaDeCartas{
     // Atributos
-    private Stack<Carta> mazo = new Stack<>();
+    private ArrayList<Carta> mazo = new ArrayList<>();
 
     // Métodos
     public Mazo(){
         for (String palo : PALOS)
             for (char valor : VALORES) {
-                mazo.push(new Carta(valor, palo, false));
+                mazo.add(new Carta(valor, palo, false));
             }
     }
     public void mezclar(){
