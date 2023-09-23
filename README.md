@@ -10,6 +10,24 @@
 ## Corrector
 Diego Essaya
 
+# Pruebas a implementar
+- Inicializar juego y verificar los tamaños: 7 pilas con 1, 2, ..., 7 cartas, 4 cimientos vacíos y 1 mazo con 24
+- Mover una carta de una pila a otra (bien)
+- Mover una carta de una pila a otra (mismo color)
+- Mover una carta de una pila a otra (no secuencial)
+- Mover una carta de una pila a un cimiento (bien)
+- Mover una carta de una pila a un cimiento (no as con error)
+- Mover una carta de una pila a un cimiento (un dos después de un as, bien)
+- Mover un conjunto de cartas de una pila a otra (bien)
+- Mover un conjunto de cartas de una pila a otra (no secuencial)
+- Mover una carta de la basura a una pila
+- Mover una carta de la basura a un cimiento
+- Verificar que haya máximo 3 cartas visibles en la basura al agregar una luego de la 3ra
+
+
+
+
+
 # Definir
 - Clase abstracta PilaDeCartas: base para las pilas de cartas en el juego (Mazo, Basura, Cimiento y Pilas/Tableau). Tendría atributos de Stack de Carta y métodos cantidadCartas(), estaVacia(), extraer() [en principio, la última]
 
