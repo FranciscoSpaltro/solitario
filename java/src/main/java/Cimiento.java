@@ -6,4 +6,8 @@ public class Cimiento extends PilaDeCartas{
     public void agregarCarta(Carta carta) {
         pila.add(carta);
     }
+
+    public boolean estaCompleto(){
+        return pila.size() == 12; //¿hardcodeado?
+    }
 }

@@ -12,7 +12,11 @@ abstract class Solitario {
     abstract void inicializarJuego();
 
     public boolean jugadorGano(){
-        return cimientos.
+        for (Cimiento cimiento : cimientos){
+            if (!cimiento.estaCompleto())
+                return false;
+        }
+        return true;
     }
 
 
