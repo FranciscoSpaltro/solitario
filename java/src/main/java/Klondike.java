@@ -32,8 +32,8 @@ public class Klondike extends Solitario {
     @Override
     protected boolean moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) {
         int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
-        Carta primeraCartaOrigen = pilaOrigen.mostrarCarta(comienzoSegmento);
-        Carta ultimaCartaDestino = pilaDestino.mostrarCarta(pilaDestino.cantidadCartas() - 1);
+        Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
+        Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
 
         // Chequeo de reglas
         if (!primeraCartaOrigen.estaBocaArriba())
@@ -91,7 +91,7 @@ public class Klondike extends Solitario {
     @Override
     protected boolean moverBasuraAPila(PilaDelTableau pila) {
         Carta cartaAAgregar = basura.extraerUltima();
-        Carta ultimaCartaPila = pila.mostrarCarta(pila.cantidadCartas() - 1);
+        Carta ultimaCartaPila = pila.obtenerCarta(pila.cantidadCartas() - 1);
 
         // Chequeo de reglas
         if (pila.estaVacia() && cartaAAgregar.verValor() != Valor.REY) {

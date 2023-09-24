@@ -8,8 +8,7 @@ public class PilaDelTableau extends ListaDeCartas{
     public PilaDelTableau(int id) {
         this.id = id;
     }
-
-    public boolean eliminarCartas(ArrayList<Carta> cartas){
-        return lista.removeAll(cartas);
+    public int obtenerId(){
+        return id;
     }
 }

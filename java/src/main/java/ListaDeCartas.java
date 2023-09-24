@@ -28,7 +28,7 @@ abstract class ListaDeCartas {
         lista.add(carta);
     }
 
-    public Carta mostrarCarta(int index) {
+    public Carta obtenerCarta(int index) {
         return lista.get(index);
     }
 
@@ -64,9 +64,7 @@ abstract class ListaDeCartas {
 
     public boolean darVueltaIndex(int n){
         Carta carta = lista.get(n);
-        boolean estadoFinal = carta.darVuelta();
-        //lista.add(n, carta);
-        return estadoFinal;
+        return carta.darVuelta();
     }
 
     public ArrayList<Carta> mostrarVisibles(){
