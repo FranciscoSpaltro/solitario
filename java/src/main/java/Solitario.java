@@ -47,4 +47,6 @@ abstract class Solitario {
 
     protected abstract boolean moverBasuraACimiento(Cimiento cimiento);
 
+    protected abstract boolean moverBasuraAMazo();
+
 }

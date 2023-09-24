@@ -54,6 +54,10 @@ abstract class ListaDeCartas {
         return i + 1;
     }
 
+    public boolean anexarCartas(ArrayList<Carta> cartas){
+        return lista.addAll(cartas);
+    }
+
     public int cantidadCartasVisibles(){
         return this.cantidadCartas() - this.cantidadCartasOcultas();
     }

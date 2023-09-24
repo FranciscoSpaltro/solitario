@@ -1,9 +1,8 @@
 import com.sun.tools.javac.util.List;
-
+import java.util.Collections;
 import java.util.ArrayList;
-import java.util.Stack;
 
-public class Klondike extends Solitario{
+public class Klondike extends Solitario {
 
     // Métodos
     public Klondike(String variante) {
@@ -38,7 +37,7 @@ public class Klondike extends Solitario{
         Carta ultimaCartaDestino = pilaDestino.mostrarCarta(pilaDestino.cantidadCartas() - 1);
 
         // Chequeo de reglas
-        if (! primeraCartaOrigen.estaBocaArriba())
+        if (!primeraCartaOrigen.estaBocaArriba())
             return false;
         if (pilaDestino.estaVacia() && primeraCartaOrigen.verValor() != 13)
             return false;
@@ -50,7 +49,7 @@ public class Klondike extends Solitario{
         // Llegado a este punto, el movimiento es válido
         ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
 
-        if (! pilaDestino.anexarCartas(cartasAMover)){
+        if (!pilaDestino.anexarCartas(cartasAMover)) {
             pilaOrigen.anexarCartas(cartasAMover);
             return false;
         }
@@ -68,7 +67,7 @@ public class Klondike extends Solitario{
             pila.agregarCarta(ultimaCartaPila);
             return false;
         }
-        if (! ultimaCartaCimiento.verPalo().equals(ultimaCartaPila.verPalo())) {
+        if (!ultimaCartaCimiento.verPalo().equals(ultimaCartaPila.verPalo())) {
             pila.agregarCarta(ultimaCartaPila);
             return false;
         }
@@ -95,7 +94,7 @@ public class Klondike extends Solitario{
             basura.agregarCarta(cartaAAgregar);
             return false;
         }
-        if (cartaAAgregar.verValor() != ultimaCartaPila.verValor() - 1){
+        if (cartaAAgregar.verValor() != ultimaCartaPila.verValor() - 1) {
             basura.agregarCarta(cartaAAgregar);
             return false;
         }
@@ -110,20 +109,32 @@ public class Klondike extends Solitario{
         Carta cartaBasura = basura.extraerUltima();
 
         // Chequeo de reglas
-        if (cimiento.estaVacia() && ultimaCartaCimiento.verValor() != 1){
+        if (cimiento.estaVacia() && ultimaCartaCimiento.verValor() != 1) {
             basura.agregarCarta(cartaBasura);
             return false;
         }
-        if (ultimaCartaCimiento.verColor() == cartaBasura.verColor()){
+        if (ultimaCartaCimiento.verColor() == cartaBasura.verColor()) {
             basura.agregarCarta(cartaBasura);
             return false;
         }
-        if (cartaBasura.verValor() != ultimaCartaCimiento.verValor() + 1){
+        if (cartaBasura.verValor() != ultimaCartaCimiento.verValor() + 1) {
             basura.agregarCarta(cartaBasura);
             return false;
         }
 
         cimiento.agregarCarta(cartaBasura);
+        return true;
+    }
+
+    @Override
+    protected boolean moverBasuraAMazo() {
+        if (! mazo.estaVacia())
+            return false;
+
+        ArrayList<Carta> cartasEnBasura = basura.extraerUltimasN(basura.cantidadCartas());
+        Collections.sort(cartasEnBasura, Collections.reverseOrder());
+        mazo.anexarCartas(cartasEnBasura);
+
         return true;
     }
 }
