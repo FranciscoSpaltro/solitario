@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class Klondike extends Solitario {
 
     // Métodos
-    public Klondike(String variante) {
-        super(variante);
+    public Klondike(Variante tipo) {
+        super(tipo);
     }
 
     @Override
@@ -84,6 +84,7 @@ public class Klondike extends Solitario {
         }
 
         cimiento.agregarCarta(ultimaCartaPila);
+        puntos += 10;
         return false;
     }
 
@@ -112,6 +113,7 @@ public class Klondike extends Solitario {
         }
 
         pila.agregarCarta(cartaAAgregar);
+        puntos += 5;
         return true;
     }
 
@@ -140,6 +142,7 @@ public class Klondike extends Solitario {
         }
 
         cimiento.agregarCarta(cartaBasura);
+        puntos += 10;
         return true;
     }
 
@@ -152,6 +155,27 @@ public class Klondike extends Solitario {
         Collections.sort(cartasEnBasura, Collections.reverseOrder());
         mazo.anexarCartas(cartasEnBasura);
 
+        if (puntos > 100)
+            puntos -= 100;
+        else
+            puntos = 0;
+
         return true;
     }
+
+    @Override
+    protected boolean moverCimientoAPila() {
+        // codigo
+
+
+
+        if (puntos > 15)
+            puntos -= 15;
+        else
+            puntos = 0;
+
+        return true;
+    }
+
+
 }

@@ -3,18 +3,25 @@ import  java.util.List;
 import java.util.Stack;
 
 abstract class Solitario {
+    enum Variante {
+        KLONDIKE,
+        SPIDER;
+    }
+
     //Atributos
-    String variante;
+    Variante tipoSolitario;
     Mazo mazo;
     List<Cimiento> cimientos;
     List<PilaDelTableau> pilasTableau;
     Basura basura;
+    int puntos;
 
     //Métodos
 
 
-    public Solitario(String variante) {
-        this.variante = variante;
+    public Solitario(Variante tipo) {
+        this.tipoSolitario = tipo;
+        puntos = 0;
         mazo = new Mazo();
         mazo.mezclar();
         inicializarJuego();
@@ -48,5 +55,7 @@ abstract class Solitario {
     protected abstract boolean moverBasuraACimiento(Cimiento cimiento);
 
     protected abstract boolean moverBasuraAMazo();
+
+    protected abstract boolean moverCimientoAPila();
 
 }
