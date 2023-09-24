@@ -2,11 +2,15 @@ import java.util.ArrayList;
 
 public class Cimiento extends ListaDeCartas{
     //Atributos
-    int id;
+    private int id;
 
     //Métodos
     public Cimiento(int id) {
         this.id = id;
+    }
+
+    public int verId() {
+        return id;
     }
 
     public boolean estaCompleto(){
