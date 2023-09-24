@@ -1,5 +1,4 @@
 public class Carta {
-    // CONSTANTES
     public static final String[] PALOS;
     public static final int[] VALORES;
 
@@ -8,10 +7,23 @@ public class Carta {
         VALORES = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
     }
 
+    /*
+    enum Palos {
+        CORAZONES, DIAMANTES, TREBOLES, PICAS
+    }
+
+    enum Valores {
+        AS, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, OCHO, NUEVE, DIEZ, JOTA, REINA, REY
+    }
+
+    enum Colores {
+        ROJO, NEGRO
+    }
+    */
+
     // Atributos
     private int valor;
     private String palo;
-
     private boolean bocaArriba;
 
     // Métodos
