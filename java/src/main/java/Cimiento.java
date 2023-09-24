@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Cimiento extends ListaDeCartas{
     //Atributos
-    private int id;
+    private final int id;
 
     //Métodos
     public Cimiento(int id) {
