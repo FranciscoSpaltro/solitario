@@ -40,6 +40,7 @@ abstract class Solitario {
     // protected abstract boolean jugadorPerdio(); // ¿Se puede implementar?
 
     void reiniciar(){
+        puntos = 0;
         inicializarJuego();
     }
 
@@ -56,6 +57,6 @@ abstract class Solitario {
 
     protected abstract boolean moverBasuraAMazo();
 
-    protected abstract boolean moverCimientoAPila();
+    protected abstract boolean moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino);
 
 }

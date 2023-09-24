@@ -34,7 +34,7 @@ abstract class ListaDeCartas {
 
     public ArrayList<Carta> extraerUltimasN(int n){
         int comienzoExtraccion = this.cantidadCartas() - n;
-        int finExtraccion = this.cantidadCartas() - 1;
+        int finExtraccion = this.cantidadCartas(); // le saqué el -1
 
         ArrayList<Carta> cartasAExtraer = new ArrayList<Carta>(lista.subList(comienzoExtraccion, finExtraccion));
         lista.removeAll(cartasAExtraer);
@@ -65,7 +65,7 @@ abstract class ListaDeCartas {
     public boolean darVueltaIndex(int n){
         Carta carta = lista.get(n);
         boolean estadoFinal = carta.darVuelta();
-        lista.add(n, carta);
+        //lista.add(n, carta);
         return estadoFinal;
     }
 

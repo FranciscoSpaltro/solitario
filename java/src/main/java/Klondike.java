@@ -85,7 +85,7 @@ public class Klondike extends Solitario {
 
         cimiento.agregarCarta(ultimaCartaPila);
         puntos += 10;
-        return false;
+        return true;
     }
 
     @Override
@@ -164,10 +164,31 @@ public class Klondike extends Solitario {
     }
 
     @Override
-    protected boolean moverCimientoAPila() {
-        // codigo
+    protected boolean moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) {
+        Carta ultimaCartaCimiento = cimiento.extraerUltima();
+        Carta ultimaCartaPila = pilaDestino.extraerUltima();
 
+        // Validaciones
+        if (pilaDestino.estaVacia() && ultimaCartaCimiento.verValor() != Valor.REY){
+            cimiento.agregarCarta(ultimaCartaCimiento);
+            return false;
+        }
+        if (!ultimaCartaCimiento.verPalo().equals(ultimaCartaPila.verPalo())) {
+            cimiento.agregarCarta(ultimaCartaPila);
+            return false;
+        }
+        if (ultimaCartaCimiento.verValor() == Valor.REY) {
+            cimiento.agregarCarta(ultimaCartaPila);
+            return false;
+        }
+        Valor valorUltimaCartaCimiento = ultimaCartaCimiento.verValor();
+        if (ultimaCartaPila.verValor() != Valor.values()[valorUltimaCartaCimiento.ordinal() + 1]){
+            cimiento.agregarCarta(ultimaCartaPila);
+            return false;
+        }
 
+        // Llegado a este punto, el movimiento es válido
+        pilaDestino.agregarCarta(ultimaCartaCimiento);
 
         if (puntos > 15)
             puntos -= 15;
