@@ -22,8 +22,8 @@ public class MazoTest {
         Carta carta1 =  mazo.verUltima();
 
         // Assert
-        assertEquals(13, carta1.verValor());
-        assertEquals("Picas", carta1.verPalo());
+        assertEquals(Valor.REY, carta1.verValor());
+        assertEquals(Palo.PICAS, carta1.verPalo());
         assertFalse(carta1.estaBocaArriba());
         assertEquals(52, mazo.cantidadCartas());
     }

@@ -6,8 +6,8 @@ public class Mazo extends ListaDeCartas{
 
     // Métodos
     public Mazo(){
-        for (String palo : Carta.PALOS)
-            for (int valor : Carta.VALORES) {
+        for (Palo palo : Palo.values())
+            for (Valor valor : Valor.values()) {
                 super.agregarCarta(new Carta(valor, palo, false));
             }
     }
