@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 
 abstract class ListaDeCartas {
-    // CONSTANTES
-    public int CANTIDAD_CARTAS_JUEGO = 52;
-
     // ATRIBUTOS
     protected ArrayList<Carta> lista = new ArrayList<>();
 

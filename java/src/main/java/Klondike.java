@@ -4,8 +4,18 @@ import java.util.ArrayList;
 public class Klondike extends Solitario {
 
     // Métodos
+    // NOTA: Los cimientos y las pilas están ordenados de 0 a n-1, siendo n la cantidad de cimientos o pilas
     public Klondike(Variante tipo) {
         super(tipo);
+        pilasTableau = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            pilasTableau.add(new PilaDelTableau(i));
+        }
+        cimientos = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            cimientos.add(new Cimiento(i));
+        }
+        basura = new Basura();
     }
 
     @Override

@@ -3,28 +3,20 @@ import  java.util.List;
 import java.util.Stack;
 
 abstract class Solitario {
-    enum Variante {
-        KLONDIKE,
-        SPIDER;
-    }
-
     //Atributos
-    Variante tipoSolitario;
-    Mazo mazo;
-    List<Cimiento> cimientos;
-    List<PilaDelTableau> pilasTableau;
-    Basura basura;
-    int puntos;
+    protected Variante tipoSolitario;
+    protected Mazo mazo;
+    protected List<Cimiento> cimientos;
+    protected List<PilaDelTableau> pilasTableau;
+    protected Basura basura;
+    protected int puntos;
 
     //Métodos
-
-
     public Solitario(Variante tipo) {
         this.tipoSolitario = tipo;
         puntos = 0;
         mazo = new Mazo();
         mazo.mezclar();
-        inicializarJuego();
     }
 
     abstract void inicializarJuego();
