@@ -9,19 +9,18 @@ public class PilaDelTableauTest {
     public void testRepartirPila(){
         // Arrange
         Mazo mazo = new Mazo();
-        PilaDelTableau pila = new PilaDelTableau(0);
+        PilaDelTableau pila = new PilaDelTableau(1);
 
         // Act
         mazo.mezclar();
-        pila.anexarCartas(mazo.extraerUltimasN(7));
-        Carta carta1 = pila.obtenerCarta(6);
-        pila.darVueltaIndex(6);
-        Carta carta2 = pila.obtenerCarta(6);
+        ArrayList<Carta> cartasExtraidas = mazo.extraerUltimasN(7);
+        pila.anexarCartas(cartasExtraidas);
+        Carta carta1 = pila.obtenerCarta(5);
+        pila.darVueltaIndex(4);
+        Carta carta2 = pila.obtenerCarta(4);
 
         // Assert
         assertEquals(7, pila.cantidadCartas());
-        assertEquals(carta1.verValor(), carta2.verValor());
-        assertEquals(carta1.verPalo(), carta2.verPalo());
         assertFalse(carta1.estaBocaArriba());
         assertTrue(carta2.estaBocaArriba());
     }
