@@ -48,7 +48,7 @@ abstract class ListaDeCartas {
             if(lista.get(i).estaBocaArriba())
                 break;
         }
-        return i + 1;
+        return i ;
     }
 
     public boolean anexarCartas(ArrayList<Carta> cartas){
@@ -66,6 +66,6 @@ abstract class ListaDeCartas {
 
     public ArrayList<Carta> mostrarVisibles(){
         int comienzoVisibles = this.cantidadCartasOcultas();
-        return (ArrayList<Carta>) lista.subList(comienzoVisibles, this.cantidadCartas() - 1);
+        return (ArrayList<Carta>) lista.subList(comienzoVisibles, this.cantidadCartas());
     }
 }

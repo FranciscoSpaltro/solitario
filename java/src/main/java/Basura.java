@@ -15,10 +15,10 @@ public class Basura extends ListaDeCartas {
 
     @Override
     public void agregarCarta(Carta carta) {
-        if (this.cantidadCartasVisibles() == 3){
-            int primeraCartaVisible = this.cantidadCartas() - 3;
-            this.darVueltaIndex(primeraCartaVisible);
-        }
+            if (super.cantidadCartasVisibles() == 3){
+                int primeraCartaVisible = super.cantidadCartas() - 3;
+                super.darVueltaIndex(primeraCartaVisible);
+            }
         // La carta viene del mazo boca abajo
         carta.darVuelta();
         lista.add(carta);

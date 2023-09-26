@@ -51,4 +51,6 @@ abstract class Solitario {
 
     protected abstract boolean moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino);
 
+    protected abstract boolean moverMazoABasura();
+
 }

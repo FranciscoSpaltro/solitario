@@ -173,6 +173,17 @@ public class Klondike extends Solitario {
         return true;
     }
 
+    protected boolean moverMazoABasura(){
+        if (mazo.estaVacia())
+            return false;
+
+        Carta cartaAMover = mazo.verUltima();
+        mazo.extraerUltima();
+        basura.agregarCarta(cartaAMover);
+        return true;
+    }
+
+
     @Override
     protected boolean moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) {
         Carta ultimaCartaCimiento = cimiento.extraerUltima();

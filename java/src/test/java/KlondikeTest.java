@@ -30,14 +30,80 @@ public class KlondikeTest {
     }
 
     @Test
-    public void testMoverPilaAPila(){
+    public void testMoverPilaAPilaJuegoRecienIniciado(){
         // Arrange
         Klondike klondike = new Klondike(Variante.KLONDIKE);
+        klondike.inicializarJuego();
 
+        // Act
+        PilaDelTableau  pila5 = klondike.pilasTableau.get(4);
+        PilaDelTableau  pila6 = klondike.pilasTableau.get(5);
+        Carta cartaPila5 = pila5.verUltima();
+        Carta cartaPila6 = pila6.verUltima();
+        boolean seMovio = klondike.moverPilaAPila(pila5, pila6, 1);
+        boolean seMovio2 = klondike.moverPilaAPila(pila5, pila6, 3);
+
+        boolean seTeniaQueMover = false;
+        if (cartaPila5.estaBocaArriba() && cartaPila6.estaBocaArriba() && cartaPila5.verColor() != cartaPila6.verColor() && cartaPila6.verValor().ordinal() ==  cartaPila5.verValor().ordinal() -1)
+            seTeniaQueMover = true;
+
+        // Assert
+        assertEquals(seTeniaQueMover,seMovio);
+    }
+
+    @Test
+    public void testMoverUnaCartaMazoABasura(){
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        klondike.inicializarJuego();
+
+        // Act
+        int cantidadCartasMazoAntesDeSacarUna = klondike.mazo.cantidadCartas();
+        Carta ultimaMazo = klondike.mazo.verUltima();
+        boolean seMovio = klondike.moverMazoABasura();
+
+        // Assert
+
+        assertEquals(ultimaMazo.verValor(), klondike.basura.verUltima().verValor());
+        assertEquals(ultimaMazo.verPalo(), klondike.basura.verUltima().verPalo());
+        assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.mazo.cantidadCartas() + klondike.basura.cantidadCartas());
+        assertEquals(1, klondike.basura.cantidadCartas());
+        assertTrue(seMovio);
     }
 
 
-    private void generarEntornoDePrueba(Klondike klondike){
-        klondike.mazo = new Mazo();
+    @Test
+    public void testMoverMasDeTresCartasMazoABasura(){
+        // Arrange
+        int N = 5;
+        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        klondike.inicializarJuego();
+
+        // Act
+        int cantidadCartasMazoAntesDeSacarUna = klondike.mazo.cantidadCartas();
+        Carta ultimaMazo = klondike.mazo.verUltima();
+        boolean seMovio = klondike.moverMazoABasura();
+        Carta ultimaMazo1 = klondike.mazo.verUltima();
+        boolean seMovio1 = klondike.moverMazoABasura();
+        Carta ultimaMazo2 = klondike.mazo.verUltima();
+        boolean seMovio2 = klondike.moverMazoABasura();
+        Carta ultimaMazo3 = klondike.mazo.verUltima();
+        boolean seMovio3 = klondike.moverMazoABasura();
+        Carta ultimaMazo4 = klondike.mazo.verUltima();
+        boolean seMovio4 = klondike.moverMazoABasura();
+
+        // Assert
+        assertFalse(ultimaMazo.estaBocaArriba());
+        assertFalse(ultimaMazo1.estaBocaArriba());
+        assertTrue(ultimaMazo2.estaBocaArriba());
+        assertTrue(ultimaMazo3.estaBocaArriba());
+        assertTrue(ultimaMazo4.estaBocaArriba());
+        assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.mazo.cantidadCartas() + klondike.basura.cantidadCartas());
+        assertEquals(N, klondike.basura.cantidadCartas());
     }
 }
+
+
+    //private void generarEntornoDePrueba(){
+    //    Mazo mazo = new Mazo();
+    //}
