@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 abstract class ListaDeCartas {
     // ATRIBUTOS

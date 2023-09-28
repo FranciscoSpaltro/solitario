@@ -126,10 +126,84 @@ public class KlondikeTest {
         assertTrue(movioDos);
         assertFalse(movioRey2);
     }
+
+    @Test
+    public void testMoverMazoABasura() {
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+
+        // Act
+        while (klondike.mazo.cantidadCartas() > 0) {
+            klondike.moverMazoABasura();
+        }
+
+        // Assert
+        assertEquals(0, klondike.mazo.cantidadCartas());
+        assertFalse(klondike.moverMazoABasura());
+    }
+
+    @Test
+    public void testMoverBasuraAMazo(){
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+
+        // Act
+        while (klondike.mazo.cantidadCartas() > 5) {
+            klondike.moverMazoABasura();
+        }
+
+        // Assert
+        assertEquals(5, klondike.mazo.cantidadCartas());
+        assertEquals(47, klondike.basura.cantidadCartas());
+        assertFalse(klondike.moverBasuraAMazo());
+
+        // Act
+        while (klondike.mazo.cantidadCartas() > 0) {
+            klondike.moverMazoABasura();
+        }
+
+        klondike.moverBasuraAMazo();
+
+        // Assert
+        assertTrue(klondike.basura.estaVacia());
+        assertEquals(52, klondike.mazo.cantidadCartas());
+
+    }
+
+    @Test
+    public void testMoverPilaAPilaVacia() {
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        klondike.inicializarJuego();
+
+        // Act
+        // Sacar la carta de la primera pila para que quede vacía
+        klondike.pilasTableau.get(0).extraerUltima();
+        // La última carta de la segunda pila es J de corazones
+        boolean seMovio = klondike.moverPilaAPila(klondike.pilasTableau.get(1), klondike.pilasTableau.get(0), 1);
+
+        // Assert
+        assertFalse(seMovio);
+    }
+
+    @Test
+    public void testMoverPilaAPilaPorColor(){
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        klondike.inicializarJuego();
+
+        // Act
+        // La primera carta de la primera pila es K corazones (rojo) y la última carta de la última pila es Q treboles (negro)
+        boolean seMovio = klondike.moverPilaAPila(klondike.pilasTableau.get(6), klondike.pilasTableau.get(0), 1);
+
+        // Assert
+        assertTrue(seMovio);
+
+        // Act
+        // Ahora la última carta de la última pila es K tréboles (negro) y la de la primera es Q tréboles (negro)
+        seMovio = klondike.moverPilaAPila(klondike.pilasTableau.get(0), klondike.pilasTableau.get(6), 1);
+
+        // Assert
+        assertFalse(seMovio);
+    }
 }
-
-
-
-    //private void generarEntornoDePrueba(){
-    //    Mazo mazo = new Mazo();
-    //}
