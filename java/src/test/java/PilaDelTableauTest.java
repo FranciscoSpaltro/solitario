@@ -50,7 +50,7 @@ public class PilaDelTableauTest {
 
         // Assert
         for (int i = 0; i < klondike.cantidadPilasDelTableau(); i++) {
-            assertEquals(i, klondike.pilasTableau.get(i).obtenerId());
+            assertEquals(i, klondike.obtenerPilaDelTableau(i).obtenerId());
         }
 
     }
