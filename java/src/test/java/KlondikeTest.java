@@ -165,6 +165,31 @@ public class KlondikeTest {
     }
 
     @Test
+    public void testMoverBasuraACimiento(){
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        klondike.inicializarJuego();
+
+        // Act
+        for (int i = 0; i < 11; i++)
+            klondike.moverMazoABasura();
+        // Queda un as diamantes (rojo) en la basura y los cimientos vacíos
+
+        Cimiento cimientoDestino = klondike.obtenerCimiento(0);
+        boolean seMovio = klondike.moverBasuraACimiento(cimientoDestino);
+        Carta cartaMovida = cimientoDestino.verUltima();
+
+        // Assert
+        assertTrue(seMovio);
+        assertEquals(10, klondike.obtenerPuntos());
+        assertEquals(Palo.DIAMANTES, cartaMovida.verPalo());
+        assertEquals(Valor.AS, cartaMovida.verValor());
+        assertFalse(klondike.basura.estaVacia());
+        assertFalse(cimientoDestino.estaVacia());
+        assertTrue(cimientoDestino.verUltima().estaBocaArriba());
+    }
+
+    @Test
     public void testMoverBasuraAMazo(){
         // Arrange
         Klondike klondike = new Klondike(Variante.KLONDIKE, true);
