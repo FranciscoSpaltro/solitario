@@ -193,17 +193,19 @@ public class KlondikeTest {
         klondike.inicializarJuego();
 
         // Act
-        // La primera carta de la primera pila es K corazones (rojo) y la última carta de la última pila es Q treboles (negro)
         boolean seMovio = klondike.moverPilaAPila(klondike.pilasTableau.get(6), klondike.pilasTableau.get(0), 1);
+        // La primera carta de la primera pila es K corazones (rojo) y la última carta de la última pila es Q treboles (negro)
 
         // Assert
         assertTrue(seMovio);
+        assertEquals(5, klondike.obtenerPuntos());
 
         // Act
-        // Ahora la última carta de la última pila es K tréboles (negro) y la de la primera es Q tréboles (negro)
         seMovio = klondike.moverPilaAPila(klondike.pilasTableau.get(0), klondike.pilasTableau.get(6), 1);
+        // Ahora la última carta de la última pila es K tréboles (negro) y la de la primera es Q tréboles (negro)
 
         // Assert
         assertFalse(seMovio);
+        assertEquals(5, klondike.obtenerPuntos());
     }
 }

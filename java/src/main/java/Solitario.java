@@ -35,6 +35,10 @@ abstract class Solitario {
         return true;
     }
 
+    public int obtenerPuntos() {
+        return puntos;
+    }
+
     // protected abstract boolean jugadorPerdio(); // ¿Se puede implementar?
 
     void reiniciar(){
