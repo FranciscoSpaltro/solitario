@@ -77,33 +77,9 @@ public class Klondike extends Solitario {
     protected boolean moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) {
         Carta ultimaCartaPila = pila.extraerUltima();
 
-        if (cimiento.estaVacia() && ultimaCartaPila.verValor() != Valor.AS) {
+        if (!reglasMoverACimiento(ultimaCartaPila, cimiento)){
             pila.agregarCarta(ultimaCartaPila);
             return false;
-        }
-
-        if (cimiento.estaVacia() && ultimaCartaPila.verValor() == Valor.AS){
-            cimiento.agregarCarta(ultimaCartaPila);
-            puntos += 10;
-            return true;
-        }
-
-        Carta ultimaCartaCimiento = cimiento.verUltima();
-
-        // Validación de reglas
-
-        if (ultimaCartaCimiento.verPalo() != ultimaCartaPila.verPalo()) {
-            pila.agregarCarta(ultimaCartaPila);
-            return false;
-        }
-        if (ultimaCartaCimiento.verValor() == Valor.REY) {
-            pila.agregarCarta(ultimaCartaPila);
-            return false;
-        }
-        Valor valorUltimaCartaCimiento = ultimaCartaCimiento.verValor();
-        if (ultimaCartaPila.verValor() != Valor.values()[valorUltimaCartaCimiento.ordinal() + 1]){
-            pila.agregarCarta(ultimaCartaPila);
-           return false;
         }
 
         cimiento.agregarCarta(ultimaCartaPila);
@@ -127,24 +103,9 @@ public class Klondike extends Solitario {
 
     @Override
     protected boolean moverBasuraACimiento(Cimiento cimiento) {
-        Carta ultimaCartaCimiento = cimiento.extraerUltima();
         Carta cartaBasura = basura.extraerUltima();
 
-        // Chequeo de reglas
-        if (cimiento.estaVacia() && ultimaCartaCimiento.verValor() != Valor.REY) {
-            basura.agregarCarta(cartaBasura);
-            return false;
-        }
-        if (ultimaCartaCimiento.verColor() != cartaBasura.verColor()) {
-            basura.agregarCarta(cartaBasura);
-            return false;
-        }
-        if (ultimaCartaCimiento.verValor() == Valor.REY) {
-            basura.agregarCarta(cartaBasura);
-            return false;
-        }
-        Valor valorUltimaCartaCimiento = ultimaCartaCimiento.verValor();
-        if (cartaBasura.verValor() != Valor.values()[valorUltimaCartaCimiento.ordinal() + 1]){
+        if (!reglasMoverACimiento(cartaBasura, cimiento)){
             basura.agregarCarta(cartaBasura);
             return false;
         }
@@ -208,6 +169,25 @@ public class Klondike extends Solitario {
         return true;
     }
 
+    // Validaciones
+    private boolean reglasMoverACimiento(Carta cartaAMover, Cimiento cimientoDestino){
+        if (cimientoDestino.estaVacia() && cartaAMover.verValor() != Valor.AS)
+            return false;
+
+        if (cimientoDestino.estaVacia() && cartaAMover.verValor() == Valor.AS)
+            return true;
+
+        Carta ultimaCartaCimiento = cimientoDestino.verUltima();
+
+        if (ultimaCartaCimiento.verPalo() != cartaAMover.verPalo())
+            return false;
+
+        if (ultimaCartaCimiento.verValor() == Valor.REY)
+            return false;
+
+        Valor valorUltimaCartaCimiento = ultimaCartaCimiento.verValor();
+        return cartaAMover.verValor() == Valor.values()[valorUltimaCartaCimiento.ordinal() + 1];
+    }
     private boolean reglasMoverAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino){
         if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
             return false;
