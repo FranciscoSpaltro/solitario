@@ -103,28 +103,62 @@ public class KlondikeTest {
     }
 
     @Test
-    public void testMoverCartasDePilaACimiento() {
+    public void testMoverCartasPilaACimiento() {
         // Arrange
         int N = 5;
         Klondike klondike = new Klondike(Variante.KLONDIKE, true);
         klondike.inicializarJuego();
 
         // Act
-        PilaDelTableau pilaAMover = klondike.obtenerPilaDelTableau(0);
-        boolean movioRey = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        pilaAMover = klondike.obtenerPilaDelTableau(4);
+        PilaDelTableau pilaAMover = klondike.obtenerPilaDelTableau(4);
+        Cimiento cimientoDestino = klondike.obtenerCimiento(0);
+
         pilaAMover.extraerUltima();
         pilaAMover.extraerUltima();
-        boolean movioAs = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioDos = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        pilaAMover = klondike.obtenerPilaDelTableau(0);
-        boolean movioRey2 = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        // En la pila 4 queda el 1 de picas
+
+        for (int i = 0; i < 3; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(3);
+        for (int i = 0; i < 4; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(2);
+        for (int i = 0; i < 3; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(1);
+        klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        // Quedó el cimiento con as - J de picas
+
+        PilaDelTableau pilaDestino = klondike.obtenerPilaDelTableau(6);
+        boolean movioJ = klondike.moverCimientoAPila(cimientoDestino, pilaDestino);
 
         // Assert
-        assertFalse(movioRey);
-        assertTrue(movioAs);
-        assertTrue(movioDos);
-        assertFalse(movioRey2);
+        assertTrue(movioJ);
+    }
+
+    @Test
+    public void testMoverCimientoAPila(){
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        klondike.inicializarJuego();
+
+        // Completo el cimiento 0 hasta la J de picas
+        PilaDelTableau pilaAMover = klondike.obtenerPilaDelTableau(3);
+        Cimiento cimientoDestino = klondike.obtenerCimiento(0);
+
+        for (int i = 0; i < 4; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(2);
+        for (int i = 0; i < 3; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(1);
+        klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+
+        // Muevo la J de picas (rojo) del cimiento a la pila con el Q de tréboles (negro)
+        PilaDelTableau pilaDestino = klondike.obtenerPilaDelTableau(6);
+        Cimiento cimientoAMover = cimientoDestino;
+        boolean movioCimientoAPila = klondike.moverCimientoAPila(cimientoAMover, pilaDestino);
+
     }
 
     @Test
