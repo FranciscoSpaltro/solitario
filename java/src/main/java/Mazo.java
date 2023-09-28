@@ -14,4 +14,11 @@ public class Mazo extends ListaDeCartas{
     public void mezclar(){
         Collections.shuffle(lista);
     }
+
+    @Override
+    public Carta extraerUltima(){
+        if (super.estaVacia())
+            return  null;
+        return lista.remove(lista.size() - 1);
+    }
 }

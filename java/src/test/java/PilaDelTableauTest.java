@@ -39,4 +39,19 @@ public class PilaDelTableauTest {
         // Assert
         assertEquals(4, pila.cantidadCartas());
     }
+
+    @Test
+    public void testChequearId(){
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        klondike.inicializarJuego();
+
+        // Act
+
+        // Assert
+        for (int i = 0; i < klondike.cantidadPilasDelTableau(); i++) {
+            assertEquals(i, klondike.pilasTableau.get(i).obtenerId());
+        }
+
+    }
 }

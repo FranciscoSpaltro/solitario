@@ -14,6 +14,13 @@ abstract class ListaDeCartas {
     }
 
     public Carta extraerUltima(){
+        if (lista.isEmpty())
+            return  null;
+        if (lista.size() > 1) {
+            Carta anteUltimaCarta = this.obtenerCarta(lista.size() - 2);
+            if (!anteUltimaCarta.estaBocaArriba())
+                this.darVueltaIndex(lista.size() - 2);
+        }
         return lista.remove(lista.size() - 1);
     }
 

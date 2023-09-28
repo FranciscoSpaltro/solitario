@@ -17,8 +17,8 @@ public class KlondikeTest {
 
         // Assert
         assertEquals(24, klondike.mazo.cantidadCartas());
-        assertEquals(4, klondike.cimientos.size());
-        assertEquals(7, klondike.pilasTableau.size());
+        assertEquals(4, klondike.cantidadCimientos());
+        assertEquals(7, klondike.cantidadPilasDelTableau());
         assertEquals(0, klondike.basura.cantidadCartas());
         assertEquals(0, klondike.puntos);
         int i = 1;
@@ -36,8 +36,8 @@ public class KlondikeTest {
         klondike.inicializarJuego();
 
         // Act
-        PilaDelTableau  pila5 = klondike.pilasTableau.get(4);
-        PilaDelTableau  pila6 = klondike.pilasTableau.get(5);
+        PilaDelTableau  pila5 = klondike.obtenerPilaDelTableau(4);
+        PilaDelTableau  pila6 = klondike.obtenerPilaDelTableau(5);
         Carta cartaPila5 = pila5.verUltima();
         Carta cartaPila6 = pila6.verUltima();
         boolean seMovio = klondike.moverPilaAPila(pila5, pila6, 1);
@@ -101,7 +101,33 @@ public class KlondikeTest {
         assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.mazo.cantidadCartas() + klondike.basura.cantidadCartas());
         assertEquals(N, klondike.basura.cantidadCartas());
     }
+
+    @Test
+    public void testMoverCartasDePilaACimiento() {
+        // Arrange
+        int N = 5;
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        klondike.inicializarJuego();
+
+        // Act
+        PilaDelTableau pilaAMover = klondike.obtenerPilaDelTableau(0);
+        boolean movioRey = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        pilaAMover = klondike.obtenerPilaDelTableau(4);
+        pilaAMover.extraerUltima();
+        pilaAMover.extraerUltima();
+        boolean movioAs = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        boolean movioDos = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        pilaAMover = klondike.obtenerPilaDelTableau(0);
+        boolean movioRey2 = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+
+        // Assert
+        assertFalse(movioRey);
+        assertTrue(movioAs);
+        assertTrue(movioDos);
+        assertFalse(movioRey2);
+    }
 }
+
 
 
     //private void generarEntornoDePrueba(){

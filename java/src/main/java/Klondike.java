@@ -18,6 +18,19 @@ public class Klondike extends Solitario {
         basura = new Basura();
     }
 
+    public Klondike(Variante tipo, boolean prueba) {
+        super(tipo, prueba);
+        pilasTableau = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            pilasTableau.add(new PilaDelTableau(i));
+        }
+        cimientos = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            cimientos.add(new Cimiento(i));
+        }
+        basura = new Basura();
+    }
+
     @Override
     void inicializarJuego() {
         //4 Cimientos, 7 pilas con 1, 2, 4 .. 7 cartas donde sólo se ve la ultima;
@@ -72,13 +85,21 @@ public class Klondike extends Solitario {
     @Override
     protected boolean moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) {
         Carta ultimaCartaPila = pila.extraerUltima();
-        Carta ultimaCartaCimiento = cimiento.verUltima();
 
-        // Validación de reglas
         if (cimiento.estaVacia() && ultimaCartaPila.verValor() != Valor.AS) {
             pila.agregarCarta(ultimaCartaPila);
             return false;
         }
+
+        if (cimiento.estaVacia() && ultimaCartaPila.verValor() == Valor.AS){
+            cimiento.agregarCarta(ultimaCartaPila);
+            return true;
+        }
+
+        Carta ultimaCartaCimiento = cimiento.verUltima();
+
+        // Validación de reglas
+
         if (!ultimaCartaCimiento.verPalo().equals(ultimaCartaPila.verPalo())) {
             pila.agregarCarta(ultimaCartaPila);
             return false;

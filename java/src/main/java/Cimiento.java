@@ -14,6 +14,6 @@ public class Cimiento extends ListaDeCartas{
     }
 
     public boolean estaCompleto(){
-        return lista.size() == 12; //¿hardcodeado?
+        return lista.size() == 13; //¿hardcodeado?
     }
 }

@@ -19,6 +19,12 @@ abstract class Solitario {
         mazo.mezclar();
     }
 
+    public Solitario(Variante tipo, boolean prueba){
+        this.tipoSolitario = tipo;
+        puntos = 0;
+        mazo = new Mazo();
+    }
+
     abstract void inicializarJuego();
 
     public boolean jugadorGano(){
@@ -52,5 +58,21 @@ abstract class Solitario {
     protected abstract boolean moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino);
 
     protected abstract boolean moverMazoABasura();
+
+    protected int cantidadPilasDelTableau(){
+        return pilasTableau.size();
+    }
+
+    protected Cimiento obtenerCimiento(int index){
+        return cimientos.get(index);
+    }
+
+    protected PilaDelTableau obtenerPilaDelTableau(int index){
+        return pilasTableau.get(index);
+    }
+
+    protected int cantidadCimientos(){
+        return cimientos.size();
+    }
 
 }
