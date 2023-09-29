@@ -103,9 +103,8 @@ public class KlondikeTest {
     }
 
     @Test
-    public void testMoverCartasPilaACimiento() {
+    public void testMoverCartasEntreCimientoYPila() {
         // Arrange
-        int N = 5;
         Klondike klondike = new Klondike(Variante.KLONDIKE, true);
         klondike.inicializarJuego();
 
@@ -117,6 +116,7 @@ public class KlondikeTest {
         pilaAMover.extraerUltima();
         // En la pila 4 queda el 1 de picas
 
+        // Completo el cimiento 0 hasta la J de picas
         for (int i = 0; i < 3; i++)
             klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
         pilaAMover = klondike.obtenerPilaDelTableau(3);
@@ -127,38 +127,15 @@ public class KlondikeTest {
             klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
         pilaAMover = klondike.obtenerPilaDelTableau(1);
         klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
-        // Quedó el cimiento con as - J de picas
+        // Quedó el cimiento con as, 2 ... J de picas
 
+        // Muevo J de picas al Q de tréboles
         PilaDelTableau pilaDestino = klondike.obtenerPilaDelTableau(6);
-        boolean movioJ = klondike.moverCimientoAPila(cimientoDestino, pilaDestino);
+        Cimiento cimientoOrigen = cimientoDestino;
+        boolean movioJ = klondike.moverCimientoAPila(cimientoOrigen, pilaDestino);
 
         // Assert
         assertTrue(movioJ);
-    }
-
-    @Test
-    public void testMoverCimientoAPila(){
-        // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
-        klondike.inicializarJuego();
-
-        // Completo el cimiento 0 hasta la J de picas
-        PilaDelTableau pilaAMover = klondike.obtenerPilaDelTableau(3);
-        Cimiento cimientoDestino = klondike.obtenerCimiento(0);
-
-        for (int i = 0; i < 4; i++)
-            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
-        pilaAMover = klondike.obtenerPilaDelTableau(2);
-        for (int i = 0; i < 3; i++)
-            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
-        pilaAMover = klondike.obtenerPilaDelTableau(1);
-        klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
-
-        // Muevo la J de picas (rojo) del cimiento a la pila con el Q de tréboles (negro)
-        PilaDelTableau pilaDestino = klondike.obtenerPilaDelTableau(6);
-        Cimiento cimientoAMover = cimientoDestino;
-        boolean movioCimientoAPila = klondike.moverCimientoAPila(cimientoAMover, pilaDestino);
-
     }
 
     @Test
