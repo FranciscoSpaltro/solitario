@@ -39,6 +39,23 @@ public class Klondike extends Solitario {
     }
 
     @Override
+    protected void reiniciar(){
+        puntos = 0;
+        // Al dejar sin referencia, la máquina virtual de Java elimina la memoria anterior
+        mazo = new Mazo();
+        mazo.mezclar();
+        pilasTableau = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            pilasTableau.add(new PilaDelTableau(i));
+        }
+        cimientos = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            cimientos.add(new Cimiento(i));
+        }
+        basura = new Basura();
+        this.inicializarJuego();
+    }
+    @Override
     protected void repartirCartas(Mazo mazo) {
         int cartasOcultas = 0;
         for (PilaDelTableau pila : pilasTableau) {

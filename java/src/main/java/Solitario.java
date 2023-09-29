@@ -41,11 +41,7 @@ abstract class Solitario {
 
     // protected abstract boolean jugadorPerdio(); // ¿Se puede implementar?
 
-    void reiniciar(){
-        puntos = 0;
-        inicializarJuego();
-    }
-
+    protected abstract void reiniciar();
     protected abstract void repartirCartas(Mazo mazo);
 
     protected abstract boolean moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n);
