@@ -30,4 +30,59 @@ public class SolitarioTest {
         assertEquals(6, klondike.obtenerPilaDelTableau(5).cantidadCartas());
         assertEquals(7, klondike.obtenerPilaDelTableau(6).cantidadCartas());
     }
+
+    @Test
+    public void testJugadorGano(){
+        // Arrange
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        klondike.inicializarJuego();
+
+        // Act
+        for (int i = 0; i < 11; i++)
+            klondike.moverMazoABasura();
+        Cimiento cimientoDestino = klondike.obtenerCimiento(0);
+        for (int i = 0; i < 11; i++)
+            klondike.moverBasuraACimiento(cimientoDestino);
+        PilaDelTableau pilaAMover = klondike.obtenerPilaDelTableau(6);
+        for (int i = 0; i < 2; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        // Quedan en el cimiento 0 todas las cartas de  diamante
+
+        cimientoDestino = klondike.obtenerCimiento(1);
+        for (int i = 0; i < 5; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(5);
+        for (int i = 0; i < 6; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(4);
+        for (int i = 0; i < 2; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        // Quedan en el cimiento 1 todas las cartas de tréboles
+
+        cimientoDestino = klondike.obtenerCimiento(2);
+        for (int i = 0; i < 3; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(3);
+        for (int i = 0; i < 4; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(2);
+        for (int i = 0; i < 3; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(1);
+        for (int i = 0; i < 2; i++)
+            klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        pilaAMover = klondike.obtenerPilaDelTableau(0);
+        klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
+        // Quedan en el cimiento 2 todas las cartas de picas
+
+        cimientoDestino = klondike.obtenerCimiento(3);
+        for (int i = 0; i < 13; i++)
+            klondike.moverMazoABasura();
+        for (int i = 0; i < 13; i++)
+            klondike.moverBasuraACimiento(cimientoDestino);
+        // Quedan en el cimiento 3 todas las cartas de corazones
+
+        // Assert
+        assertTrue(klondike.jugadorGano());
+    }
 }

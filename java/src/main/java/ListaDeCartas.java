@@ -74,8 +74,10 @@ abstract class ListaDeCartas {
         return carta.darVuelta();
     }
 
+    /*
     public ArrayList<Carta> mostrarVisibles(){
         int comienzoVisibles = this.cantidadCartasOcultas();
         return (ArrayList<Carta>) lista.subList(comienzoVisibles, this.cantidadCartas());
     }
+    */
 }
