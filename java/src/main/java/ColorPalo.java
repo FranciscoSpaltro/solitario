@@ -1,4 +1,4 @@
 public enum ColorPalo {
     ROJO,
-    NEGRO;
+    NEGRO
 }

@@ -11,5 +11,5 @@ public enum Valor {
     DIEZ,
     JOTA,
     REINA,
-    REY;
+    REY
 }

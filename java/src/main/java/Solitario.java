@@ -1,7 +1,4 @@
-import java.util.ArrayList;
 import  java.util.List;
-import java.util.Stack;
-
 abstract class Solitario {
     //Atributos
     protected Variante tipoSolitario;
@@ -38,9 +35,6 @@ abstract class Solitario {
     public int obtenerPuntos() {
         return puntos;
     }
-
-    // protected abstract boolean jugadorPerdio(); // ¿Se puede implementar?
-
     protected abstract void reiniciar();
     protected abstract void repartirCartas(Mazo mazo);
 

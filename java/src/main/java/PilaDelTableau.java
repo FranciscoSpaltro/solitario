@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class PilaDelTableau extends ListaDeCartas{
     // Atributos
     int id;

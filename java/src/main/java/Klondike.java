@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.ArrayList;
 
 public class Klondike extends Solitario {
@@ -18,6 +17,7 @@ public class Klondike extends Solitario {
         basura = new Basura();
     }
 
+    // SOLO PARA TESTING (sin mezclar)
     public Klondike(Variante tipo, boolean prueba) {
         super(tipo, prueba);
         pilasTableau = new ArrayList<>();
@@ -33,7 +33,7 @@ public class Klondike extends Solitario {
 
     @Override
     void inicializarJuego() {
-        //4 Cimientos, 7 pilas con 1, 2, 4 .. 7 cartas donde sólo se ve la ultima;
+        //4 Cimientos, 7 pilas con 1, 2, 4 ... 7 cartas donde solo se ve la última;
         this.repartirCartas(super.mazo);
 
     }

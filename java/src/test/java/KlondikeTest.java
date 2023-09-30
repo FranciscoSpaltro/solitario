@@ -1,3 +1,5 @@
+// Para este archivo se agrega un anexo explicativo en el informe
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -39,7 +41,7 @@ public class KlondikeTest {
         klondike.inicializarJuego();
 
         // Act
-        // Pruebo si puedo mover la ultima carta de la pila 4 a la pila 5, dependiendo de
+        // Pruebo si puedo mover la última carta de la pila 4 a la pila 5, dependiendo de
         // como se reparta el mazo, se podrá mover o no la carta
         PilaDelTableau  pila5 = klondike.obtenerPilaDelTableau(4);
         PilaDelTableau  pila6 = klondike.obtenerPilaDelTableau(5);
@@ -97,7 +99,7 @@ public class KlondikeTest {
         Carta ultimaMazo4 = klondike.obtenerMazo().verUltima();
         boolean seMovio4 = klondike.moverMazoABasura();
 
-        // Se busca probar que al sacar 5 cartas en el mazo sólo se puedan visualizar las ultimas 3
+        // Se busca probar que al sacar 5 cartas en el mazo solo se puedan visualizar las últimas 3
         // por eso las dos primeras que saco del mazo, deben tener estaBocaAbajo = false
 
         // Assert
@@ -147,9 +149,7 @@ public class KlondikeTest {
         // Vuelvo a mover J de picas al cimiento 0
         klondike.moverPilaACimiento(pilaDestino, cimientoDestino);
 
-        // Libero Q de diamantes
         PilaDelTableau pilaConQDeDiamantes = klondike.obtenerPilaDelTableau(6);
-        pilaConQDeDiamantes.extraerUltima();
         // Intento mover Q de diamantes al cimiento con J de picas (!= palo)
         boolean movioQ = klondike.moverPilaACimiento(pilaConQDeDiamantes, cimientoDestino);
 
@@ -266,9 +266,9 @@ public class KlondikeTest {
 
         // Act
         // Sacar la carta de la primera pila para que quede vacía
-        klondike.pilasTableau.get(0).extraerUltima();
+        klondike.obtenerPilaDelTableau(0).extraerUltima();
         // La última carta de la segunda pila es J de picas
-        boolean seMovio = klondike.moverPilaAPila(klondike.pilasTableau.get(1), klondike.pilasTableau.get(0), 1);
+        boolean seMovio = klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(1), klondike.obtenerPilaDelTableau(0), 1);
 
         // Assert
         assertFalse(seMovio);
@@ -281,7 +281,7 @@ public class KlondikeTest {
         klondike.inicializarJuego();
 
         // Act
-        boolean seMovio = klondike.moverPilaAPila(klondike.pilasTableau.get(6), klondike.pilasTableau.get(0), 1);
+        boolean seMovio = klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(6), klondike.obtenerPilaDelTableau(0), 1);
         // La primera carta de la primera pila es K picas (negro) y la última carta de la última pila es Q diamantes (rojo)
 
         // Assert
@@ -289,7 +289,7 @@ public class KlondikeTest {
         assertEquals(5, klondike.obtenerPuntos());
 
         // Act
-        seMovio = klondike.moverPilaAPila(klondike.pilasTableau.get(0), klondike.pilasTableau.get(6), 1);
+        seMovio = klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(0), klondike.obtenerPilaDelTableau(6), 1);
         // Ahora la última carta de la última pila es K diamantes (rojo) y la de la primera es Q diamantes (rojo)
 
         // Assert

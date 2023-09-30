@@ -35,5 +35,6 @@ public class BasuraTest {
         assertEquals(Valor.JOTA, carta4.verValor());
         assertEquals(Palo.DIAMANTES, carta4.verPalo());
         assertTrue(carta4.estaBocaArriba());
+        assertTrue(movidoABasura);
     }
 }

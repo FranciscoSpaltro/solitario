@@ -40,7 +40,7 @@ abstract class ListaDeCartas {
         int comienzoExtraccion = this.cantidadCartas() - n;
         int finExtraccion = this.cantidadCartas();
 
-        ArrayList<Carta> cartasAExtraer = new ArrayList<Carta>(lista.subList(comienzoExtraccion, finExtraccion));
+        ArrayList<Carta> cartasAExtraer = new ArrayList<>(lista.subList(comienzoExtraccion, finExtraccion));
         lista.removeAll(cartasAExtraer);
 
         if (! this.verUltima().estaBocaArriba())
@@ -73,11 +73,4 @@ abstract class ListaDeCartas {
         Carta carta = lista.get(n);
         return carta.darVuelta();
     }
-
-    /*
-    public ArrayList<Carta> mostrarVisibles(){
-        int comienzoVisibles = this.cantidadCartasOcultas();
-        return (ArrayList<Carta>) lista.subList(comienzoVisibles, this.cantidadCartas());
-    }
-    */
 }

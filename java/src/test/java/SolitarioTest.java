@@ -16,7 +16,7 @@ public class SolitarioTest {
         klondike.puntos = 25;
         klondike.reiniciar();
 
-        // Despues de modificar el tamaño de la pila 5, el tamaño del mazo y de basura y los puntos,
+        // Después de modificar el tamaño de la pila 5, el tamaño del mazo y de basura y los puntos,
         // se reinicia el juego, y se chequean que los valores de los atributos sean los iniciales
 
         // Assert
@@ -49,7 +49,7 @@ public class SolitarioTest {
         PilaDelTableau pilaAMover = klondike.obtenerPilaDelTableau(6);
         for (int i = 0; i < 2; i++)
             klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
-        // Quedan en el cimiento 0 todas las cartas de  diamante
+        // Quedan en el cimiento 0 todas las cartas de diamante
 
         cimientoDestino = klondike.obtenerCimiento(1);
         for (int i = 0; i < 5; i++)

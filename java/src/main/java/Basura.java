@@ -1,12 +1,10 @@
 import java.util.ArrayList;
-import java.util.Stack;
-
 public class Basura extends ListaDeCartas {
     // Atributos
 
     // Métodos
     public ArrayList<Carta> mostrarUltimasTres(){
-        ArrayList<Carta> ultimasTres = new ArrayList<Carta>();
+        ArrayList<Carta> ultimasTres = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             ultimasTres.add(super.extraerUltima());
         }
