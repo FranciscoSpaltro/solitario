@@ -32,7 +32,7 @@ public class KlondikeTest {
     @Test
     public void testMoverPilaAPilaJuegoRecienIniciado(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
         klondike.inicializarJuego();
 
         // Act
@@ -93,6 +93,7 @@ public class KlondikeTest {
         boolean seMovio4 = klondike.moverMazoABasura();
 
         // Assert
+        assertTrue(seMovio && seMovio1 && seMovio2 && seMovio3 && seMovio4);
         assertFalse(ultimaMazo.estaBocaArriba());
         assertFalse(ultimaMazo1.estaBocaArriba());
         assertTrue(ultimaMazo2.estaBocaArriba());
@@ -120,6 +121,7 @@ public class KlondikeTest {
         for (int i = 0; i < 3; i++)
             klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
         pilaAMover = klondike.obtenerPilaDelTableau(3);
+        boolean juegoTerminado = klondike.jugadorGano();
         for (int i = 0; i < 4; i++)
             klondike.moverPilaACimiento(pilaAMover, cimientoDestino);
         pilaAMover = klondike.obtenerPilaDelTableau(2);
@@ -134,8 +136,25 @@ public class KlondikeTest {
         Cimiento cimientoOrigen = cimientoDestino;
         boolean movioJ = klondike.moverCimientoAPila(cimientoOrigen, pilaDestino);
 
+        // Vuelvo a mover J de picas al cimiento 0
+        klondike.moverPilaACimiento(pilaDestino, cimientoDestino);
+
+        // Libero Q de diamantes
+        PilaDelTableau pilaConQDeDiamantes = klondike.obtenerPilaDelTableau(6);
+        pilaConQDeDiamantes.extraerUltima();
+        // Intento mover Q de diamantes al cimiento con J de picas (!= palo)
+        boolean movioQ = klondike.moverPilaACimiento(pilaConQDeDiamantes, cimientoDestino);
+
+        // Agarro un nuevo cimiento vacío
+        Cimiento cimientoNuevo = klondike.obtenerCimiento(1);
+        // En la pila 1 está la reina de picas
+        boolean moverReinaCimientoVacio = klondike.moverPilaACimiento(klondike.obtenerPilaDelTableau(1), cimientoNuevo);
+
         // Assert
         assertTrue(movioJ);
+        assertFalse(moverReinaCimientoVacio);
+        assertFalse(juegoTerminado);
+        assertFalse(movioQ);
     }
 
     @Test

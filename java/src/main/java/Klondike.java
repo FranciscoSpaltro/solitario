@@ -211,8 +211,6 @@ public class Klondike extends Solitario {
         if (ultimaCartaCimiento.verPalo() != cartaAMover.verPalo())
             return ErrorAlMover.CIMIENTO_CARTAS_DISTINTO_PALO;
 
-        if (ultimaCartaCimiento.verValor() == Valor.REY)
-            return ErrorAlMover.AGREGAR_CARTA_CIMIENTO_COMPLETO;
 
         Valor valorUltimaCartaCimiento = ultimaCartaCimiento.verValor();
         if (cartaAMover.verValor() == Valor.values()[valorUltimaCartaCimiento.ordinal() + 1])
@@ -234,8 +232,6 @@ public class Klondike extends Solitario {
         if (primeraCartaAMover.verColor() == ultimaCartaDestino.verColor())
             return ErrorAlMover.PILA_CARTAS_MISMO_COLOR;
 
-        if (ultimaCartaDestino.verValor() == Valor.AS)
-            return ErrorAlMover.AGREGAR_CARTA_PILA_COMPLETA;
         Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
 
         if (primeraCartaAMover.verValor() == Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
