@@ -1,0 +1,148 @@
+@startuml
+
+class Basura {
+  + mostrarUltimasTres(): ArrayList<Carta>
+  + agregarCarta(carta: Carta): void
+}
+
+class ListaDeCartas {
+  + cantidadCartas(): int
+  + estaVacia(): boolean
+  + extraerUltima(): Carta
+  + verUltima(): Carta
+  + agregarCarta(carta: Carta): void
+  + obtenerCarta(index: int): Carta
+  + extraerUltimasN(n: int): ArrayList<Carta>
+  + cantidadCartasOcultas(): int
+  + anexarCartas(cartas: ArrayList<Carta>): boolean
+  + cantidadCartasVisibles(): int
+  + darVueltaIndex(n: int): boolean
+}
+
+class Carta {
+  - valor: Valor
+  - palo: Palo
+  - bocaArriba: boolean
+  + Carta(valor: Valor, palo: Palo, bocaArriba: boolean)
+  + verPalo(): Palo
+  + verValor(): Valor
+  + estaBocaArriba(): boolean
+  + darVuelta(): boolean
+  + verColor(): ColorPalo
+}
+
+class Cimiento {
+  - id: int
+  + Cimiento(id: int)
+  + verId(): int
+  + estaCompleto(): boolean
+}
+
+enum ColorPalo {
+  ROJO,
+  NEGRO
+}
+
+enum ErrorAlMover {
+  MOVIMIENTO_PERMITIDO,
+  PILA_VACIA_NO_REY,
+  ORDEN_NO_DESCENDENTE,
+  ORDEN_NO_ASCENDENTE,
+  CIMIENTO_VACIO_NO_AS,
+  PILA_CARTAS_MISMO_COLOR,
+  CARTA_A_MOVER_NO_BOCA_ARRIBA,
+  CIMIENTO_CARTAS_DISTINTO_PALO
+}
+
+class Klondike {
+  + Klondike(tipo: Variante)
+  + Klondike(tipo: Variante, prueba: boolean)
+  + inicializarJuego(): void
+  + reiniciar(): void
+  + repartirCartas(mazo: Mazo): void
+  + moverPilaAPila(pilaOrigen: PilaDelTableau, pilaDestino: PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: PilaDelTableau, cimiento: Cimiento): boolean
+  + moverBasuraAPila(pila: PilaDelTableau): boolean
+  + moverBasuraACimiento(cimiento: Cimiento): boolean
+  + moverBasuraAMazo(): boolean
+  + moverMazoABasura(): boolean
+  + moverCimientoAPila(cimiento: Cimiento, pilaDestino: PilaDelTableau): boolean
+}
+
+class Mazo {
+  + Mazo()
+  + mezclar(): void
+  + extraerUltima(): Carta
+}
+
+enum Palo {
+  CORAZONES,
+  DIAMANTES,
+  TREBOLES,
+  PICAS
+}
+
+class PilaDelTableau {
+  - id: int
+  + obtenerId(): int
+  + PilaDelTableau(id: int)
+}
+
+abstract class Solitario {
+  - puntos: int
+  + Solitario(tipo: Variante)
+  + Solitario(tipo: Variante, prueba: boolean)
+  + inicializarJuego(): void
+  + jugadorGano(): boolean
+  + obtenerPuntos(): int
+  + reiniciar(): void
+  + repartirCartas(mazo: Mazo): void
+  + moverPilaAPila(pilaOrigen: PilaDelTableau, pilaDestino: PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: PilaDelTableau, cimiento: Cimiento): boolean
+  + moverBasuraAPila(pila: PilaDelTableau): boolean
+  + moverBasuraACimiento(cimiento: Cimiento): boolean
+  + moverBasuraAMazo(): boolean
+  + moverCimientoAPila(cimiento: Cimiento, pilaDestino: PilaDelTableau): boolean
+  + moverMazoABasura(): boolean
+  + cantidadPilasDelTableau(): int
+  + obtenerCimiento(index: int): Cimiento
+  + obtenerPilaDelTableau(index: int): PilaDelTableau
+  + cantidadCimientos(): int
+}
+
+enum Valor {
+  AS,
+  DOS,
+  TRES,
+  CUATRO,
+  CINCO,
+  SEIS,
+  SIETE,
+  OCHO,
+  NUEVE,
+  DIEZ,
+  JOTA,
+  REINA,
+  REY
+}
+
+enum Variante {
+  KLONDIKE
+}
+
+ListaDeCartas "1" o-- "*" Carta : lista
+Basura --|> ListaDeCartas
+Carta *-.-> Valor
+Carta *-.-> Palo
+Carta *-.-> ColorPalo
+Cimiento --|> ListaDeCartas
+Klondike --|> Solitario
+Mazo --|> ListaDeCartas
+PilaDelTableau --|> ListaDeCartas
+Solitario "1"*-->"1" Variante
+Solitario "1"*-->"1" Mazo
+Solitario "1"*-->"4" Cimiento : cimientos
+Solitario "1"*-->"7" PilaDelTableau :pilasTableau
+Solitario "1"*-->"1" Basura
+
+@enduml

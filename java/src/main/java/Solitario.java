@@ -75,4 +75,13 @@ abstract class Solitario {
         return cimientos.size();
     }
 
+    protected Mazo obtenerMazo(){
+        return mazo;
+    }
+
+    protected Basura obtenerBasura(){
+        return basura;
+    }
+
+
 }

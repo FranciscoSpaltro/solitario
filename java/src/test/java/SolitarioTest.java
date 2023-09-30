@@ -16,9 +16,12 @@ public class SolitarioTest {
         klondike.puntos = 25;
         klondike.reiniciar();
 
+        // Despues de modificar el tamaño de la pila 5, el tamaño del mazo y de basura y los puntos,
+        // se reinicia el juego, y se chequean que los valores de los atributos sean los iniciales
+
         // Assert
-        assertEquals(24, klondike.mazo.cantidadCartas());
-        assertEquals(0, klondike.basura.cantidadCartas());
+        assertEquals(24, klondike.obtenerMazo().cantidadCartas());
+        assertEquals(0, klondike.obtenerBasura().cantidadCartas());
         assertEquals(0, klondike.obtenerPuntos());
         assertEquals(4, klondike.cantidadCimientos());
         assertEquals(7, klondike.cantidadPilasDelTableau());

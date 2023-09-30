@@ -13,6 +13,8 @@ public class KlondikeTest {
         assertEquals(52, klondike.mazo.cantidadCartas());
 
         // Act
+        // Se reparten las cartas del mazo en las PilasDelTableau
+        // Quedan 24 cartas en el mazo, se generan 4 cimientos, 7 PilasDelTableau y se inicializa la basura en 0
         klondike.inicializarJuego();
 
         // Assert
@@ -21,6 +23,7 @@ public class KlondikeTest {
         assertEquals(7, klondike.cantidadPilasDelTableau());
         assertEquals(0, klondike.basura.cantidadCartas());
         assertEquals(0, klondike.puntos);
+
         int i = 1;
         for (PilaDelTableau pila : klondike.pilasTableau) {
             assertEquals(i, pila.cantidadCartas());
@@ -32,16 +35,17 @@ public class KlondikeTest {
     @Test
     public void testMoverPilaAPilaJuegoRecienIniciado(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        Klondike klondike = new Klondike(Variante.KLONDIKE);
         klondike.inicializarJuego();
 
         // Act
+        // Pruebo si puedo mover la ultima carta de la pila 4 a la pila 5, dependiendo de
+        // como se reparta el mazo, se podrá mover o no la carta
         PilaDelTableau  pila5 = klondike.obtenerPilaDelTableau(4);
         PilaDelTableau  pila6 = klondike.obtenerPilaDelTableau(5);
         Carta cartaPila5 = pila5.verUltima();
         Carta cartaPila6 = pila6.verUltima();
         boolean seMovio = klondike.moverPilaAPila(pila5, pila6, 1);
-        boolean seMovio2 = klondike.moverPilaAPila(pila5, pila6, 3);
 
         boolean seTeniaQueMover = false;
         if (cartaPila5.estaBocaArriba() && cartaPila6.estaBocaArriba() && cartaPila5.verColor() != cartaPila6.verColor() && cartaPila6.verValor().ordinal() ==  cartaPila5.verValor().ordinal() -1)
@@ -58,16 +62,17 @@ public class KlondikeTest {
         klondike.inicializarJuego();
 
         // Act
-        int cantidadCartasMazoAntesDeSacarUna = klondike.mazo.cantidadCartas();
-        Carta ultimaMazo = klondike.mazo.verUltima();
+        // Muevo una carta del mazo a la basura y chequeo que sea la misma
+        int cantidadCartasMazoAntesDeSacarUna = klondike.obtenerMazo().cantidadCartas();
+        Carta ultimaMazo = klondike.obtenerMazo().verUltima();
         boolean seMovio = klondike.moverMazoABasura();
 
         // Assert
 
-        assertEquals(ultimaMazo.verValor(), klondike.basura.verUltima().verValor());
-        assertEquals(ultimaMazo.verPalo(), klondike.basura.verUltima().verPalo());
-        assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.mazo.cantidadCartas() + klondike.basura.cantidadCartas());
-        assertEquals(1, klondike.basura.cantidadCartas());
+        assertEquals(ultimaMazo.verValor(), klondike.obtenerBasura().verUltima().verValor());
+        assertEquals(ultimaMazo.verPalo(), klondike.obtenerBasura().verUltima().verPalo());
+        assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.obtenerMazo().cantidadCartas() + klondike.basura.cantidadCartas());
+        assertEquals(1, klondike.obtenerBasura().cantidadCartas());
         assertTrue(seMovio);
     }
 
@@ -80,17 +85,20 @@ public class KlondikeTest {
         klondike.inicializarJuego();
 
         // Act
-        int cantidadCartasMazoAntesDeSacarUna = klondike.mazo.cantidadCartas();
-        Carta ultimaMazo = klondike.mazo.verUltima();
+        int cantidadCartasMazoAntesDeSacarUna = klondike.obtenerMazo().cantidadCartas();
+        Carta ultimaMazo = klondike.obtenerMazo().verUltima();
         boolean seMovio = klondike.moverMazoABasura();
-        Carta ultimaMazo1 = klondike.mazo.verUltima();
+        Carta ultimaMazo1 = klondike.obtenerMazo().verUltima();
         boolean seMovio1 = klondike.moverMazoABasura();
-        Carta ultimaMazo2 = klondike.mazo.verUltima();
+        Carta ultimaMazo2 = klondike.obtenerMazo().verUltima();
         boolean seMovio2 = klondike.moverMazoABasura();
-        Carta ultimaMazo3 = klondike.mazo.verUltima();
+        Carta ultimaMazo3 = klondike.obtenerMazo().verUltima();
         boolean seMovio3 = klondike.moverMazoABasura();
-        Carta ultimaMazo4 = klondike.mazo.verUltima();
+        Carta ultimaMazo4 = klondike.obtenerMazo().verUltima();
         boolean seMovio4 = klondike.moverMazoABasura();
+
+        // Se busca probar que al sacar 5 cartas en el mazo sólo se puedan visualizar las ultimas 3
+        // por eso las dos primeras que saco del mazo, deben tener estaBocaAbajo = false
 
         // Assert
         assertTrue(seMovio && seMovio1 && seMovio2 && seMovio3 && seMovio4);
@@ -99,8 +107,8 @@ public class KlondikeTest {
         assertTrue(ultimaMazo2.estaBocaArriba());
         assertTrue(ultimaMazo3.estaBocaArriba());
         assertTrue(ultimaMazo4.estaBocaArriba());
-        assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.mazo.cantidadCartas() + klondike.basura.cantidadCartas());
-        assertEquals(N, klondike.basura.cantidadCartas());
+        assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.obtenerMazo().cantidadCartas() + klondike.obtenerBasura().cantidadCartas());
+        assertEquals(N, klondike.obtenerBasura().cantidadCartas());
     }
 
     @Test
