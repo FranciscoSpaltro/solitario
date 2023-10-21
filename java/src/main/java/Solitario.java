@@ -49,7 +49,11 @@ abstract class Solitario {
 
     protected abstract boolean moverBasuraAMazo();
 
-    protected abstract boolean moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino);
+    protected abstract void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException;
+
+    protected abstract void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException;
+
+    protected abstract void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException;
 
     protected abstract boolean moverMazoABasura();
 
@@ -76,6 +80,4 @@ abstract class Solitario {
     protected Basura obtenerBasura(){
         return basura;
     }
-
-
 }

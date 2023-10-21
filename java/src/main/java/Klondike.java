@@ -74,7 +74,7 @@ public class Klondike extends Solitario {
         int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
         Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
 
-        ErrorAlMover movimientoPermitido = reglasMoverAPila(primeraCartaOrigen, pilaDestino);
+        ErrorAlMover movimientoPermitido = validarMovimientoAPila(primeraCartaOrigen, pilaDestino);
 
         if(movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO)
             return false;
@@ -99,7 +99,7 @@ public class Klondike extends Solitario {
     protected boolean moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) {
         Carta ultimaCartaPila = pila.extraerUltima();
 
-        ErrorAlMover movimientoPermitido = reglasMoverACimiento(ultimaCartaPila, cimiento);
+        ErrorAlMover movimientoPermitido = validarMovimientoACimiento(ultimaCartaPila, cimiento);
 
         if (movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO){
             pila.agregarCarta(ultimaCartaPila);
@@ -117,7 +117,7 @@ public class Klondike extends Solitario {
     protected boolean moverBasuraAPila(PilaDelTableau pila) {
         Carta cartaAAgregar = basura.extraerUltima();
 
-        ErrorAlMover movimientoPermitido = reglasMoverAPila(cartaAAgregar, pila);
+        ErrorAlMover movimientoPermitido = validarMovimientoAPila(cartaAAgregar, pila);
         if(movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO){
             basura.agregarCarta(cartaAAgregar);
             return false;
@@ -132,7 +132,7 @@ public class Klondike extends Solitario {
     protected boolean moverBasuraACimiento(Cimiento cimiento) {
         Carta cartaBasura = basura.extraerUltima();
 
-        ErrorAlMover movimientoPermitido = reglasMoverACimiento(cartaBasura, cimiento);
+        ErrorAlMover movimientoPermitido = validarMovimientoACimiento(cartaBasura, cimiento);
         if (movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO){
             basura.agregarCarta(cartaBasura);
             return false;
@@ -177,14 +177,13 @@ public class Klondike extends Solitario {
 
 
     @Override
-    protected boolean moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) {
+    protected void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException{
         Carta ultimaCartaCimiento = cimiento.extraerUltima();
 
-        ErrorAlMover movimientoPermitido = reglasMoverAPila(ultimaCartaCimiento, pilaDestino);
-
-        if (movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO) {
+        try{
+            validarMovimientoAPila(ultimaCartaCimiento, pilaDestino);
+        } finally {
             cimiento.agregarCarta(ultimaCartaCimiento);
-            return false;
         }
 
         // Llegado a este punto, el movimiento es válido
@@ -194,49 +193,38 @@ public class Klondike extends Solitario {
             puntos -= 15;
         else
             puntos = 0;
-
-        return true;
     }
 
     // Validaciones
-    private ErrorAlMover reglasMoverACimiento(Carta cartaAMover, Cimiento cimientoDestino){
+    protected void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException{
         if (cimientoDestino.estaVacia() && cartaAMover.verValor() != Valor.AS)
-            return ErrorAlMover.CIMIENTO_VACIO_NO_AS;
-
-        if (cimientoDestino.estaVacia() && cartaAMover.verValor() == Valor.AS)
-            return ErrorAlMover.MOVIMIENTO_PERMITIDO;
+            throw new InvalidMovementException(ErrorAlMover.CIMIENTO_VACIO_NO_AS);
 
         Carta ultimaCartaCimiento = cimientoDestino.verUltima();
 
         if (ultimaCartaCimiento.verPalo() != cartaAMover.verPalo())
-            return ErrorAlMover.CIMIENTO_CARTAS_DISTINTO_PALO;
+            throw new InvalidMovementException(ErrorAlMover.CIMIENTO_CARTAS_DISTINTO_PALO);
 
 
         Valor valorUltimaCartaCimiento = ultimaCartaCimiento.verValor();
-        if (cartaAMover.verValor() == Valor.values()[valorUltimaCartaCimiento.ordinal() + 1])
-            return ErrorAlMover.MOVIMIENTO_PERMITIDO;
-        else
-            return ErrorAlMover.ORDEN_NO_ASCENDENTE;
+        if (cartaAMover.verValor() != Valor.values()[valorUltimaCartaCimiento.ordinal() + 1])
+            throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_ASCENDENTE);
     }
-    private ErrorAlMover reglasMoverAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino){
+    protected void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
         if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
-            return ErrorAlMover.PILA_VACIA_NO_REY;
-        if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() == Valor.REY)
-            return ErrorAlMover.MOVIMIENTO_PERMITIDO;
+            throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_REY);
 
         Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
 
         if (!primeraCartaAMover.estaBocaArriba())
-            return ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA;
+            throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
 
         if (primeraCartaAMover.verColor() == ultimaCartaDestino.verColor())
-            return ErrorAlMover.PILA_CARTAS_MISMO_COLOR;
+            throw new InvalidMovementException(ErrorAlMover.PILA_CARTAS_MISMO_COLOR);
 
         Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
 
-        if (primeraCartaAMover.verValor() == Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
-            return ErrorAlMover.MOVIMIENTO_PERMITIDO;
-        else
-            return ErrorAlMover.ORDEN_NO_DESCENDENTE;
+        if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
+            throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
     }
 }
