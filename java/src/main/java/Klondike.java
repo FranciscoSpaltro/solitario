@@ -70,15 +70,15 @@ public class Klondike extends Solitario {
     }
 
     @Override
-    protected boolean moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) {
+    protected void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
         int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
         Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
 
-        ErrorAlMover movimientoPermitido = validarMovimientoAPila(primeraCartaOrigen, pilaDestino);
-
-        if(movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO)
-            return false;
-
+        try {
+            validarMovimientoAPila(primeraCartaOrigen, pilaDestino);
+        } catch (InvalidMovementException e) {
+            throw e;
+        }
         // Llegado a este punto, el movimiento es válido
 
         if (pilaOrigen.cantidadCartasVisibles() == n)
@@ -89,64 +89,61 @@ public class Klondike extends Solitario {
         if (!pilaDestino.anexarCartas(cartasAMover)) {
             pilaOrigen.anexarCartas(cartasAMover);
             puntos -= 5;
-            return false;
+            throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);
         }
 
-        return true;
     }
 
     @Override
-    protected boolean moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) {
+    protected void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
         Carta ultimaCartaPila = pila.extraerUltima();
 
-        ErrorAlMover movimientoPermitido = validarMovimientoACimiento(ultimaCartaPila, cimiento);
-
-        if (movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO){
+        try {
+            validarMovimientoACimiento(ultimaCartaPila, cimiento);
+        } catch (InvalidMovementException e) {
             pila.agregarCarta(ultimaCartaPila);
-            return false;
+            throw e;
         }
 
         cimiento.agregarCarta(ultimaCartaPila);
 
-
         puntos += 10;
-        return true;
     }
 
     @Override
-    protected boolean moverBasuraAPila(PilaDelTableau pila) {
+    protected void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
         Carta cartaAAgregar = basura.extraerUltima();
 
-        ErrorAlMover movimientoPermitido = validarMovimientoAPila(cartaAAgregar, pila);
-        if(movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO){
+        try {
+            validarMovimientoAPila(cartaAAgregar, pila);
+        } catch (InvalidMovementException e) {
             basura.agregarCarta(cartaAAgregar);
-            return false;
+            throw e;
         }
 
         pila.agregarCarta(cartaAAgregar);
         puntos += 5;
-        return true;
     }
 
     @Override
-    protected boolean moverBasuraACimiento(Cimiento cimiento) {
+    protected void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException {
         Carta cartaBasura = basura.extraerUltima();
 
-        ErrorAlMover movimientoPermitido = validarMovimientoACimiento(cartaBasura, cimiento);
-        if (movimientoPermitido != ErrorAlMover.MOVIMIENTO_PERMITIDO){
+        try {
+            validarMovimientoACimiento(cartaBasura, cimiento);
+        } catch (InvalidMovementException e) {
             basura.agregarCarta(cartaBasura);
-            return false;
+            throw e;
         }
 
         cimiento.agregarCarta(cartaBasura);
         puntos += 10;
-        return true;
     }
 
     @Override
-    protected boolean moverBasuraAMazo() {
+    protected void moverBasuraAMazo() throws InvalidMovementException {
         if (! mazo.estaVacia())
-            return false;
+            throw new InvalidMovementException(ErrorAlMover.MAZO_VACIO);
 
         int i = basura.cantidadCartas() - 1;
         while (i >= 0) {
@@ -161,29 +158,27 @@ public class Klondike extends Solitario {
             puntos -= 100;
         else
             puntos = 0;
-
-        return true;
     }
 
-    protected boolean moverMazoABasura(){
+    protected void moverMazoABasura() throws InvalidMovementException {
         if (mazo.estaVacia())
-            return false;
+            throw new InvalidMovementException(ErrorAlMover.MAZO_VACIO);
 
         Carta cartaAMover = mazo.verUltima();
         mazo.extraerUltima();
         basura.agregarCarta(cartaAMover);
-        return true;
     }
 
 
     @Override
-    protected void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException{
+    protected void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
         Carta ultimaCartaCimiento = cimiento.extraerUltima();
 
-        try{
+        try {
             validarMovimientoAPila(ultimaCartaCimiento, pilaDestino);
-        } finally {
+        } catch (InvalidMovementException e) {
             cimiento.agregarCarta(ultimaCartaCimiento);
+            throw e;
         }
 
         // Llegado a este punto, el movimiento es válido
@@ -193,12 +188,16 @@ public class Klondike extends Solitario {
             puntos -= 15;
         else
             puntos = 0;
+
     }
 
     // Validaciones
-    protected void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException{
+    protected void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException {
         if (cimientoDestino.estaVacia() && cartaAMover.verValor() != Valor.AS)
             throw new InvalidMovementException(ErrorAlMover.CIMIENTO_VACIO_NO_AS);
+
+        if (cimientoDestino.estaVacia() && cartaAMover.verValor() == Valor.AS)
+            return;
 
         Carta ultimaCartaCimiento = cimientoDestino.verUltima();
 
@@ -213,6 +212,9 @@ public class Klondike extends Solitario {
     protected void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
         if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
             throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_REY);
+
+        if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() == Valor.REY)
+            return;
 
         Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
 

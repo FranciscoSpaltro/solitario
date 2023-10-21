@@ -25,24 +25,103 @@ public class CimientoTest {
         PilaDelTableau pilaAMover = klondike.obtenerPilaDelTableau(4);
         pilaAMover.extraerUltima();
         pilaAMover.extraerUltima();
-        boolean movioAs = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioDos = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioTres = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+
+        boolean movioAs = true;
+        try {
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e) {
+            movioAs = false;
+        }
+
+        boolean movioDos = true;
+        try {
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e) {
+            movioDos = false;
+        }
+
+        boolean movioTres = true;
+        try {
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e) {
+            movioTres = false;
+        }
+
         pilaAMover = klondike.obtenerPilaDelTableau(3);
-        boolean movioCuatro = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioCinco = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioSeis = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioSiete = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        boolean movioCuatro = true;
+        try {
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e) {
+            movioCuatro = false;
+        }
+
+        boolean movioCinco = true;
+        try {
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e) {
+            movioCinco = false;
+        }
+
+        boolean movioSeis = true;
+        try {
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e) {
+            movioSeis = false;
+        }
+
+        boolean movioSiete = true;
+        try {
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e) {
+            movioSiete = false;
+        }
+
         boolean estaCompleto = klondike.obtenerCimiento(0).estaCompleto();
+
         pilaAMover = klondike.obtenerPilaDelTableau(2);
-        boolean movioOcho = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioNueve = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioDiez = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        boolean movioOcho = true;
+        try {
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e) {
+            movioOcho = false;
+        }
+
+        boolean movioNueve = true;
+        try{
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e){
+            movioNueve = false;
+        }
+
+        boolean movioDiez = true;
+        try{
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e){
+            movioDiez = false;
+        }
+
         pilaAMover = klondike.obtenerPilaDelTableau(1);
-        boolean movioOnce = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
-        boolean movioDoce = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        boolean movioOnce = true;
+        try{
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e){
+            movioOnce = false;
+        }
+
+        boolean movioDoce = true;
+        try{
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e){
+            movioDoce = false;
+        }
+
         pilaAMover = klondike.obtenerPilaDelTableau(0);
-        boolean movioTrece = klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        boolean movioTrece = true;
+        try{
+            klondike.moverPilaACimiento(pilaAMover, klondike.obtenerCimiento(0));
+        } catch (InvalidMovementException e){
+            movioTrece = false;
+        }
 
         // Assert
         assertTrue(movioAs);

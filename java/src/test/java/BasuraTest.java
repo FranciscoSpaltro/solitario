@@ -12,7 +12,13 @@ public class BasuraTest {
         klondike.inicializarJuego();
 
         // Act
-        boolean movidoABasura = klondike.moverMazoABasura();
+        boolean movidoABasura = true;
+        try {
+            klondike.moverMazoABasura();
+        } catch (InvalidMovementException e) {
+            movidoABasura = false;
+        }
+
         klondike.moverMazoABasura();
         klondike.moverMazoABasura();
         klondike.moverMazoABasura();

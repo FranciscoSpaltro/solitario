@@ -43,14 +43,23 @@ public class KlondikeTest {
         // Act
         // Pruebo si puedo mover la última carta de la pila 4 a la pila 5, dependiendo de
         // como se reparta el mazo, se podrá mover o no la carta
-        PilaDelTableau  pila5 = klondike.obtenerPilaDelTableau(4);
-        PilaDelTableau  pila6 = klondike.obtenerPilaDelTableau(5);
+        PilaDelTableau pila4 = klondike.obtenerPilaDelTableau(4);
+        PilaDelTableau pila5 = klondike.obtenerPilaDelTableau(5);
+        Carta cartaPila4 = pila4.verUltima();
         Carta cartaPila5 = pila5.verUltima();
-        Carta cartaPila6 = pila6.verUltima();
-        boolean seMovio = klondike.moverPilaAPila(pila5, pila6, 1);
+
+        boolean seMovio = true;
+        try {
+            klondike.moverPilaAPila(pila4, pila5, 1);
+        } catch (InvalidMovementException e) {
+            seMovio = false;
+        }
 
         boolean seTeniaQueMover = false;
-        if (cartaPila5.estaBocaArriba() && cartaPila6.estaBocaArriba() && cartaPila5.verColor() != cartaPila6.verColor() && cartaPila6.verValor().ordinal() ==  cartaPila5.verValor().ordinal() -1)
+        if (cartaPila4.estaBocaArriba()
+                && cartaPila5.estaBocaArriba()
+                && cartaPila4.verColor() != cartaPila5.verColor()
+                && cartaPila4.verValor().ordinal() ==  cartaPila5.verValor().ordinal() + 1)
             seTeniaQueMover = true;
 
         // Assert
@@ -67,7 +76,14 @@ public class KlondikeTest {
         // Muevo una carta del mazo a la basura y chequeo que sea la misma
         int cantidadCartasMazoAntesDeSacarUna = klondike.obtenerMazo().cantidadCartas();
         Carta ultimaMazo = klondike.obtenerMazo().verUltima();
-        boolean seMovio = klondike.moverMazoABasura();
+
+        boolean seMovio = true;
+
+        try {
+            klondike.moverMazoABasura();
+        } catch (InvalidMovementException e) {
+            seMovio = false;
+        }
 
         // Assert
 
@@ -85,19 +101,49 @@ public class KlondikeTest {
         int N = 5;
         Klondike klondike = new Klondike(Variante.KLONDIKE);
         klondike.inicializarJuego();
+        boolean seMovio = true;
+        boolean seMovio1 = true;
+        boolean seMovio2 = true;
+        boolean seMovio3 = true;
+        boolean seMovio4 = true;
 
         // Act
         int cantidadCartasMazoAntesDeSacarUna = klondike.obtenerMazo().cantidadCartas();
+
         Carta ultimaMazo = klondike.obtenerMazo().verUltima();
-        boolean seMovio = klondike.moverMazoABasura();
+        try {
+            klondike.moverMazoABasura();
+        } catch (InvalidMovementException e) {
+            seMovio = false;
+        }
+
         Carta ultimaMazo1 = klondike.obtenerMazo().verUltima();
-        boolean seMovio1 = klondike.moverMazoABasura();
+        try {
+            klondike.moverMazoABasura();
+        } catch (InvalidMovementException e) {
+            seMovio1 = false;
+        }
+
         Carta ultimaMazo2 = klondike.obtenerMazo().verUltima();
-        boolean seMovio2 = klondike.moverMazoABasura();
+        try {
+            klondike.moverMazoABasura();
+        } catch (InvalidMovementException e) {
+            seMovio2 = false;
+        }
+
         Carta ultimaMazo3 = klondike.obtenerMazo().verUltima();
-        boolean seMovio3 = klondike.moverMazoABasura();
+        try {
+            klondike.moverMazoABasura();
+        } catch (InvalidMovementException e) {
+            seMovio3 = false;
+        }
+
         Carta ultimaMazo4 = klondike.obtenerMazo().verUltima();
-        boolean seMovio4 = klondike.moverMazoABasura();
+        try {
+            klondike.moverMazoABasura();
+        } catch (InvalidMovementException e) {
+            seMovio4 = false;
+        }
 
         // Se busca probar que al sacar 5 cartas en el mazo solo se puedan visualizar las últimas 3
         // por eso las dos primeras que saco del mazo, deben tener estaBocaAbajo = false
@@ -144,19 +190,34 @@ public class KlondikeTest {
         // Muevo J de picas al Q de tréboles
         PilaDelTableau pilaDestino = klondike.obtenerPilaDelTableau(6);
         Cimiento cimientoOrigen = cimientoDestino;
-        boolean movioJ = klondike.moverCimientoAPila(cimientoOrigen, pilaDestino);
+        boolean movioJ = true;
+        try {
+            klondike.moverCimientoAPila(cimientoOrigen, pilaDestino);
+        } catch (InvalidMovementException e) {
+            movioJ = false;
+        }
 
         // Vuelvo a mover J de picas al cimiento 0
         klondike.moverPilaACimiento(pilaDestino, cimientoDestino);
 
         PilaDelTableau pilaConQDeDiamantes = klondike.obtenerPilaDelTableau(6);
         // Intento mover Q de diamantes al cimiento con J de picas (!= palo)
-        boolean movioQ = klondike.moverPilaACimiento(pilaConQDeDiamantes, cimientoDestino);
+        boolean movioQ = true;
+        try {
+            klondike.moverPilaACimiento(pilaConQDeDiamantes, cimientoDestino);
+        } catch (InvalidMovementException e) {
+            movioQ = false;
+        }
 
         // Agarro un nuevo cimiento vacío
         Cimiento cimientoNuevo = klondike.obtenerCimiento(1);
         // En la pila 1 está la reina de picas
-        boolean moverReinaCimientoVacio = klondike.moverPilaACimiento(klondike.obtenerPilaDelTableau(1), cimientoNuevo);
+        boolean moverReinaCimientoVacio = true;
+        try {
+            klondike.moverPilaACimiento(klondike.obtenerPilaDelTableau(1), cimientoNuevo);
+        } catch (InvalidMovementException e) {
+            moverReinaCimientoVacio = false;
+        }
 
         // Assert
         assertTrue(movioJ);
@@ -175,9 +236,16 @@ public class KlondikeTest {
             klondike.moverMazoABasura();
         }
 
+        boolean seMovio = true;
+        try {
+            klondike.moverMazoABasura();
+        } catch (InvalidMovementException e) {
+            seMovio = false;
+        }
+
         // Assert
         assertEquals(0, klondike.mazo.cantidadCartas());
-        assertFalse(klondike.moverMazoABasura());
+        assertFalse(seMovio);
     }
 
     @Test
@@ -191,7 +259,13 @@ public class KlondikeTest {
         // Queda un J diamantes (rojo) en la basura y Q treboles (negro) en la pila id 4
 
         PilaDelTableau pilaDestino = klondike.obtenerPilaDelTableau(4);
-        boolean seMovio = klondike.moverBasuraAPila(pilaDestino);
+        boolean seMovio = true;
+        try {
+            klondike.moverBasuraAPila(pilaDestino);
+        } catch (InvalidMovementException e) {
+            seMovio = false;
+        }
+
         Carta cartaMovida = pilaDestino.verUltima();
 
         // Assert
@@ -214,7 +288,12 @@ public class KlondikeTest {
         // Queda un as diamantes (rojo) en la basura y los cimientos vacíos
 
         Cimiento cimientoDestino = klondike.obtenerCimiento(0);
-        boolean seMovio = klondike.moverBasuraACimiento(cimientoDestino);
+        boolean seMovio = true;
+        try {
+            klondike.moverBasuraACimiento(cimientoDestino);
+        } catch (InvalidMovementException e) {
+            seMovio = false;
+        }
         Carta cartaMovida = cimientoDestino.verUltima();
 
         // Assert
@@ -238,11 +317,18 @@ public class KlondikeTest {
         }
 
         klondike.puntos = 50;
+        boolean seMovio = true;
 
         // Assert
         assertEquals(5, klondike.mazo.cantidadCartas());
         assertEquals(47, klondike.basura.cantidadCartas());
-        assertFalse(klondike.moverBasuraAMazo());
+
+        try {
+            klondike.moverBasuraAMazo();
+        } catch (InvalidMovementException e) {
+            seMovio = false;
+        }
+        assertFalse(seMovio);
 
         // Act
         while (klondike.mazo.cantidadCartas() > 0) {
@@ -268,7 +354,12 @@ public class KlondikeTest {
         // Sacar la carta de la primera pila para que quede vacía
         klondike.obtenerPilaDelTableau(0).extraerUltima();
         // La última carta de la segunda pila es J de picas
-        boolean seMovio = klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(1), klondike.obtenerPilaDelTableau(0), 1);
+        boolean seMovio = true;
+        try {
+            klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(1), klondike.obtenerPilaDelTableau(0), 1);
+        } catch(InvalidMovementException e) {
+            seMovio = false;
+        }
 
         // Assert
         assertFalse(seMovio);
@@ -281,7 +372,13 @@ public class KlondikeTest {
         klondike.inicializarJuego();
 
         // Act
-        boolean seMovio = klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(6), klondike.obtenerPilaDelTableau(0), 1);
+        boolean seMovio = true;
+        try {
+            klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(6), klondike.obtenerPilaDelTableau(0), 1);
+        } catch (InvalidMovementException e) {
+            seMovio = false;
+        }
+
         // La primera carta de la primera pila es K picas (negro) y la última carta de la última pila es Q diamantes (rojo)
 
         // Assert
@@ -289,7 +386,12 @@ public class KlondikeTest {
         assertEquals(5, klondike.obtenerPuntos());
 
         // Act
-        seMovio = klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(0), klondike.obtenerPilaDelTableau(6), 1);
+        try {
+            klondike.moverPilaAPila(klondike.obtenerPilaDelTableau(0), klondike.obtenerPilaDelTableau(6), 1);
+        } catch(InvalidMovementException e) {
+            seMovio = false;
+        }
+
         // Ahora la última carta de la última pila es K diamantes (rojo) y la de la primera es Q diamantes (rojo)
 
         // Assert

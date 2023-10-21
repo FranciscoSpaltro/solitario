@@ -38,16 +38,15 @@ abstract class Solitario {
     protected abstract void reiniciar();
     protected abstract void repartirCartas(Mazo mazo);
 
-    protected abstract boolean moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n);
+    protected abstract void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException;
 
-    //protected abstract boolean moverPilaACimiento(Stack<Carta>pila, Cimiento cimiento);
-    protected abstract boolean moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento);
+    protected abstract void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException;
 
-    protected abstract boolean moverBasuraAPila(PilaDelTableau pila);
+    protected abstract void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException;
 
-    protected abstract boolean moverBasuraACimiento(Cimiento cimiento);
+    protected abstract void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException;
 
-    protected abstract boolean moverBasuraAMazo();
+    protected abstract void moverBasuraAMazo() throws InvalidMovementException;
 
     protected abstract void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException;
 
@@ -55,7 +54,7 @@ abstract class Solitario {
 
     protected abstract void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException;
 
-    protected abstract boolean moverMazoABasura();
+    protected abstract void moverMazoABasura() throws InvalidMovementException;
 
     protected int cantidadPilasDelTableau(){
         return pilasTableau.size();
