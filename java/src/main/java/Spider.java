@@ -18,7 +18,7 @@ public class Spider extends Solitario{
 
     @Override
     void inicializarJuego() {
-        this.repartirCartas(super.mazo);
+        this.repartirCartas(super.mazo); // Hay que modificar como se genera el mazo
     }
 
     @Override
@@ -43,9 +43,14 @@ public class Spider extends Solitario{
         }
     }
 
-    protected void sacarCartasMazo(){
-        for (int i = 0; i < super.cantidadPilasDelTableau(); i++) {
-            PilaDelTableau pila = super.obtenerPilaDelTableau(i);
+    protected void sacarCartasMazo() throws InvalidMovementException {
+        // Chequeo que todas las pilas tengan al menos una carta
+        for (PilaDelTableau pila : pilasTableau) {
+            if (pila == null)
+                throw new InvalidMovementException(ErrorAlMover.PILAS_VACIA_NO_PUEDE_SACAR_DEL_MAZO);
+        }
+        // Si todas las pilas tienen, puedo sacar del mazo
+        for (PilaDelTableau pila : pilasTableau) {
             Carta cartaVisible = mazo.extraerUltima();
             cartaVisible.darVuelta();
             pila.agregarCarta(cartaVisible);
@@ -54,28 +59,65 @@ public class Spider extends Solitario{
 
     @Override
     protected void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
+        int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
+        Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
 
+        try {
+            this.validarMovimientoAPila(primeraCartaOrigen, pilaDestino);
+        } catch (InvalidMovementException e) {
+            throw e;
+        }
+        // Llegado a este punto, el movimiento es válido
+
+        if (pilaOrigen.cantidadCartasVisibles() == n)
+            puntos += 5;
+
+        ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
+
+        if (!pilaDestino.anexarCartas(cartasAMover)) {
+            pilaOrigen.anexarCartas(cartasAMover);
+            puntos -= 5;
+            throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);
+        }
     }
 
     @Override
     protected void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
+        validarMovimientoACimiento(pila, cimiento); // Si pasa algo, lanza la excepción
 
+        for (int i = 0; i < pila.cantidadCartas(); i++) {
+            cimiento.agregarCarta(pila.extraerUltima());
+        }
+
+        puntos += 10;
     }
 
 
-    @Override
-    protected void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
+    protected void validarMovimientoACimiento(PilaDelTableau pilaOrigen, Cimiento cimientoDestino) throws InvalidMovementException {
+        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(0);
+        Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(12);
 
-    }
+        // La unica condicion es que sea la pila completa del Rey al AS
+        if (primeraCartaPilaOrigen.verValor() == Valor.REY && ultimaCartaPilaOrigen.verValor() == Valor.AS)
+            throw new InvalidMovementException(ErrorAlMover.PILA_NO_COMPLETA_NO_PUEDE_IR_A_CIMIENTO);
 
-    @Override
-    protected void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException {
-
+        // Si llega a este punto, el movimiento es válido
     }
 
     @Override
     protected void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
+        Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
 
+        if (!primeraCartaAMover.estaBocaArriba())
+            throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
+
+        if (primeraCartaAMover.verColor() == ultimaCartaDestino.verColor())
+            throw new InvalidMovementException(ErrorAlMover.PILA_CARTAS_MISMO_COLOR);
+
+        Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
+
+        if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
+            throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
     }
 
 }
