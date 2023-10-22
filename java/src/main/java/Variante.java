@@ -1,3 +1,5 @@
 public enum Variante {
-    KLONDIKE
+    KLONDIKE,
+    SPIDER
+
 }
