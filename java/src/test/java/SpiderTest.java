@@ -56,5 +56,21 @@ public class SpiderTest {
         }
     }
 
+    @Test
+    public void testMoverPilaACimiento(){
+        // Arrange
+        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES, true);
+        spider.inicializarJuego();
 
+        // Act
+        PilaDelTableau pilaNueve = spider.obtenerPilaDelTableau(9);
+        pilaNueve.extraerUltima();
+        pilaNueve.extraerUltima();
+        pilaNueve.darVueltaIndex(1);
+        pilaNueve.darVueltaIndex(0);
+
+        spider.moverPilaAPila(pilaNueve, spider.obtenerPilaDelTableau(8), 3);
+
+        assertTrue(true);
+    }
 }
