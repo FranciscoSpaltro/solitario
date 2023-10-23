@@ -6,6 +6,10 @@ public class Klondike extends Solitario {
     // NOTA: Los cimientos y las pilas están ordenados de 0 a n-1, siendo n la cantidad de cimientos o pilas
     public Klondike(Variante tipo) {
         super(tipo);
+        // Creo el mazo, nuevo
+        mazo = new Mazo();
+        mazo.mezclar();
+
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             pilasTableau.add(new PilaDelTableau(i));

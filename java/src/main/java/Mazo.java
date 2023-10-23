@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.List;
+import java.util.Random;
 public class Mazo extends ListaDeCartas{
     // Atributos
 
@@ -10,6 +12,15 @@ public class Mazo extends ListaDeCartas{
                 super.agregarCarta(new Carta(valor, palo, false));
             }
     }
+
+    public Mazo(Variante tipo, Palo paloElegido){
+        for (int i = 0; i < 8; i++) {
+            for (Valor valor: Valor.values()){
+                super.agregarCarta(new Carta(valor, paloElegido, false));
+            }
+        }
+    }
+
     public void mezclar(){
         Collections.shuffle(lista);
     }

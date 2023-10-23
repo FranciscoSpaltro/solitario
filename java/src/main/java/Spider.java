@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 public class Spider extends Solitario{
-    public Spider(Variante tipo) {
+    public Spider(Variante tipo, Palo paloElegido) {
         super(tipo);
+
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             pilasTableau.add(new PilaDelTableau(i));
@@ -10,7 +11,27 @@ public class Spider extends Solitario{
         for (int i = 0; i < 8; i++) {
             cimientos.add(new Cimiento(i));
         }
+
+        super.mazo = new Mazo(tipo, paloElegido);
+        super.mazo.mezclar();
     }
+
+    public Spider(Variante tipo, Palo paloElegido, boolean prueba) {
+        super(tipo);
+
+        pilasTableau = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            pilasTableau.add(new PilaDelTableau(i));
+        }
+        cimientos = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            cimientos.add(new Cimiento(i));
+        }
+
+        super.mazo = new Mazo(tipo, paloElegido);
+    }
+
+
 
     public Spider(Variante tipo, boolean prueba) {
         super(tipo, prueba);
@@ -32,10 +53,10 @@ public class Spider extends Solitario{
             PilaDelTableau pila = super.obtenerPilaDelTableau(i);
             for (int j = 0; j < 4; j++) {
                 pila.agregarCarta(mazo.extraerUltima());
+            }
 
-                if (i < 4){
-                    pila.agregarCarta(mazo.extraerUltima());
-                }
+            if (i < 4){
+                pila.agregarCarta(mazo.extraerUltima());
             }
             Carta cartaVisible = mazo.extraerUltima();
             cartaVisible.darVuelta();
@@ -92,7 +113,6 @@ public class Spider extends Solitario{
         puntos += 10;
     }
 
-
     protected void validarMovimientoACimiento(PilaDelTableau pilaOrigen, Cimiento cimientoDestino) throws InvalidMovementException {
         Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(0);
         Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(12);
@@ -118,6 +138,36 @@ public class Spider extends Solitario{
 
         if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
+    }
+
+    @Override
+    protected void moverMazoABasura() throws InvalidMovementException {
+
+    }
+
+    @Override
+    protected void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
+
+    }
+
+    @Override
+    protected void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException {
+
+    }
+
+    @Override
+    protected void moverBasuraAMazo() throws InvalidMovementException {
+
+    }
+
+    @Override
+    protected void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
+
+    }
+
+    @Override
+    protected void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException {
+
     }
 
 }

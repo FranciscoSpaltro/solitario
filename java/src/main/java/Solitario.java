@@ -9,11 +9,16 @@ abstract class Solitario {
     protected int puntos;
 
     //Métodos
+    //public Solitario(Variante tipo) {
+    //    this.tipoSolitario = tipo;
+    //    puntos = 0;
+    //    mazo = new Mazo();
+    //    mazo.mezclar();
+    //}
+
     public Solitario(Variante tipo) {
         this.tipoSolitario = tipo;
         puntos = 0;
-        mazo = new Mazo();
-        mazo.mezclar();
     }
 
     public Solitario(Variante tipo, boolean prueba){
@@ -21,6 +26,7 @@ abstract class Solitario {
         puntos = 0;
         mazo = new Mazo();
     }
+
 
     abstract void inicializarJuego();
 
