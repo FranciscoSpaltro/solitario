@@ -51,7 +51,7 @@ public class Spider extends Solitario{
         for (int i = 0; i < 8; i++) {
             cimientos.add(new Cimiento(i));
         }
-        basura = new Basura();
+
         this.inicializarJuego();
 
     }

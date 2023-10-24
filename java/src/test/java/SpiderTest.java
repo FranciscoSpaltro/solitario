@@ -119,5 +119,37 @@ public class SpiderTest {
 
     }
 
+    @Test
+    public void testReiniciarJuego(){
+        // Arrange
+        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES, true);
+        spider.inicializarJuego();
+
+        // Act
+        PilaDelTableau pilaNueve = spider.obtenerPilaDelTableau(9);
+        pilaNueve.extraerUltima();
+        pilaNueve.extraerUltima();
+
+        PilaDelTableau pilaOcho = spider.obtenerPilaDelTableau(8);
+        pilaOcho.extraerUltima();
+        pilaOcho.extraerUltima();
+
+        int numeroCartasAntesNueve = pilaNueve.cantidadCartas();
+        int numeroCartasAntesOcho = pilaOcho.cantidadCartas();
+
+        spider.reiniciar();
+        PilaDelTableau pilaNueveNueva = spider.obtenerPilaDelTableau(9);
+        PilaDelTableau pilaOchoNueva = spider.obtenerPilaDelTableau(8);
+
+        int numeroCartasNuevoNueve = pilaNueveNueva.cantidadCartas();
+        int numeroCartasNuevoOcho = pilaOchoNueva.cantidadCartas();
+
+        // Assert
+        assertEquals(3, numeroCartasAntesOcho);
+        assertEquals(3, numeroCartasAntesNueve);
+        assertEquals(5, numeroCartasNuevoOcho);
+        assertEquals(5, numeroCartasNuevoNueve);
+
+    }
 
 }
