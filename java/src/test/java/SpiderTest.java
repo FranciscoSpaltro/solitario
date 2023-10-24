@@ -116,7 +116,6 @@ public class SpiderTest {
         spider.moverPilaACimiento(pilaSiete, cimientoCero);
         assertEquals(0, pilaSiete.cantidadCartas());
         assertEquals(13, cimientoCero.cantidadCartas());
-
     }
 
     @Test
@@ -149,7 +148,26 @@ public class SpiderTest {
         assertEquals(3, numeroCartasAntesNueve);
         assertEquals(5, numeroCartasNuevoOcho);
         assertEquals(5, numeroCartasNuevoNueve);
-
     }
 
+    @Test
+    public void testMoverCartaAPilaQueNoCorresponde(){
+        // Arrange
+        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES, true);
+        spider.inicializarJuego();
+
+        // Act
+        PilaDelTableau pilaTres = spider.obtenerPilaDelTableau(3);
+        PilaDelTableau pilaDos = spider.obtenerPilaDelTableau(2);
+
+        boolean seMovio = true;
+        try {
+            spider.moverPilaAPila(pilaTres, pilaDos, 1);
+        } catch (InvalidMovementException e){
+            seMovio = false;
+        }
+
+        // Assert
+        assertFalse(seMovio);
+    }
 }
