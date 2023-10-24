@@ -43,9 +43,10 @@ abstract class ListaDeCartas {
         ArrayList<Carta> cartasAExtraer = new ArrayList<>(lista.subList(comienzoExtraccion, finExtraccion));
         lista.removeAll(cartasAExtraer);
 
-        if (! this.verUltima().estaBocaArriba())
-            this.darVueltaIndex(this.cantidadCartas() - 1);
-
+        if (!this.estaVacia()) {
+            if (!this.verUltima().estaBocaArriba())
+                this.darVueltaIndex(this.cantidadCartas() - 1);
+        }
         return cartasAExtraer;
     }
 

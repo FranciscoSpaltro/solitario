@@ -104,9 +104,13 @@ public class Spider extends Solitario{
 
     @Override
     protected void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
-        validarMovimientoACimiento(pila, cimiento); // Si pasa algo, lanza la excepción
+        try{
+            validarMovimientoACimiento(pila, cimiento); // Si pasa algo, lanza la excepción
+        } catch (InvalidMovementException e){
+            throw e;
+        }
 
-        for (int i = 0; i < pila.cantidadCartas(); i++) {
+        for (int i = 0; i < 13; i++) {
             cimiento.agregarCarta(pila.extraerUltima());
         }
 
@@ -118,7 +122,7 @@ public class Spider extends Solitario{
         Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(12);
 
         // La unica condicion es que sea la pila completa del Rey al AS
-        if (primeraCartaPilaOrigen.verValor() == Valor.REY && ultimaCartaPilaOrigen.verValor() == Valor.AS)
+        if (!(primeraCartaPilaOrigen.verValor() == Valor.REY && ultimaCartaPilaOrigen.verValor() == Valor.AS))
             throw new InvalidMovementException(ErrorAlMover.PILA_NO_COMPLETA_NO_PUEDE_IR_A_CIMIENTO);
 
         // Si llega a este punto, el movimiento es válido

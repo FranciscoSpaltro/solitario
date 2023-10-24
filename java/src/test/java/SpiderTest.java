@@ -68,9 +68,32 @@ public class SpiderTest {
         pilaNueve.extraerUltima();
         pilaNueve.darVueltaIndex(1);
         pilaNueve.darVueltaIndex(0);
+        PilaDelTableau pilaOcho = spider.obtenerPilaDelTableau(8);
 
-        spider.moverPilaAPila(pilaNueve, spider.obtenerPilaDelTableau(8), 3);
+        //Muevo creando la pilaOcho del 8 al As
+        spider.moverPilaAPila(pilaNueve, pilaOcho, 3);
+        assertEquals(8, pilaOcho.cantidadCartas());
 
-        assertTrue(true);
+        //Muevo de la pilaOcho a la pila 7
+        pilaOcho.darVueltaIndex(0);
+        pilaOcho.darVueltaIndex(1);
+        pilaOcho.darVueltaIndex(2);
+        pilaOcho.darVueltaIndex(3);
+        PilaDelTableau pilaSiete = spider.obtenerPilaDelTableau(7);
+        spider.moverPilaAPila(pilaOcho, pilaSiete, 8);
+
+        assertEquals(13, pilaSiete.cantidadCartas());
+
+        // Ya tengo la pilaSiete con las cartas del Rey al As, muevo al Cimiento
+        pilaSiete.darVueltaIndex(0);
+        pilaSiete.darVueltaIndex(1);
+        pilaSiete.darVueltaIndex(2);
+        pilaSiete.darVueltaIndex(3);
+
+        Cimiento cimientoCero = spider.obtenerCimiento(0);
+        spider.moverPilaACimiento(pilaSiete, cimientoCero);
+        assertEquals(0, pilaSiete.cantidadCartas());
+        assertEquals(13, cimientoCero.cantidadCartas());
+
     }
 }
