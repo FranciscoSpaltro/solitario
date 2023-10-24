@@ -1,5 +1,6 @@
+import java.io.Serializable;
 import  java.util.List;
-abstract class Solitario {
+abstract class Solitario implements Serializable {
     //Atributos
     protected Variante tipoSolitario;
     protected Mazo mazo;
@@ -48,19 +49,7 @@ abstract class Solitario {
 
     protected abstract void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException;
 
-    protected abstract void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException;
-
-    protected abstract void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException;
-
-    protected abstract void moverBasuraAMazo() throws InvalidMovementException;
-
-    protected abstract void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException;
-
-    protected abstract void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException;
-
     protected abstract void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException;
-
-    protected abstract void moverMazoABasura() throws InvalidMovementException;
 
     protected int cantidadPilasDelTableau(){
         return pilasTableau.size();
@@ -80,9 +69,5 @@ abstract class Solitario {
 
     protected Mazo obtenerMazo(){
         return mazo;
-    }
-
-    protected Basura obtenerBasura(){
-        return basura;
     }
 }

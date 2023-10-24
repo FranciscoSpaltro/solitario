@@ -1,4 +1,4 @@
-public class Cimiento extends ListaDeCartas{
+public class Cimiento extends ListaDeCartas {
     //Atributos
     private final int id;
 

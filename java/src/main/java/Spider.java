@@ -132,7 +132,7 @@ public class Spider extends Solitario{
 
         // La unica condicion es que sea la pila completa del Rey al AS
         if (!(primeraCartaPilaOrigen.verValor() == Valor.REY && ultimaCartaPilaOrigen.verValor() == Valor.AS))
-            throw new InvalidMovementException(ErrorAlMover.PILA_NO_COMPLETA_NO_PUEDE_IR_A_CIMIENTO);
+            throw new InvalidMovementException(ErrorAlMover.PILA_INCOMPLETA_NO_PUEDE_IR_A_CIMIENTO);
 
         // Si llega a este punto, el movimiento es válido
     }
@@ -151,36 +151,6 @@ public class Spider extends Solitario{
 
         if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
-    }
-
-    @Override
-    protected void moverMazoABasura() throws InvalidMovementException {
-
-    }
-
-    @Override
-    protected void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
-
-    }
-
-    @Override
-    protected void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException {
-
-    }
-
-    @Override
-    protected void moverBasuraAMazo() throws InvalidMovementException {
-
-    }
-
-    @Override
-    protected void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
-
-    }
-
-    @Override
-    protected void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException {
-
     }
 
 }

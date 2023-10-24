@@ -98,7 +98,6 @@ public class Klondike extends Solitario {
 
     }
 
-    @Override
     protected void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
         Carta ultimaCartaPila = pila.extraerUltima();
 
@@ -114,7 +113,6 @@ public class Klondike extends Solitario {
         puntos += 10;
     }
 
-    @Override
     protected void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
         Carta cartaAAgregar = basura.extraerUltima();
 
@@ -129,7 +127,6 @@ public class Klondike extends Solitario {
         puntos += 5;
     }
 
-    @Override
     protected void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException {
         Carta cartaBasura = basura.extraerUltima();
 
@@ -144,7 +141,10 @@ public class Klondike extends Solitario {
         puntos += 10;
     }
 
-    @Override
+    protected Basura obtenerBasura(){
+        return basura;
+    }
+
     protected void moverBasuraAMazo() throws InvalidMovementException {
         if (! mazo.estaVacia())
             throw new InvalidMovementException(ErrorAlMover.MAZO_VACIO);
@@ -174,7 +174,6 @@ public class Klondike extends Solitario {
     }
 
 
-    @Override
     protected void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
         Carta ultimaCartaCimiento = cimiento.extraerUltima();
 

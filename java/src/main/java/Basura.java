@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class Basura extends ListaDeCartas {
+public class Basura extends ListaDeCartas{
     // Atributos
 
     // Métodos
