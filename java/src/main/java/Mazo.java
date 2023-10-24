@@ -13,7 +13,7 @@ public class Mazo extends ListaDeCartas{
             }
     }
 
-    public Mazo(Variante tipo, Palo paloElegido){
+    public Mazo(Palo paloElegido){
         for (int i = 0; i < 8; i++) {
             for (Valor valor: Valor.values()){
                 super.agregarCarta(new Carta(valor, paloElegido, false));

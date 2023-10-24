@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 
 public class PersistenciaTest {
     // PARA KLONDIKE
-    @Test
-    public void guardarJuegoKlondike() throws IOException {
+
+    private void guardarJuegoKlondike() throws IOException {
         // Arrange
         Klondike klondike = new Klondike(Variante.KLONDIKE, true);
         klondike.inicializarJuego();
@@ -26,6 +26,7 @@ public class PersistenciaTest {
     public void abrirJuegoKlondike() throws IOException, ClassNotFoundException {
         // Arrange
         Klondike klondike = null;
+        guardarJuegoKlondike();
         klondike = (Klondike) Persistencia.importarObjeto("prueba/pruebaKlondike.txt");
 
         // Assert
@@ -42,8 +43,7 @@ public class PersistenciaTest {
     }
 
     // PARA SPIDER
-    @Test
-    public void guardarJuegoSpider() throws IOException {
+    private void guardarJuegoSpider() throws IOException {
         // Arrange
         Spider spider = new Spider(Variante.SPIDER, Palo.PICAS, true);
         spider.inicializarJuego();
@@ -61,6 +61,7 @@ public class PersistenciaTest {
     public void abrirJuegoSpider() throws IOException, ClassNotFoundException {
         // Arrange
         Spider spider = null;
+        guardarJuegoSpider();
         spider = (Spider) Persistencia.importarObjeto("prueba/pruebaSpider.txt");
 
         // Assert

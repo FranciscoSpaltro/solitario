@@ -136,7 +136,7 @@ public class SpiderTest {
         int numeroCartasAntesNueve = pilaNueve.cantidadCartas();
         int numeroCartasAntesOcho = pilaOcho.cantidadCartas();
 
-        spider.reiniciar();
+        spider.reiniciar(Palo.CORAZONES);
         PilaDelTableau pilaNueveNueva = spider.obtenerPilaDelTableau(9);
         PilaDelTableau pilaOchoNueva = spider.obtenerPilaDelTableau(8);
 

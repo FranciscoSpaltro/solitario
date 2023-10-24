@@ -42,7 +42,6 @@ public class Klondike extends Solitario {
 
     }
 
-    @Override
     protected void reiniciar(){
         puntos = 0;
         // Al dejar sin referencia, la máquina virtual de Java elimina la memoria anterior

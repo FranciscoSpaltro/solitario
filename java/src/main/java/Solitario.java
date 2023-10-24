@@ -45,7 +45,7 @@ abstract class Solitario implements Serializable {
     public int obtenerPuntos() {
         return puntos;
     }
-    protected abstract void reiniciar();
+
     protected abstract void repartirCartas(Mazo mazo);
 
     protected abstract void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException;
