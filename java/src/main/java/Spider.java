@@ -31,12 +31,6 @@ public class Spider extends Solitario{
         super.mazo = new Mazo(tipo, paloElegido);
     }
 
-
-
-    public Spider(Variante tipo, boolean prueba) {
-        super(tipo, prueba);
-    }
-
     @Override
     void inicializarJuego() {
         this.repartirCartas(super.mazo); // Hay que modificar como se genera el mazo
@@ -44,6 +38,21 @@ public class Spider extends Solitario{
 
     @Override
     protected void reiniciar() {
+        puntos = 0;
+        // Al dejar sin referencia, la máquina virtual de Java elimina la memoria anterior
+        mazo = new Mazo(Variante.SPIDER, Palo.CORAZONES);
+        mazo.mezclar();
+
+        pilasTableau = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            pilasTableau.add(new PilaDelTableau(i));
+        }
+        cimientos = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            cimientos.add(new Cimiento(i));
+        }
+        basura = new Basura();
+        this.inicializarJuego();
 
     }
 
