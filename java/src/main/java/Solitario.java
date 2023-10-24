@@ -39,6 +39,9 @@ abstract class Solitario implements Serializable {
         return true;
     }
 
+    public Variante obtenerVariante(){
+        return tipoSolitario;
+    }
     public int obtenerPuntos() {
         return puntos;
     }

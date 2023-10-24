@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 public class Cimiento extends ListaDeCartas {
     //Atributos
     private final int id;

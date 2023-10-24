@@ -1,4 +1,6 @@
-public class Carta {
+import java.io.Serializable;
+
+public class Carta implements Serializable {
     // Atributos
     private final Valor valor;
     private final Palo palo;

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-abstract class ListaDeCartas {
+abstract class ListaDeCartas implements Serializable {
     // ATRIBUTOS
     protected ArrayList<Carta> lista = new ArrayList<>();
 
