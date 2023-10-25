@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import  java.util.List;
 abstract class Solitario implements Serializable {
     //Atributos
@@ -10,13 +12,6 @@ abstract class Solitario implements Serializable {
     protected int puntos;
 
     //Métodos
-    //public Solitario(Variante tipo) {
-    //    this.tipoSolitario = tipo;
-    //    puntos = 0;
-    //    mazo = new Mazo();
-    //    mazo.mezclar();
-    //}
-
     public Solitario(Variante tipo) {
         this.tipoSolitario = tipo;
         puntos = 0;
@@ -25,7 +20,8 @@ abstract class Solitario implements Serializable {
     public Solitario(Variante tipo, boolean prueba){
         this.tipoSolitario = tipo;
         puntos = 0;
-        mazo = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        mazo = new Mazo(palos, 1);
     }
 
 

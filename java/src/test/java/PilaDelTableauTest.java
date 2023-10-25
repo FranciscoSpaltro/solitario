@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +9,8 @@ public class PilaDelTableauTest {
     @Test
     public void testRepartirPila(){
         // Arrange
-        Mazo mazo = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        Mazo mazo = new Mazo(palos, 1);
         PilaDelTableau pila = new PilaDelTableau(1);
 
         // Act
@@ -28,7 +30,8 @@ public class PilaDelTableauTest {
     @Test
     public void testEliminarCartas(){
         // Arrange
-        Mazo mazo = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        Mazo mazo = new Mazo(palos, 1);
         PilaDelTableau pila = new PilaDelTableau(0);
 
         // Act

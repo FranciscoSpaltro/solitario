@@ -6,17 +6,12 @@ public class Mazo extends ListaDeCartas{
     // Atributos
 
     // Métodos
-    public Mazo(){
-        for (Palo palo : Palo.values())
-            for (Valor valor : Valor.values()) {
-                super.agregarCarta(new Carta(valor, palo, false));
-            }
-    }
-
-    public Mazo(Palo paloElegido){
-        for (int i = 0; i < 8; i++) {
-            for (Valor valor: Valor.values()){
-                super.agregarCarta(new Carta(valor, paloElegido, false));
+    public Mazo(ArrayList<Palo> palos, int palosRepetidos) {
+        for (Palo palo : palos){
+            for (int i = 0; i < palosRepetidos; i++) {
+                for (Valor valor : Valor.values()) {
+                    super.agregarCarta(new Carta(valor, palo, false));
+                }
             }
         }
     }

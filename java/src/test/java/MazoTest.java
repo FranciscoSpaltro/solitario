@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +9,8 @@ public class MazoTest {
     @Test
     public void testMazoCantidad() {
         // Arrange
-        Mazo mazo = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        Mazo mazo = new Mazo(palos, 1);
 
         // Act
 
@@ -19,7 +21,8 @@ public class MazoTest {
     @Test
     public void testMazoCartas() {
         // Arrange
-        Mazo mazo = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        Mazo mazo = new Mazo(palos, 1);
 
         // Act
         Carta carta1 =  mazo.verUltima();
@@ -36,8 +39,9 @@ public class MazoTest {
     public void testMazoMezclado(){
         // Arrange
         int N = 10;
-        Mazo mazo = new Mazo();
-        Mazo mazo2 = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        Mazo mazo = new Mazo(palos, 1);
+        Mazo mazo2 = new Mazo(palos, 1);
 
         // Act
         mazo.mezclar();
@@ -58,7 +62,8 @@ public class MazoTest {
     @Test
     public void testExtraerCartas() {
         // Arrange
-        Mazo mazo = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        Mazo mazo = new Mazo(palos, 1);
 
         // Act
         ArrayList<Carta> extracto  = mazo.extraerUltimasN(10);

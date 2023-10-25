@@ -12,7 +12,10 @@ public class Spider extends Solitario{
             cimientos.add(new Cimiento(i));
         }
 
-        super.mazo = new Mazo(paloElegido);
+        var palos = new ArrayList<Palo>();
+        palos.add(paloElegido);
+        super.mazo = new Mazo(palos, 8);
+
         super.mazo.mezclar();
     }
 
@@ -28,7 +31,9 @@ public class Spider extends Solitario{
             cimientos.add(new Cimiento(i));
         }
 
-        super.mazo = new Mazo(paloElegido);
+        var palos = new ArrayList<Palo>();
+        palos.add(paloElegido);
+        super.mazo = new Mazo(palos, 8);
     }
 
     @Override
@@ -39,8 +44,10 @@ public class Spider extends Solitario{
     protected void reiniciar(Palo paloElegido) {
         puntos = 0;
         // Al dejar sin referencia, la máquina virtual de Java elimina la memoria anterior
-        mazo = new Mazo(paloElegido);
-        mazo.mezclar();
+        var palos = new ArrayList<Palo>();
+        palos.add(paloElegido);
+        super.mazo = new Mazo(palos, 8);
+        super.mazo.mezclar();
 
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

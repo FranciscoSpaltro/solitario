@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Klondike extends Solitario {
 
@@ -7,7 +8,9 @@ public class Klondike extends Solitario {
     public Klondike(Variante tipo) {
         super(tipo);
         // Creo el mazo, nuevo
-        mazo = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        mazo = new Mazo(palos, 1);
+
         mazo.mezclar();
 
         pilasTableau = new ArrayList<>();
@@ -45,7 +48,9 @@ public class Klondike extends Solitario {
     protected void reiniciar(){
         puntos = 0;
         // Al dejar sin referencia, la máquina virtual de Java elimina la memoria anterior
-        mazo = new Mazo();
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        mazo = new Mazo(palos, 1);
+
         mazo.mezclar();
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
