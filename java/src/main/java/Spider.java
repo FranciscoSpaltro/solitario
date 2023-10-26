@@ -19,6 +19,24 @@ public class Spider extends Solitario{
         super.mazo.mezclar();
     }
 
+    // Para más dificultad
+    public Spider(Variante tipo, ArrayList<Palo> palosElegidos) {
+        super(tipo);
+
+        pilasTableau = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            pilasTableau.add(new PilaDelTableau(i));
+        }
+        cimientos = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            cimientos.add(new Cimiento(i));
+        }
+
+        super.mazo = new Mazo(palosElegidos, 8);
+
+        super.mazo.mezclar();
+    }
+
     public Spider(Variante tipo, Palo paloElegido, boolean prueba) {
         super(tipo);
 
