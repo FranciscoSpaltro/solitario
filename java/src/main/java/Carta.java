@@ -29,11 +29,4 @@ public class Carta implements Serializable {
         this.bocaArriba = !this.bocaArriba;
         return this.bocaArriba;
     }
-
-    public ColorPalo verColor(){
-        if (palo == Palo.CORAZONES || palo == Palo.DIAMANTES)
-            return ColorPalo.ROJO;
-        else
-            return ColorPalo.NEGRO;
-    }
 }

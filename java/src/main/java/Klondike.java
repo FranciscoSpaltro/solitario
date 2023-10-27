@@ -228,7 +228,7 @@ public class Klondike extends Solitario {
         if (!primeraCartaAMover.estaBocaArriba())
             throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
 
-        if (primeraCartaAMover.verColor() == ultimaCartaDestino.verColor())
+        if(primeraCartaAMover.verPalo().mismoColor(ultimaCartaDestino.verPalo()))
             throw new InvalidMovementException(ErrorAlMover.PILA_CARTAS_MISMO_COLOR);
 
         Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();

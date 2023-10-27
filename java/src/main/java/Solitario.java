@@ -48,7 +48,7 @@ abstract class Solitario implements Serializable {
 
     protected abstract void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException;
 
-    protected abstract void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException;
+    // protected abstract void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException;
 
     protected int cantidadPilasDelTableau(){
         return pilasTableau.size();

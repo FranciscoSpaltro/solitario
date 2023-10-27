@@ -1,14 +1,12 @@
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
-public class SpiderTest {
+public class SpiderFacilTest {
 
     @Test
     public void testInicializarJuego() {
         // Arrange
-        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES);
+        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES);
 
         // Assert
         assertEquals(104, spider.obtenerMazo().cantidadCartas());
@@ -36,7 +34,7 @@ public class SpiderTest {
     @Test
     public void testSacarCartasMazo() {
         // Arrange
-        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES);
+        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES);
         spider.inicializarJuego();
 
         // Act
@@ -59,7 +57,7 @@ public class SpiderTest {
     @Test
     public void testMoverPilaAPila() {
         // Arrange
-        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES, true);
+        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES, true);
         spider.inicializarJuego();
 
         // Act
@@ -81,7 +79,7 @@ public class SpiderTest {
     @Test
     public void testMoverPilaACimiento(){
         // Arrange
-        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES, true);
+        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES, true);
         spider.inicializarJuego();
 
         // Act
@@ -121,7 +119,7 @@ public class SpiderTest {
     @Test
     public void testReiniciarJuego(){
         // Arrange
-        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES, true);
+        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES, true);
         spider.inicializarJuego();
 
         // Act
@@ -153,7 +151,7 @@ public class SpiderTest {
     @Test
     public void testMoverCartaAPilaQueNoCorresponde(){
         // Arrange
-        Spider spider = new Spider(Variante.SPIDER, Palo.CORAZONES, true);
+        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES, true);
         spider.inicializarJuego();
 
         // Act

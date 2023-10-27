@@ -20,8 +20,6 @@ class ListaDeCartas {
 }
 
 class Carta {
-  - valor: Valor
-  - palo: Palo
   - bocaArriba: boolean
   + Carta(valor: Valor, palo: Palo, bocaArriba: boolean)
   + verPalo(): Palo
@@ -43,8 +41,11 @@ enum ColorPalo {
   NEGRO
 }
 
+class InvalidMovementException{
+}
+
+
 enum ErrorAlMover {
-  MOVIMIENTO_PERMITIDO,
   PILA_VACIA_NO_REY,
   ORDEN_NO_DESCENDENTE,
   ORDEN_NO_ASCENDENTE,
@@ -55,8 +56,6 @@ enum ErrorAlMover {
 }
 
 class Klondike {
-  + Klondike(tipo: Variante)
-  + Klondike(tipo: Variante, prueba: boolean)
   + inicializarJuego(): void
   + reiniciar(): void
   + repartirCartas(mazo: Mazo): void
@@ -69,8 +68,24 @@ class Klondike {
   + moverCimientoAPila(cimiento: Cimiento, pilaDestino: PilaDelTableau): boolean
 }
 
+abstract class Spider{
+  + inicializarJuego(): void
+  + reiniciar(): void
+  + repartirCartas(mazo: Mazo): void
+  + moverPilaAPila(pilaOrigen: PilaDelTableau, pilaDestino: PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: PilaDelTableau, cimiento: Cimiento): boolean
+}
+
+class SpiderFacil{
+}
+
+
+class SpiderDificil{
+}
+
+
+
 class Mazo {
-  + Mazo()
   + mezclar(): void
   + extraerUltima(): Carta
 }
@@ -84,17 +99,12 @@ enum Palo {
 
 class PilaDelTableau {
   - id: int
-  + obtenerId(): int
-  + PilaDelTableau(id: int)
 }
 
 abstract class Solitario {
   - puntos: int
-  + Solitario(tipo: Variante)
-  + Solitario(tipo: Variante, prueba: boolean)
   + inicializarJuego(): void
   + jugadorGano(): boolean
-  + obtenerPuntos(): int
   + reiniciar(): void
   + repartirCartas(mazo: Mazo): void
   + moverPilaAPila(pilaOrigen: PilaDelTableau, pilaDestino: PilaDelTableau, n: int): boolean
@@ -104,10 +114,6 @@ abstract class Solitario {
   + moverBasuraAMazo(): boolean
   + moverCimientoAPila(cimiento: Cimiento, pilaDestino: PilaDelTableau): boolean
   + moverMazoABasura(): boolean
-  + cantidadPilasDelTableau(): int
-  + obtenerCimiento(index: int): Cimiento
-  + obtenerPilaDelTableau(index: int): PilaDelTableau
-  + cantidadCimientos(): int
 }
 
 enum Valor {
@@ -127,16 +133,24 @@ enum Valor {
 }
 
 enum Variante {
-  KLONDIKE
+  KLONDIKE,
+  SPIDER
 }
 
-ListaDeCartas "1" o-- "*" Carta : lista
+class RunTimeException {}
+
+ListaDeCartas "0" o--> "*" Carta : lista
 Basura --|> ListaDeCartas
 Carta *-.-> Valor
 Carta *-.-> Palo
-Carta *-.-> ColorPalo
+Palo "1" o--> "1" ColorPalo
+InvalidMovementException "1"*-->"1" ErrorAlMover : motivo
+InvalidMovementException --|> RunTimeException
 Cimiento --|> ListaDeCartas
 Klondike --|> Solitario
+Spider --|> Solitario
+SpiderFacil --|> Spider
+SpiderDificil --|> Spider
 Mazo --|> ListaDeCartas
 PilaDelTableau --|> ListaDeCartas
 Solitario "1"*-->"1" Variante
@@ -144,5 +158,6 @@ Solitario "1"*-->"1" Mazo
 Solitario "1"*-->"4" Cimiento : cimientos
 Solitario "1"*-->"7" PilaDelTableau :pilasTableau
 Solitario "1"*-->"1" Basura
+
 
 @enduml
