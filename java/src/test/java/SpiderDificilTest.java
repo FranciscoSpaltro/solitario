@@ -85,7 +85,7 @@ public class SpiderDificilTest {
             spider.moverPilaAPila(spider.obtenerPilaDelTableau(9), pilaDestino, 2);
         } catch (InvalidMovementException e) {
             resultado = false;
-            assertEquals(ErrorAlMover.CARTA_A_MOVER_DISTINTO_PALO, e.obtenerMotivo());
+            assertEquals(ErrorAlMover.CARTAS_A_MOVER_DISTINTO_PALO, e.obtenerMotivo());
         }
         assertFalse(resultado);
     }

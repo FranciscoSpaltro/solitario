@@ -15,7 +15,7 @@ public class SpiderDificil extends Spider{
             throw new InvalidMovementException(ErrorAlMover.PILA_INCOMPLETA_NO_PUEDE_IR_A_CIMIENTO);
 
         int tam = pilaOrigen.cantidadCartasVisibles();
-        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - tam);
+        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - 13);
         Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - 1);
 
         Palo palo = primeraCartaPilaOrigen.verPalo();
@@ -37,7 +37,7 @@ public class SpiderDificil extends Spider{
 
         for(Carta carta : cartasAMover)
             if (carta.verPalo() != primeraCartaAMover.verPalo())
-                throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_DISTINTO_PALO);
+                throw new InvalidMovementException(ErrorAlMover.CARTAS_A_MOVER_DISTINTO_PALO);
 
         if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
             throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_REY);

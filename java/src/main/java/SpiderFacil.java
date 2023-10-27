@@ -14,8 +14,7 @@ public class SpiderFacil extends Spider{
         if (pilaOrigen.cantidadCartasVisibles() < 13)
             throw new InvalidMovementException(ErrorAlMover.PILA_INCOMPLETA_NO_PUEDE_IR_A_CIMIENTO);
 
-        int tam = pilaOrigen.cantidadCartasVisibles();
-        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - tam);
+        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - 13);
         Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - 1);
 
         // La unica condicion es que sea la pila completa del Rey al AS

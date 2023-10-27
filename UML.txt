@@ -52,7 +52,13 @@ enum ErrorAlMover {
   CIMIENTO_VACIO_NO_AS,
   PILA_CARTAS_MISMO_COLOR,
   CARTA_A_MOVER_NO_BOCA_ARRIBA,
-  CIMIENTO_CARTAS_DISTINTO_PALO
+  CIMIENTO_CARTAS_DISTINTO_PALO,
+  MAZO_VACIO,
+  ERROR_DE_PROGRAMA,
+  PILAS_VACIA_NO_PUEDE_SACAR_DEL_MAZO,
+  PILA_INCOMPLETA_NO_PUEDE_IR_A_CIMIENTO,
+  CARTAS_A_MOVER_DISTINTO_PALO,
+  PILA_DIFERENTE_PALO_NO_PUEDE_IR_A_CIMIENTO
 }
 
 class Klondike {
@@ -99,6 +105,11 @@ enum Palo {
 
 class PilaDelTableau {
   - id: int
+}
+
+class Persistencia {
+  + escribirObjeto(String, Object): void
+  + importarObjeto(String): Object
 }
 
 abstract class Solitario {
