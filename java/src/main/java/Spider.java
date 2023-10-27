@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class Spider extends Solitario{
+public abstract class Spider extends Solitario{
     public Spider(Variante tipo, Palo paloElegido) {
         super(tipo);
 
@@ -116,17 +116,17 @@ public class Spider extends Solitario{
         int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
         Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
 
+        ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
         try {
-            this.validarMovimientoAPila(primeraCartaOrigen, pilaDestino);
+            this.validarMovimientoAPila(cartasAMover, pilaDestino);
         } catch (InvalidMovementException e) {
+            pilaOrigen.anexarCartas(cartasAMover);
             throw e;
         }
         // Llegado a este punto, el movimiento es válido
 
         if (pilaOrigen.cantidadCartasVisibles() == n)
             puntos += 5;
-
-        ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
 
         if (!pilaDestino.anexarCartas(cartasAMover)) {
             pilaOrigen.anexarCartas(cartasAMover);
@@ -150,31 +150,8 @@ public class Spider extends Solitario{
         puntos += 10;
     }
 
-    protected void validarMovimientoACimiento(PilaDelTableau pilaOrigen, Cimiento cimientoDestino) throws InvalidMovementException {
-        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(0);
-        Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(12);
+    protected abstract void validarMovimientoACimiento(PilaDelTableau pilaOrigen, Cimiento cimientoDestino) throws InvalidMovementException;
 
-        // La unica condicion es que sea la pila completa del Rey al AS
-        if (!(primeraCartaPilaOrigen.verValor() == Valor.REY && ultimaCartaPilaOrigen.verValor() == Valor.AS))
-            throw new InvalidMovementException(ErrorAlMover.PILA_INCOMPLETA_NO_PUEDE_IR_A_CIMIENTO);
-
-        // Si llega a este punto, el movimiento es válido
-    }
-
-    @Override
-    protected void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
-        Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
-
-        if (!primeraCartaAMover.estaBocaArriba())
-            throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
-
-        if (primeraCartaAMover.verColor() != ultimaCartaDestino.verColor())
-            throw new InvalidMovementException(ErrorAlMover.PILA_CARTAS_MISMO_COLOR);
-
-        Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
-
-        if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
-            throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
-    }
+    protected abstract void validarMovimientoAPila(ArrayList<Carta> cartasAMover, PilaDelTableau pilaDestino) throws InvalidMovementException;
 
 }

@@ -58,7 +58,7 @@ public class KlondikeTest {
         boolean seTeniaQueMover = false;
         if (cartaPila4.estaBocaArriba()
                 && cartaPila5.estaBocaArriba()
-                && cartaPila4.verColor() != cartaPila5.verColor()
+                && !cartaPila4.verPalo().mismoColor(cartaPila5.verPalo())
                 && cartaPila4.verValor().ordinal() ==  cartaPila5.verValor().ordinal() + 1)
             seTeniaQueMover = true;
 
