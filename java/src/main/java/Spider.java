@@ -38,7 +38,7 @@ public abstract class Spider extends Solitario{
     }
 
     public Spider(Variante tipo, Palo paloElegido, boolean prueba) {
-        super(tipo);
+        super(tipo, prueba);
 
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -51,7 +51,24 @@ public abstract class Spider extends Solitario{
 
         var palos = new ArrayList<Palo>();
         palos.add(paloElegido);
+        // Para test solo uso cuatro mazos por palo
         super.mazo = new Mazo(palos, 8);
+    }
+
+    // Para más dificultad
+    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, boolean prueba) {
+        super(tipo, prueba);
+
+        pilasTableau = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            pilasTableau.add(new PilaDelTableau(i));
+        }
+        cimientos = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            cimientos.add(new Cimiento(i));
+        }
+
+        super.mazo = new Mazo(palosElegidos, 4);
     }
 
     @Override

@@ -1,22 +1,23 @@
 import java.util.ArrayList;
 
 public class SpiderDificil extends Spider{
-    public SpiderDificil(Variante tipo, Palo paloElegido) {
-        super(tipo, paloElegido);
-    }
-
     public SpiderDificil(Variante tipo, ArrayList<Palo> palosElegidos) {
         super(tipo, palosElegidos);
     }
 
-    public SpiderDificil(Variante tipo, Palo paloElegido, boolean prueba) {
-        super(tipo, paloElegido, prueba);
+    public SpiderDificil(Variante tipo, ArrayList<Palo> palosElegidos, boolean prueba) {
+        super(tipo, palosElegidos, prueba);
     }
 
     @Override
     protected void validarMovimientoACimiento(PilaDelTableau pilaOrigen, Cimiento cimientoDestino) throws InvalidMovementException {
-        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(0);
-        Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(12);
+        if (pilaOrigen.cantidadCartasVisibles() < 13)
+            throw new InvalidMovementException(ErrorAlMover.PILA_INCOMPLETA_NO_PUEDE_IR_A_CIMIENTO);
+
+        int tam = pilaOrigen.cantidadCartasVisibles();
+        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - tam);
+        Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - 1);
+
         Palo palo = primeraCartaPilaOrigen.verPalo();
 
         if (!(primeraCartaPilaOrigen.verValor() == Valor.REY && ultimaCartaPilaOrigen.verValor() == Valor.AS && primeraCartaPilaOrigen.estaBocaArriba()))
@@ -31,6 +32,9 @@ public class SpiderDificil extends Spider{
     protected void validarMovimientoAPila(ArrayList<Carta> cartasAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
         Carta primeraCartaAMover = cartasAMover.get(0);
 
+        if (!primeraCartaAMover.estaBocaArriba())
+            throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
+
         for(Carta carta : cartasAMover)
             if (carta.verPalo() != primeraCartaAMover.verPalo())
                 throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_DISTINTO_PALO);
@@ -42,9 +46,6 @@ public class SpiderDificil extends Spider{
             return;
 
         Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
-
-        if (!primeraCartaAMover.estaBocaArriba())
-            throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
 
         Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
 

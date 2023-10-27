@@ -5,18 +5,18 @@ public class SpiderFacil extends Spider{
         super(tipo, paloElegido);
     }
 
-    public SpiderFacil(Variante tipo, ArrayList<Palo> palosElegidos) {
-        super(tipo, palosElegidos);
-    }
-
     public SpiderFacil(Variante tipo, Palo paloElegido, boolean prueba) {
         super(tipo, paloElegido, prueba);
     }
 
     @Override
     protected void validarMovimientoACimiento(PilaDelTableau pilaOrigen, Cimiento cimientoDestino) throws InvalidMovementException {
-        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(0);
-        Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(12);
+        if (pilaOrigen.cantidadCartasVisibles() < 13)
+            throw new InvalidMovementException(ErrorAlMover.PILA_INCOMPLETA_NO_PUEDE_IR_A_CIMIENTO);
+
+        int tam = pilaOrigen.cantidadCartasVisibles();
+        Carta primeraCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - tam);
+        Carta ultimaCartaPilaOrigen = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - 1);
 
         // La unica condicion es que sea la pila completa del Rey al AS
         if (!(primeraCartaPilaOrigen.verValor() == Valor.REY && ultimaCartaPilaOrigen.verValor() == Valor.AS && primeraCartaPilaOrigen.estaBocaArriba()))
