@@ -1,7 +1,6 @@
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +17,8 @@ public class PersistenciaTest {
             directorio.mkdir();
 
         // Act
-        Persistencia.escribirObjeto("prueba/pruebaKlondike.txt", klondike);
+        var salida = new FileOutputStream("prueba/pruebaKlondike.txt");
+        Persistencia.escribirObjeto(salida, klondike);
 
 }
 
@@ -27,7 +27,8 @@ public class PersistenciaTest {
         // Arrange
         Klondike klondike = null;
         guardarJuegoKlondike();
-        klondike = (Klondike) Persistencia.importarObjeto("prueba/pruebaKlondike.txt");
+        var entrada = new FileInputStream("prueba/pruebaKlondike.txt");
+        klondike = (Klondike) Persistencia.importarObjeto(entrada);
 
         // Assert
         assertNotNull(klondike);
@@ -53,16 +54,47 @@ public class PersistenciaTest {
             directorio.mkdir();
 
         // Act
-        Persistencia.escribirObjeto("prueba/pruebaSpider.txt", spider);
+        FileOutputStream salida;
+        try {
+            salida = new FileOutputStream("prueba/pruebaSpider.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw e;
+        }
 
+        try {
+            Persistencia.escribirObjeto(salida, spider);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Test
     public void abrirJuegoSpider() throws IOException, ClassNotFoundException {
         // Arrange
         SpiderFacil spider = null;
-        guardarJuegoSpider();
-        spider = (SpiderFacil) Persistencia.importarObjeto("prueba/pruebaSpider.txt");
+        try {
+            guardarJuegoSpider();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FileInputStream entrada;
+
+        try {
+            entrada = new FileInputStream("prueba/pruebaSpider.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        try {
+            spider = (SpiderFacil) Persistencia.importarObjeto(entrada);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
 
         // Assert
         assertNotNull(spider);

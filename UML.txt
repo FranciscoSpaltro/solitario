@@ -108,8 +108,8 @@ class PilaDelTableau {
 }
 
 class Persistencia {
-  + escribirObjeto(String, Object): void
-  + importarObjeto(String): Object
+  + escribirObjeto(OutputStream, Object): void
+  + importarObjeto(InputStream): Object
 }
 
 abstract class Solitario {
