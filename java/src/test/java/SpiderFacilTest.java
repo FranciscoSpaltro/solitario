@@ -57,7 +57,7 @@ public class SpiderFacilTest {
     @Test
     public void testMoverPilaAPila() {
         // Arrange
-        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES, true);
+        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.TREBOLES, true);
         spider.inicializarJuego();
 
         // Act
