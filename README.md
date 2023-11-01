@@ -1,3 +1,6 @@
+# Importante (ETAPA 2)
+La entrega forma parte de la rama MAIN
+
 # Trabajo Práctico: Solitario
 ## (95.02) Algoritmos y Programación III
 
