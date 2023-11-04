@@ -1,7 +1,12 @@
 import java.util.ArrayList;
-public abstract class Spider extends Solitario{
-    public Spider(Variante tipo, Palo paloElegido) {
+public class Spider extends Solitario{
+    private final IMovimientoAPilaSpiderStrategy movimientoAPila;
+    private final IMovimientoACimientoSpiderStrategy movimientoACimiento;
+
+    public Spider(Variante tipo, Palo paloElegido, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila) {
         super(tipo);
+        this.movimientoACimiento = movimientoACimiento;
+        this.movimientoAPila = movimientoAPila;
 
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -20,8 +25,10 @@ public abstract class Spider extends Solitario{
     }
 
     // Para más dificultad
-    public Spider(Variante tipo, ArrayList<Palo> palosElegidos) {
+    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila) {
         super(tipo);
+        this.movimientoACimiento = movimientoACimiento;
+        this.movimientoAPila = movimientoAPila;
 
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -37,8 +44,10 @@ public abstract class Spider extends Solitario{
         super.mazo.mezclar();
     }
 
-    public Spider(Variante tipo, Palo paloElegido, boolean prueba) {
+    public Spider(Variante tipo, Palo paloElegido, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila, boolean prueba) {
         super(tipo, prueba);
+        this.movimientoACimiento = movimientoACimiento;
+        this.movimientoAPila = movimientoAPila;
 
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -56,8 +65,10 @@ public abstract class Spider extends Solitario{
     }
 
     // Para más dificultad
-    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, boolean prueba) {
+    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila, boolean prueba) {
         super(tipo, prueba);
+        this.movimientoACimiento = movimientoACimiento;
+        this.movimientoAPila = movimientoAPila;
 
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -130,12 +141,10 @@ public abstract class Spider extends Solitario{
 
     @Override
     protected void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
-        int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
-        Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
 
         ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
         try {
-            this.validarMovimientoAPila(cartasAMover, pilaDestino);
+            movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
         } catch (InvalidMovementException e) {
             pilaOrigen.anexarCartas(cartasAMover);
             throw e;
@@ -154,11 +163,8 @@ public abstract class Spider extends Solitario{
 
     @Override
     protected void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
-        try{
-            validarMovimientoACimiento(pila, cimiento); // Si pasa algo, lanza la excepción
-        } catch (InvalidMovementException e){
-            throw e;
-        }
+
+        movimientoACimiento.validarMovimientoACimiento(pila, cimiento); // Si pasa algo, lanza la excepción
 
         for (int i = 0; i < 13; i++) {
             cimiento.agregarCarta(pila.extraerUltima());
@@ -166,9 +172,5 @@ public abstract class Spider extends Solitario{
 
         puntos += 10;
     }
-
-    protected abstract void validarMovimientoACimiento(PilaDelTableau pilaOrigen, Cimiento cimientoDestino) throws InvalidMovementException;
-
-    protected abstract void validarMovimientoAPila(ArrayList<Carta> cartasAMover, PilaDelTableau pilaDestino) throws InvalidMovementException;
 
 }

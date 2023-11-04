@@ -6,7 +6,7 @@ public class SpiderFacilTest {
     @Test
     public void testInicializarJuego() {
         // Arrange
-        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES);
+        var spider = new Spider(Variante.SPIDER, Palo.CORAZONES, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil());
 
         // Assert
         assertEquals(104, spider.obtenerMazo().cantidadCartas());
@@ -34,7 +34,8 @@ public class SpiderFacilTest {
     @Test
     public void testSacarCartasMazo() {
         // Arrange
-        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES);
+        var spider = new Spider(Variante.SPIDER, Palo.CORAZONES, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil());
+
         spider.inicializarJuego();
 
         // Act
@@ -57,7 +58,8 @@ public class SpiderFacilTest {
     @Test
     public void testMoverPilaAPila() {
         // Arrange
-        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.TREBOLES, true);
+        var spider = new Spider(Variante.SPIDER, Palo.TREBOLES, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
+
         spider.inicializarJuego();
 
         // Act
@@ -79,7 +81,7 @@ public class SpiderFacilTest {
     @Test
     public void testMoverPilaACimiento(){
         // Arrange
-        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES, true);
+        var spider = new Spider(Variante.SPIDER, Palo.CORAZONES, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
 
         // Act
@@ -119,7 +121,7 @@ public class SpiderFacilTest {
     @Test
     public void testReiniciarJuego(){
         // Arrange
-        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES, true);
+        var spider = new Spider(Variante.SPIDER, Palo.CORAZONES, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
 
         // Act
@@ -151,7 +153,7 @@ public class SpiderFacilTest {
     @Test
     public void testMoverCartaAPilaQueNoCorresponde(){
         // Arrange
-        Spider spider = new SpiderFacil(Variante.SPIDER, Palo.CORAZONES, true);
+        var spider = new Spider(Variante.SPIDER, Palo.CORAZONES, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
 
         // Act

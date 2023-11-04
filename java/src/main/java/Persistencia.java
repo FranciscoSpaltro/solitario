@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Persistencia{
+public class Persistencia {
     public static void escribirObjeto(OutputStream salida, Object objeto) throws IOException {
         try (var objetoSalida = new ObjectOutputStream(salida)) {
             objetoSalida.writeObject(objeto);

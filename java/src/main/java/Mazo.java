@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-public class Mazo extends ListaDeCartas{
+public class Mazo extends ListaDeCartas {
     // Atributos
 
     // Métodos

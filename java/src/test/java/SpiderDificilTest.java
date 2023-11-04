@@ -13,7 +13,7 @@ public class SpiderDificilTest {
         palos.add(Palo.CORAZONES);
         palos.add(Palo.TREBOLES);
 
-        var spider = new SpiderDificil(Variante.SPIDER, palos, true);
+        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderDificil(), new MovimientoAPilaSpiderDificil(), true);
 
         // Assert
         assertEquals(104, spider.obtenerMazo().cantidadCartas());
@@ -44,7 +44,7 @@ public class SpiderDificilTest {
         palos.add(Palo.CORAZONES);
         palos.add(Palo.TREBOLES);
 
-        var spider = new SpiderDificil(Variante.SPIDER, palos, true);
+        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderDificil(), new MovimientoAPilaSpiderDificil(), true);
         spider.inicializarJuego();
 
         boolean resultado = true;
@@ -97,7 +97,8 @@ public class SpiderDificilTest {
         palos.add(Palo.CORAZONES);
         palos.add(Palo.TREBOLES);
 
-        var spider = new SpiderDificil(Variante.SPIDER, palos, true);
+        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderDificil(), new MovimientoAPilaSpiderDificil(), true);
+
         spider.inicializarJuego();
 
         boolean resultado = true;

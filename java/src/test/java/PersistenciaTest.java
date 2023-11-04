@@ -46,7 +46,7 @@ public class PersistenciaTest {
     // PARA SPIDER
     private void guardarJuegoSpider() throws IOException {
         // Arrange
-        SpiderFacil spider = new SpiderFacil(Variante.SPIDER, Palo.PICAS, true);
+        var spider = new Spider(Variante.SPIDER, Palo.PICAS, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
         // Directorio en el que deseas guardar el archivo serializado
         File directorio = new File("prueba");
@@ -73,7 +73,7 @@ public class PersistenciaTest {
     @Test
     public void abrirJuegoSpider() throws IOException, ClassNotFoundException {
         // Arrange
-        SpiderFacil spider = null;
+        Spider spider = null;
         try {
             guardarJuegoSpider();
         } catch (IOException e) {
@@ -90,7 +90,7 @@ public class PersistenciaTest {
         }
 
         try {
-            spider = (SpiderFacil) Persistencia.importarObjeto(entrada);
+            spider = (Spider) Persistencia.importarObjeto(entrada);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
