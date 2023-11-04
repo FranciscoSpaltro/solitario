@@ -1,7 +1,7 @@
 # Importante (ETAPA 2)
 La entrega forma parte de la rama MAIN
 
-# Trabajo Práctico: Solitario
+# Trabajo Práctico: solitario.Solitario
 ## (95.02) Algoritmos y Programación III
 
 ## Integrantes
@@ -32,18 +32,18 @@ Diego Essaya
 
 
 # Definir
-- Clase abstracta PilaDeCartas: base para las pilas de cartas en el juego (Mazo, Basura, Cimiento y Pilas/Tableau). Tendría atributos de Stack de Carta y métodos cantidadCartas(), estaVacia(), extraer() [en principio, la última]
+- Clase abstracta PilaDeCartas: base para las pilas de cartas en el juego (solitario.Mazo, solitario.Basura, solitario.Cimiento y Pilas/Tableau). Tendría atributos de Stack de solitario.Carta y métodos cantidadCartas(), estaVacia(), extraer() [en principio, la última]
 
-- Clase Mazo (hereda de PilaDeCartas):
+- Clase solitario.Mazo (hereda de PilaDeCartas):
 Implementar: 
   - mezclar()
 
-- Clase Basura (hereda de PilaDeCartas):
+- Clase solitario.Basura (hereda de PilaDeCartas):
 Implementar:
   - mostrarUltimasTres()
   - agregarCarta()
 
-- Clase Cimiento (hereda de PilaDeCartas):
+- Clase solitario.Cimiento (hereda de PilaDeCartas):
 Implementar:
   - agregarCarta()
 
@@ -58,13 +58,13 @@ Override:
 - extraer()
 ---------------------------------
 # Clases:
-## 0. Solitario
+## 0. solitario.Solitario
 ### Atributos:
 - variante
-- Mazo mazo
-- Lista de Cimiento cimientos
+- solitario.Mazo mazo
+- Lista de solitario.Cimiento cimientos
 - Lista de Pila pilas
-- Basura basura
+- solitario.Basura basura
 
 ### Métodos:
 - void inicializar() [pide la variante]
@@ -72,16 +72,16 @@ Override:
 - bool jugadorPerdio()
 - void reiniciar()
 
-- void repartirCartas(Mazo)
+- void repartirCartas(solitario.Mazo)
 - bool moverPilaAPila(pilaOrigen, pilaDestino, n)
 - bool moverPilaACimiento(pila, cimiento)
 - bool moverBasuraAPila(pila)
 - bool moverBasuraACimiento(cimiento)
 
-## 1. Klondike [Implementa a Solitario]
+## 1. solitario.Klondike [Implementa a solitario.Solitario]
 
 
-## 2. Carta
+## 2. solitario.Carta
 
 ### Atributos:
 - palo [String]
@@ -95,38 +95,38 @@ Override:
 - boolean darVuelta()
 
 
-## 3. Mazo/Stock
+## 3. solitario.Mazo/Stock
 - PALOS = ["picas", "diamantes", "treboles", "corazones"]
 - VALORES = ['1', '2'', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 ### Atributos:
-- cartas [Stack de Carta]
+- cartas [Stack de solitario.Carta]
 
 ### Métodos
 - ~~void inicializarMazo()~~
 - void mezclar()		
-- Carta extraerUltima()
+- solitario.Carta extraerUltima()
 - int cantidadCartas()
 - bool estaVacia()
 
-## 4. Basura
+## 4. solitario.Basura
 ### Atributos:
 - cartas [Stack de Cartas (solo se muestran 3 pero puede haber mas)]
 
 ### Métodos:
 - Lista de Cartas mostrarUltimasTres() 
-- Carta extraerUltima()
+- solitario.Carta extraerUltima()
 - int cantidadCartas()
-- void agregarCarta(Carta)
+- void agregarCarta(solitario.Carta)
 - bool estaVacia()
 
 
-## 5. Cimiento/Foundation
+## 5. solitario.Cimiento/Foundation
 ### Atributos:
 - cartas [Stack de Cartas]
 
 ### Métodos:
-- Carta mostrarUltima()
+- solitario.Carta mostrarUltima()
 - void agregarCartas(Stack de Cartas)
 - int cantidadCartas()
 - bool estaVacia()
@@ -137,7 +137,7 @@ Override:
 - cartasOcultas [Stack de Cartas]
 
 ### Métodos:
-- [Stack de Carta] mostrarVisibles()
+- [Stack de solitario.Carta] mostrarVisibles()
 - int cantidadCartas()
 - int cantidadCartasOcultas() [podría ser privado]
 - int cantidadCartasVisibles()

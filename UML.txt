@@ -1,51 +1,51 @@
 @startuml
 
-class Basura {
-  + mostrarUltimasTres(): ArrayList<Carta>
-  + agregarCarta(carta: Carta): void
+class solitario.Basura {
+  + mostrarUltimasTres(): ArrayList<solitario.Carta>
+  + agregarCarta(carta: solitario.Carta): void
 }
 
-class ListaDeCartas {
+class solitario.ListaDeCartas {
   + cantidadCartas(): int
   + estaVacia(): boolean
-  + extraerUltima(): Carta
-  + verUltima(): Carta
-  + agregarCarta(carta: Carta): void
-  + obtenerCarta(index: int): Carta
-  + extraerUltimasN(n: int): ArrayList<Carta>
+  + extraerUltima(): solitario.Carta
+  + verUltima(): solitario.Carta
+  + agregarCarta(carta: solitario.Carta): void
+  + obtenerCarta(index: int): solitario.Carta
+  + extraerUltimasN(n: int): ArrayList<solitario.Carta>
   + cantidadCartasOcultas(): int
-  + anexarCartas(cartas: ArrayList<Carta>): boolean
+  + anexarCartas(cartas: ArrayList<solitario.Carta>): boolean
   + cantidadCartasVisibles(): int
   + darVueltaIndex(n: int): boolean
 }
 
-class Carta {
+class solitario.Carta {
   - bocaArriba: boolean
-  + Carta(valor: Valor, palo: Palo, bocaArriba: boolean)
-  + verPalo(): Palo
-  + verValor(): Valor
+  + solitario.Carta(valor: solitario.Valor, palo: solitario.Palo, bocaArriba: boolean)
+  + verPalo(): solitario.Palo
+  + verValor(): solitario.Valor
   + estaBocaArriba(): boolean
   + darVuelta(): boolean
-  + verColor(): ColorPalo
+  + verColor(): solitario.ColorPalo
 }
 
-class Cimiento {
+class solitario.Cimiento {
   - id: int
-  + Cimiento(id: int)
+  + solitario.Cimiento(id: int)
   + verId(): int
   + estaCompleto(): boolean
 }
 
-enum ColorPalo {
+enum solitario.ColorPalo {
   ROJO,
   NEGRO
 }
 
-class InvalidMovementException{
+class solitario.InvalidMovementException{
 }
 
 
-enum ErrorAlMover {
+enum solitario.ErrorAlMover {
   PILA_VACIA_NO_REY,
   ORDEN_NO_DESCENDENTE,
   ORDEN_NO_ASCENDENTE,
@@ -61,25 +61,25 @@ enum ErrorAlMover {
   PILA_DIFERENTE_PALO_NO_PUEDE_IR_A_CIMIENTO
 }
 
-class Klondike {
+class solitario.Klondike {
   + inicializarJuego(): void
   + reiniciar(): void
-  + repartirCartas(mazo: Mazo): void
-  + moverPilaAPila(pilaOrigen: PilaDelTableau, pilaDestino: PilaDelTableau, n: int): boolean
-  + moverPilaACimiento(pila: PilaDelTableau, cimiento: Cimiento): boolean
-  + moverBasuraAPila(pila: PilaDelTableau): boolean
-  + moverBasuraACimiento(cimiento: Cimiento): boolean
+  + repartirCartas(mazo: solitario.Mazo): void
+  + moverPilaAPila(pilaOrigen: solitario.PilaDelTableau, pilaDestino: solitario.PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: solitario.PilaDelTableau, cimiento: solitario.Cimiento): boolean
+  + moverBasuraAPila(pila: solitario.PilaDelTableau): boolean
+  + moverBasuraACimiento(cimiento: solitario.Cimiento): boolean
   + moverBasuraAMazo(): boolean
   + moverMazoABasura(): boolean
-  + moverCimientoAPila(cimiento: Cimiento, pilaDestino: PilaDelTableau): boolean
+  + moverCimientoAPila(cimiento: solitario.Cimiento, pilaDestino: solitario.PilaDelTableau): boolean
 }
 
-abstract class Spider{
+abstract class solitario.Spider{
   + inicializarJuego(): void
   + reiniciar(): void
-  + repartirCartas(mazo: Mazo): void
-  + moverPilaAPila(pilaOrigen: PilaDelTableau, pilaDestino: PilaDelTableau, n: int): boolean
-  + moverPilaACimiento(pila: PilaDelTableau, cimiento: Cimiento): boolean
+  + repartirCartas(mazo: solitario.Mazo): void
+  + moverPilaAPila(pilaOrigen: solitario.PilaDelTableau, pilaDestino: solitario.PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: solitario.PilaDelTableau, cimiento: solitario.Cimiento): boolean
 }
 
 class SpiderFacil{
@@ -91,43 +91,43 @@ class SpiderDificil{
 
 
 
-class Mazo {
+class solitario.Mazo {
   + mezclar(): void
-  + extraerUltima(): Carta
+  + extraerUltima(): solitario.Carta
 }
 
-enum Palo {
+enum solitario.Palo {
   CORAZONES,
   DIAMANTES,
   TREBOLES,
   PICAS
 }
 
-class PilaDelTableau {
+class solitario.PilaDelTableau {
   - id: int
 }
 
-class Persistencia {
+class solitario.Persistencia {
   + escribirObjeto(OutputStream, Object): void
   + importarObjeto(InputStream): Object
 }
 
-abstract class Solitario {
+abstract class solitario.Solitario {
   - puntos: int
   + inicializarJuego(): void
   + jugadorGano(): boolean
   + reiniciar(): void
-  + repartirCartas(mazo: Mazo): void
-  + moverPilaAPila(pilaOrigen: PilaDelTableau, pilaDestino: PilaDelTableau, n: int): boolean
-  + moverPilaACimiento(pila: PilaDelTableau, cimiento: Cimiento): boolean
-  + moverBasuraAPila(pila: PilaDelTableau): boolean
-  + moverBasuraACimiento(cimiento: Cimiento): boolean
+  + repartirCartas(mazo: solitario.Mazo): void
+  + moverPilaAPila(pilaOrigen: solitario.PilaDelTableau, pilaDestino: solitario.PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: solitario.PilaDelTableau, cimiento: solitario.Cimiento): boolean
+  + moverBasuraAPila(pila: solitario.PilaDelTableau): boolean
+  + moverBasuraACimiento(cimiento: solitario.Cimiento): boolean
   + moverBasuraAMazo(): boolean
-  + moverCimientoAPila(cimiento: Cimiento, pilaDestino: PilaDelTableau): boolean
+  + moverCimientoAPila(cimiento: solitario.Cimiento, pilaDestino: solitario.PilaDelTableau): boolean
   + moverMazoABasura(): boolean
 }
 
-enum Valor {
+enum solitario.Valor {
   AS,
   DOS,
   TRES,
@@ -143,32 +143,32 @@ enum Valor {
   REY
 }
 
-enum Variante {
+enum solitario.Variante {
   KLONDIKE,
   SPIDER
 }
 
 class RunTimeException {}
 
-ListaDeCartas "0" o--> "*" Carta : lista
-Basura --|> ListaDeCartas
-Carta *-.-> Valor
-Carta *-.-> Palo
-Palo "1" o--> "1" ColorPalo
-InvalidMovementException "1"*-->"1" ErrorAlMover : motivo
-InvalidMovementException --|> RunTimeException
-Cimiento --|> ListaDeCartas
-Klondike --|> Solitario
-Spider --|> Solitario
-SpiderFacil --|> Spider
-SpiderDificil --|> Spider
-Mazo --|> ListaDeCartas
-PilaDelTableau --|> ListaDeCartas
-Solitario "1"*-->"1" Variante
-Solitario "1"*-->"1" Mazo
-Solitario "1"*-->"4" Cimiento : cimientos
-Solitario "1"*-->"7" PilaDelTableau :pilasTableau
-Solitario "1"*-->"1" Basura
+solitario.ListaDeCartas "0" o--> "*" solitario.Carta : lista
+solitario.Basura --|> solitario.ListaDeCartas
+solitario.Carta *-.-> solitario.Valor
+solitario.Carta *-.-> solitario.Palo
+solitario.Palo "1" o--> "1" solitario.ColorPalo
+solitario.InvalidMovementException "1"*-->"1" solitario.ErrorAlMover : motivo
+solitario.InvalidMovementException --|> RunTimeException
+solitario.Cimiento --|> solitario.ListaDeCartas
+solitario.Klondike --|> solitario.Solitario
+solitario.Spider --|> solitario.Solitario
+SpiderFacil --|> solitario.Spider
+SpiderDificil --|> solitario.Spider
+solitario.Mazo --|> solitario.ListaDeCartas
+solitario.PilaDelTableau --|> solitario.ListaDeCartas
+solitario.Solitario "1"*-->"1" solitario.Variante
+solitario.Solitario "1"*-->"1" solitario.Mazo
+solitario.Solitario "1"*-->"4" solitario.Cimiento : cimientos
+solitario.Solitario "1"*-->"7" solitario.PilaDelTableau :pilasTableau
+solitario.Solitario "1"*-->"1" solitario.Basura
 
 
 @enduml
