@@ -13,134 +13,20 @@ La entrega forma parte de la rama MAIN
 ## Corrector
 Diego Essaya
 
-# Pruebas a implementar
-- Inicializar juego y verificar los tamaños: 7 pilas con 1, 2, ..., 7 cartas, 4 cimientos vacíos y 1 mazo con 24
-- Mover una carta de una pila a otra (bien)
-- Mover una carta de una pila a otra (mismo color)
-- Mover una carta de una pila a otra (no secuencial)
-- Mover una carta de una pila a un cimiento (bien)
-- Mover una carta de una pila a un cimiento (no as con error)
-- Mover una carta de una pila a un cimiento (un dos después de un as, bien)
-- Mover un conjunto de cartas de una pila a otra (bien)
-- Mover un conjunto de cartas de una pila a otra (no secuencial)
-- Mover una carta de la basura a una pila
-- Mover una carta de la basura a un cimiento
-- Verificar que haya máximo 3 cartas visibles en la basura al agregar una luego de la 3ra
-
-
-
-
-
-# Definir
-- Clase abstracta PilaDeCartas: base para las pilas de cartas en el juego (solitario.Mazo, solitario.Basura, solitario.Cimiento y Pilas/Tableau). Tendría atributos de Stack de solitario.Carta y métodos cantidadCartas(), estaVacia(), extraer() [en principio, la última]
-
-- Clase solitario.Mazo (hereda de PilaDeCartas):
-Implementar: 
-  - mezclar()
-
-- Clase solitario.Basura (hereda de PilaDeCartas):
-Implementar:
-  - mostrarUltimasTres()
-  - agregarCarta()
-
-- Clase solitario.Cimiento (hereda de PilaDeCartas):
-Implementar:
-  - agregarCarta()
-
-- Clase Pilas/Tableau (hereda de PilaDeCartas):
-  - Hay que ver qué pasa con los dos arreglos en atributos
-Implementar:
-  - mostrarVisibles()
-  - agregarCartas(int n)
-  - cantidadCartasOcultas()
-  - cantidadCartasVisibles()
-Override:
-- extraer()
----------------------------------
-# Clases:
-## 0. solitario.Solitario
-### Atributos:
-- variante
-- solitario.Mazo mazo
-- Lista de solitario.Cimiento cimientos
-- Lista de Pila pilas
-- solitario.Basura basura
-
-### Métodos:
-- void inicializar() [pide la variante]
-- bool jugadorGano()
-- bool jugadorPerdio()
-- void reiniciar()
-
-- void repartirCartas(solitario.Mazo)
-- bool moverPilaAPila(pilaOrigen, pilaDestino, n)
-- bool moverPilaACimiento(pila, cimiento)
-- bool moverBasuraAPila(pila)
-- bool moverBasuraACimiento(cimiento)
-
-## 1. solitario.Klondike [Implementa a solitario.Solitario]
-
-
-## 2. solitario.Carta
-
-### Atributos:
-- palo [String]
-- numero ~~[String]~~ [char]
-- bocaArriba [boolean]
-
-### Métodos:
-- String verPalo()
-- String verNumero()
-- boolean estaBocaArriba()
-- boolean darVuelta()
-
-
-## 3. solitario.Mazo/Stock
-- PALOS = ["picas", "diamantes", "treboles", "corazones"]
-- VALORES = ['1', '2'', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-
-### Atributos:
-- cartas [Stack de solitario.Carta]
-
-### Métodos
-- ~~void inicializarMazo()~~
-- void mezclar()		
-- solitario.Carta extraerUltima()
-- int cantidadCartas()
-- bool estaVacia()
-
-## 4. solitario.Basura
-### Atributos:
-- cartas [Stack de Cartas (solo se muestran 3 pero puede haber mas)]
-
-### Métodos:
-- Lista de Cartas mostrarUltimasTres() 
-- solitario.Carta extraerUltima()
-- int cantidadCartas()
-- void agregarCarta(solitario.Carta)
-- bool estaVacia()
-
-
-## 5. solitario.Cimiento/Foundation
-### Atributos:
-- cartas [Stack de Cartas]
-
-### Métodos:
-- solitario.Carta mostrarUltima()
-- void agregarCartas(Stack de Cartas)
-- int cantidadCartas()
-- bool estaVacia()
-
-## 6. Pilas/Tableau:
-### Atributos:
-- cartasVisibles [Stack de Cartas]
-- cartasOcultas [Stack de Cartas]
-
-### Métodos:
-- [Stack de solitario.Carta] mostrarVisibles()
-- int cantidadCartas()
-- int cantidadCartasOcultas() [podría ser privado]
-- int cantidadCartasVisibles()
-- Stack de Cartas extraerCartas(int n)
-- void agregarCartas(Stack de Cartas)
-- bool estaVacia()
+# Correcciones de la etapa 2
+- [x] El atributo basura solo se usa en Klondike. Spider lo hereda pero no lo usa para nada
+  > Se eliminó el atributo basura de Solitario y pasó a ser parte solo de Klondike
+- [x] ¿Cuál es la razón por la que eligieron usar herencia para Spider y sus dos variantes? Pregunto porque no veo que usen polimorfismo (por ejemplo, alguna función que reciba un Spider). Si no hay polimorfismo, tal vez es mejor usar composición (por ejemplo, Strategy). Es una sugerencia, tal vez en la etapa 3 sacan provecho de esta herencia.
+  > Se aplicó Strategy
+- [ ] Hay bastante repetición de código en los diferentes constructores de Spider
+  > FALTA. Son uno para fácil, otro para difícil y el doble de eso por las pruebas
+- [ ] También veo un poco de código repetido entre Klondike y Spider. Por ejemplo, ambas implementaciones de moverPilaAPila terminan más o menos igual (la parte de anexarCartas)
+  > FALTA
+- [x] Veo también "números mágicos": 5, 8, 10, 13... que deberían ser constantes o valores que se obtienen a partir de algún cálculo
+  > Se creó la interfaz Constantes para definir allí estos números
+- [x] La carpeta target no debe ser commiteada en el repositorio, ya que contiene archivos compilados. Solo se debe incluir en el repositorio el código fuente y todo lo que sea indispensable para compilar y ejecutar el programa
+  > Se creó un .gitignore que incluya /java/target
+- [x] Idealmente cualquier archivo que se escribe en un test debería ser eliminado al finalizar el test
+  > Se modificó el test para que elimine el archivo al final (solución transitoria)
+- [ ] Mejor aun: pueden modificar el test para que no se escriba ningún archivo, como vimos en clase
+  > IMPLEMENTAR
