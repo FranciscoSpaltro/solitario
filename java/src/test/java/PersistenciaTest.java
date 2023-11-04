@@ -41,6 +41,9 @@ public class PersistenciaTest {
         assertEquals(0, klondike.obtenerCimiento(1).cantidadCartas());
         assertEquals(0, klondike.obtenerCimiento(2).cantidadCartas());
         assertEquals(0, klondike.obtenerCimiento(3).cantidadCartas());
+
+        File archivo = new File("prueba/pruebaKlondike.txt");
+        archivo.delete();
     }
 
     // PARA SPIDER
@@ -68,6 +71,7 @@ public class PersistenciaTest {
             e.printStackTrace();
             throw e;
         }
+
     }
 
     @Test
@@ -105,5 +109,8 @@ public class PersistenciaTest {
         assertEquals(0, spider.obtenerCimiento(0).cantidadCartas());
         assertEquals(0, spider.obtenerCimiento(5).cantidadCartas());
         assertEquals(0, spider.obtenerCimiento(7).cantidadCartas());
+
+        File archivo = new File("prueba/pruebaSpider.txt");
+        archivo.delete();
     }
 }
