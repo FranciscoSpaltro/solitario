@@ -8,7 +8,6 @@ abstract class Solitario implements Serializable {
     protected Mazo mazo;
     protected List<Cimiento> cimientos;
     protected List<PilaDelTableau> pilasTableau;
-    protected Basura basura;
     protected int puntos;
 
     //Métodos

@@ -22,11 +22,11 @@ public class BasuraTest {
         klondike.moverMazoABasura();
         klondike.moverMazoABasura();
         klondike.moverMazoABasura();
-        ArrayList<Carta> ultimasTres = klondike.basura.mostrarUltimasTres();
+        ArrayList<Carta> ultimasTres = klondike.obtenerBasura().mostrarUltimasTres();
         Carta carta1 = ultimasTres.remove(0);
         Carta carta2 = ultimasTres.remove(0);
         Carta carta3 = ultimasTres.remove(0);
-        Carta carta4 = klondike.basura.obtenerCarta(0);
+        Carta carta4 = klondike.obtenerBasura().obtenerCarta(0);
 
         // Assert
         assertEquals(Valor.OCHO, carta1.verValor());

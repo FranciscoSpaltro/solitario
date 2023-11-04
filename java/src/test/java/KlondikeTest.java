@@ -23,7 +23,7 @@ public class KlondikeTest {
         assertEquals(24, klondike.mazo.cantidadCartas());
         assertEquals(4, klondike.cantidadCimientos());
         assertEquals(7, klondike.cantidadPilasDelTableau());
-        assertEquals(0, klondike.basura.cantidadCartas());
+        assertEquals(0, klondike.obtenerBasura().cantidadCartas());
         assertEquals(0, klondike.puntos);
 
         int i = 1;
@@ -89,7 +89,7 @@ public class KlondikeTest {
 
         assertEquals(ultimaMazo.verValor(), klondike.obtenerBasura().verUltima().verValor());
         assertEquals(ultimaMazo.verPalo(), klondike.obtenerBasura().verUltima().verPalo());
-        assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.obtenerMazo().cantidadCartas() + klondike.basura.cantidadCartas());
+        assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.obtenerMazo().cantidadCartas() + klondike.obtenerBasura().cantidadCartas());
         assertEquals(1, klondike.obtenerBasura().cantidadCartas());
         assertTrue(seMovio);
     }
@@ -273,7 +273,7 @@ public class KlondikeTest {
         assertEquals(5, klondike.obtenerPuntos());
         assertEquals(Palo.DIAMANTES, cartaMovida.verPalo());
         assertEquals(Valor.JOTA, cartaMovida.verValor());
-        assertTrue(klondike.basura.estaVacia());
+        assertTrue(klondike.obtenerBasura().estaVacia());
     }
 
     @Test
@@ -301,7 +301,7 @@ public class KlondikeTest {
         assertEquals(10, klondike.obtenerPuntos());
         assertEquals(Palo.DIAMANTES, cartaMovida.verPalo());
         assertEquals(Valor.AS, cartaMovida.verValor());
-        assertFalse(klondike.basura.estaVacia());
+        assertFalse(klondike.obtenerBasura().estaVacia());
         assertFalse(cimientoDestino.estaVacia());
         assertTrue(cimientoDestino.verUltima().estaBocaArriba());
     }
@@ -321,7 +321,7 @@ public class KlondikeTest {
 
         // Assert
         assertEquals(5, klondike.mazo.cantidadCartas());
-        assertEquals(47, klondike.basura.cantidadCartas());
+        assertEquals(47, klondike.obtenerBasura().cantidadCartas());
 
         try {
             klondike.moverBasuraAMazo();
@@ -339,7 +339,7 @@ public class KlondikeTest {
 
         // Assert
         assertEquals(0, klondike.obtenerPuntos());
-        assertTrue(klondike.basura.estaVacia());
+        assertTrue(klondike.obtenerBasura().estaVacia());
         assertEquals(52, klondike.mazo.cantidadCartas());
 
     }

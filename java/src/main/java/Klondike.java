@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Klondike extends Solitario {
+    private Basura basura;
 
     // Métodos
     // NOTA: Los cimientos y las pilas están ordenados de 0 a n-1, siendo n la cantidad de cimientos o pilas
