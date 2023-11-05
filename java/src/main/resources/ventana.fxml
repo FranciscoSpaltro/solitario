@@ -39,13 +39,13 @@
       <StackPane fx:id="cimiento3" layoutX="464.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
       <StackPane fx:id="cimiento2" layoutX="376.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
       <StackPane fx:id="cimiento1" layoutX="288.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
-      <Pane fx:id="basura" layoutX="112.0" layoutY="49.0" prefHeight="94.0" prefWidth="94.0" />
-      <Pane fx:id="pila1" layoutX="24.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <Pane fx:id="pila2" layoutX="112.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <Pane fx:id="pila3" layoutX="200.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <Pane fx:id="pila4" layoutX="288.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <Pane fx:id="pila5" layoutX="376.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <Pane fx:id="pila6" layoutX="464.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <Pane fx:id="pila7" layoutX="552.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <StackPane fx:id="basura" layoutX="112.0" layoutY="49.0" prefHeight="94.0" prefWidth="94.0" />
+      <StackPane fx:id="pila1" layoutX="24.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <StackPane fx:id="pila2" layoutX="112.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <StackPane fx:id="pila3" layoutX="200.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <StackPane fx:id="pila4" layoutX="288.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <StackPane fx:id="pila5" layoutX="376.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <StackPane fx:id="pila6" layoutX="464.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <StackPane fx:id="pila7" layoutX="552.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
    </children>
 </Pane>

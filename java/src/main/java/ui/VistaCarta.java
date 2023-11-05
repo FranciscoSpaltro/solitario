@@ -2,6 +2,7 @@ package ui;
 
 import solitario.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,24 +27,24 @@ public class VistaCarta {
         return valor.toString() + "_" + palo.toString();
     }
 
-    public Image obtenerImagen(Carta carta, Variante variante) {
+    public ImageView obtenerImagen(Carta carta, Variante variante) {
         if (carta == null)
             if (variante == Variante.KLONDIKE)
-                return vacio_klondike;
+                return new ImageView(vacio_klondike);
             else if (variante == Variante.SPIDER)
-                return vacio_spider;
+                return new ImageView(vacio_spider);
             else
                 return null;
 
         if (! carta.estaBocaArriba())
             if (variante == Variante.KLONDIKE)
-                return dorso_klondike;
+                return new ImageView(dorso_klondike);
             else if (variante == Variante.SPIDER)
-                return dorso_spider;
+                return new ImageView(dorso_spider);
             else
                 return null;
 
-        return catalogo.get(carta);
+        return new ImageView(catalogo.get(carta));
     }
 
 }

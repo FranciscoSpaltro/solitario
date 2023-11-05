@@ -40,6 +40,8 @@ public abstract class ListaDeCartas implements Serializable, Iterable<Carta> {
     }
 
     public Carta obtenerCarta(int index) {
+        if (lista.isEmpty())
+            return null;
         return lista.get(index);
     }
 

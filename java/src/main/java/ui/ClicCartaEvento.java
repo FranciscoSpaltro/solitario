@@ -17,18 +17,20 @@ public class ClicCartaEvento {
             destino = lugar;
             clicAnterior = false;
             lanzarEventoMover(klondike);
-        } else {
-            origen = lugar;
-            indiceOrigen = indice;
-            clicAnterior = true;
-            lanzarEventoSeleccion(klondike);
+            return clicAnterior;
         }
+        origen = lugar;
+        indiceOrigen = indice;
+        clicAnterior = true;
+        lanzarEventoSeleccion(klondike);
+        return clicAnterior;
     }
 
     private void lanzarEventoMover(Klondike klondike){
         klondike.moverPilaAPila(origen, destino, indiceOrigen);
+        return;
     }
     private void lanzarEventoSeleccion(Klondike klondike){
-
+        return;
     }
 }
