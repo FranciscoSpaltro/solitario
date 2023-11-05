@@ -45,6 +45,8 @@ public class PersistenciaTest {
         assertEquals(0, klondike.obtenerCimiento(2).cantidadCartas());
         assertEquals(0, klondike.obtenerCimiento(3).cantidadCartas());
 
+        File archivo = new File("prueba/pruebaKlondike.txt");
+        archivo.delete();
         File directorio = new File("prueba");
         directorio.delete();
     }
@@ -113,6 +115,8 @@ public class PersistenciaTest {
         assertEquals(0, spider.obtenerCimiento(5).cantidadCartas());
         assertEquals(0, spider.obtenerCimiento(7).cantidadCartas());
 
+        File archivo = new File("prueba/pruebaSpider.txt");
+        archivo.delete();
         File directorio = new File("prueba");
         directorio.delete();
     }
