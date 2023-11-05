@@ -3,11 +3,15 @@ package solitario;
 import java.io.Serializable;
 import java.util.*;
 
-abstract class ListaDeCartas implements Serializable {
+abstract class ListaDeCartas implements Serializable, Iterable<Carta> {
     // ATRIBUTOS
     protected ArrayList<Carta> lista = new ArrayList<>();
 
     // METODOS
+    public Iterator<Carta> iterator() {
+        return lista.iterator();
+    }
+
     public int cantidadCartas(){
         return lista.size();
     }
