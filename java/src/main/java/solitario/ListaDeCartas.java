@@ -3,7 +3,7 @@ package solitario;
 import java.io.Serializable;
 import java.util.*;
 
-abstract class ListaDeCartas implements Serializable, Iterable<Carta> {
+public abstract class ListaDeCartas implements Serializable, Iterable<Carta> {
     // ATRIBUTOS
     protected ArrayList<Carta> lista = new ArrayList<>();
 

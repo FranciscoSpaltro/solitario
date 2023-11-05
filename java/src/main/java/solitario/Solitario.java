@@ -6,11 +6,11 @@ import java.util.Arrays;
 import  java.util.List;
 abstract class Solitario implements Serializable {
     //Atributos
-    protected Variante tipoSolitario;
-    protected Mazo mazo;
-    protected List<Cimiento> cimientos;
-    protected List<PilaDelTableau> pilasTableau;
-    protected int puntos;
+    public Variante tipoSolitario;
+    public Mazo mazo;
+    public List<Cimiento> cimientos;
+    public List<PilaDelTableau> pilasTableau;
+    public int puntos;
 
     //Métodos
     public Solitario(Variante tipo) {
@@ -43,31 +43,29 @@ abstract class Solitario implements Serializable {
         return puntos;
     }
 
-    protected abstract void repartirCartas(Mazo mazo);
+    public abstract void repartirCartas(Mazo mazo);
 
-    protected abstract void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException;
+    public abstract void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException;
 
-    protected abstract void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException;
+    public abstract void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException;
 
-    // protected abstract void validarMovimientoAPila(solitario.Carta primeraCartaAMover, solitario.PilaDelTableau pilaDestino) throws solitario.InvalidMovementException;
-
-    protected int cantidadPilasDelTableau(){
+    public int cantidadPilasDelTableau(){
         return pilasTableau.size();
     }
 
-    protected Cimiento obtenerCimiento(int index){
+    public Cimiento obtenerCimiento(int index){
         return cimientos.get(index);
     }
 
-    protected PilaDelTableau obtenerPilaDelTableau(int index){
+    public PilaDelTableau obtenerPilaDelTableau(int index){
         return pilasTableau.get(index);
     }
 
-    protected int cantidadCimientos(){
+    public int cantidadCimientos(){
         return cimientos.size();
     }
 
-    protected Mazo obtenerMazo(){
+    public Mazo obtenerMazo(){
         return mazo;
     }
 }

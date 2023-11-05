@@ -42,13 +42,13 @@ public class Klondike extends Solitario {
     }
 
     @Override
-    void inicializarJuego() {
+    public void inicializarJuego() {
         // 4 Cimientos, 7 pilas con 1, 2, 4 ... 7 cartas donde solo se ve la última;
         this.repartirCartas(super.mazo);
 
     }
 
-    protected void reiniciar(){
+    public void reiniciar(){
         puntos = 0;
         // Al dejar sin referencia, la máquina virtual de Java elimina la memoria anterior
         var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
@@ -67,7 +67,7 @@ public class Klondike extends Solitario {
         this.inicializarJuego();
     }
     @Override
-    protected void repartirCartas(Mazo mazo) {
+    public void repartirCartas(Mazo mazo) {
         int cartasOcultas = 0;
         for (PilaDelTableau pila : pilasTableau) {
             for (int i = 0; i < cartasOcultas; i++) {
@@ -81,7 +81,7 @@ public class Klondike extends Solitario {
     }
 
     @Override
-    protected void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
+    public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
         int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
         Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
 
@@ -105,7 +105,7 @@ public class Klondike extends Solitario {
 
     }
 
-    protected void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
+    public void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
         Carta ultimaCartaPila = pila.extraerUltima();
 
         try {
@@ -120,7 +120,7 @@ public class Klondike extends Solitario {
         puntos += Constantes.PUNTOS_PILA_A_CIMIENTO_KLONDIKE;
     }
 
-    protected void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
+    public void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
         Carta cartaAAgregar = basura.extraerUltima();
 
         try {
@@ -134,7 +134,7 @@ public class Klondike extends Solitario {
         puntos += 5;
     }
 
-    protected void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException {
+    public void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException {
         Carta cartaBasura = basura.extraerUltima();
 
         try {
@@ -148,11 +148,11 @@ public class Klondike extends Solitario {
         puntos += Constantes.PUNTOS_PILA_A_CIMIENTO_KLONDIKE;
     }
 
-    protected Basura obtenerBasura(){
+    public Basura obtenerBasura(){
         return basura;
     }
 
-    protected void moverBasuraAMazo() throws InvalidMovementException {
+    public void moverBasuraAMazo() throws InvalidMovementException {
         if (! mazo.estaVacia())
             throw new InvalidMovementException(ErrorAlMover.MAZO_VACIO);
 
@@ -171,7 +171,7 @@ public class Klondike extends Solitario {
             puntos = 0;
     }
 
-    protected void moverMazoABasura() throws InvalidMovementException {
+    public void moverMazoABasura() throws InvalidMovementException {
         if (mazo.estaVacia())
             throw new InvalidMovementException(ErrorAlMover.MAZO_VACIO);
 
@@ -181,7 +181,7 @@ public class Klondike extends Solitario {
     }
 
 
-    protected void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
+    public void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
         Carta ultimaCartaCimiento = cimiento.extraerUltima();
 
         try {
@@ -202,7 +202,7 @@ public class Klondike extends Solitario {
     }
 
     // Validaciones
-    protected void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException {
+    public void validarMovimientoACimiento(Carta cartaAMover, Cimiento cimientoDestino) throws InvalidMovementException {
         if (cimientoDestino.estaVacia() && cartaAMover.verValor() != Valor.AS)
             throw new InvalidMovementException(ErrorAlMover.CIMIENTO_VACIO_NO_AS);
 
@@ -218,7 +218,7 @@ public class Klondike extends Solitario {
         if (cartaAMover.verValor() != Valor.values()[valorUltimaCartaCimiento.ordinal() + 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_ASCENDENTE);
     }
-    protected void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
+    public void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
         if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
             throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_REY);
 

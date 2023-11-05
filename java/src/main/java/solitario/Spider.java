@@ -89,7 +89,7 @@ public class Spider extends Solitario{
         this.repartirCartas(super.mazo); // Hay que modificar como se genera el mazo
     }
 
-    protected void reiniciar(Palo paloElegido) {
+    public void reiniciar(Palo paloElegido) {
         puntos = 0;
         // Al dejar sin referencia, la máquina virtual de Java elimina la memoria anterior
         var palos = new ArrayList<Palo>();
@@ -111,7 +111,7 @@ public class Spider extends Solitario{
     }
 
     @Override
-    protected void repartirCartas(Mazo mazo) {
+    public void repartirCartas(Mazo mazo) {
         for (int i = 0; i < super.cantidadPilasDelTableau(); i++) {
             PilaDelTableau pila = super.obtenerPilaDelTableau(i);
             for (int j = 0; j < Constantes.CANTIDAD_CARTAS_OCULTAS_INICIAL_TABLEAU_GRUPO_1_SPIDER - 1; j++) {
@@ -127,7 +127,7 @@ public class Spider extends Solitario{
         }
     }
 
-    protected void sacarCartasMazo() throws InvalidMovementException {
+    public void sacarCartasMazo() throws InvalidMovementException {
         // Chequeo que todas las pilas tengan al menos una carta
         for (PilaDelTableau pila : pilasTableau) {
             if (pila == null)
@@ -142,7 +142,7 @@ public class Spider extends Solitario{
     }
 
     @Override
-    protected void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
+    public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
 
         ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
         try {
@@ -164,7 +164,7 @@ public class Spider extends Solitario{
     }
 
     @Override
-    protected void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
+    public void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
 
         movimientoACimiento.validarMovimientoACimiento(pila, cimiento); // Si pasa algo, lanza la excepción
 
