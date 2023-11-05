@@ -1,9 +1,11 @@
 package ui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import solitario.Klondike;
 import solitario.PilaDelTableau;
 
-public class ClicCartaEvento {
+public class ClicCartaEvento implements EventHandler<ActionEvent> {
     private boolean clicAnterior = false;
     private PilaDelTableau origen = null;
     private PilaDelTableau destino = null;
@@ -16,21 +18,19 @@ public class ClicCartaEvento {
         if (clicAnterior) {
             destino = lugar;
             clicAnterior = false;
-            lanzarEventoMover(klondike);
+            //lanzarEventoMover(klondike);
             return clicAnterior;
         }
         origen = lugar;
         indiceOrigen = indice;
         clicAnterior = true;
-        lanzarEventoSeleccion(klondike);
+        klondike.moverPilaAPila(origen, destino, indiceOrigen);
+        System.out.println("Se movio");
         return clicAnterior;
     }
 
-    private void lanzarEventoMover(Klondike klondike){
-        klondike.moverPilaAPila(origen, destino, indiceOrigen);
-        return;
-    }
-    private void lanzarEventoSeleccion(Klondike klondike){
-        return;
+    @Override
+    public void handle(ActionEvent actionEvent) {
+
     }
 }
