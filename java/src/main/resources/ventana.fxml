@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="25.0" prefWidth="640.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Juego">
+               <items>
+                  <Menu mnemonicParsing="false" text="Nuevo juego">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Klondike" />
+                        <Menu mnemonicParsing="false" text="Spider">
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Fácil" />
+                            <MenuItem mnemonicParsing="false" text="Difícil" />
+                          </items>
+                        </Menu>
+                    </items>
+                  </Menu>
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ayuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Créditos" />
+                  <MenuItem mnemonicParsing="false" text="Contactanos" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <StackPane layoutX="24.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
+      <StackPane layoutX="552.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
+      <StackPane layoutX="464.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
+      <StackPane layoutX="376.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
+      <StackPane layoutX="288.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
+      <Pane layoutX="112.0" layoutY="49.0" prefHeight="94.0" prefWidth="94.0" />
+      <Pane layoutX="24.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <Pane layoutX="112.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <Pane layoutX="200.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <Pane layoutX="288.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <Pane layoutX="376.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <Pane layoutX="464.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <Pane layoutX="552.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+   </children>
+</Pane>
