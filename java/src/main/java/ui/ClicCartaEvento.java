@@ -18,14 +18,13 @@ public class ClicCartaEvento implements EventHandler<ActionEvent> {
         if (clicAnterior) {
             destino = lugar;
             clicAnterior = false;
-            //lanzarEventoMover(klondike);
+            //lanzarEventoMover();
             return clicAnterior;
         }
         origen = lugar;
         indiceOrigen = indice;
         clicAnterior = true;
-        klondike.moverPilaAPila(origen, destino, indiceOrigen);
-        System.out.println("Se movio");
+        // lanzarEventoSeleccion()
         return clicAnterior;
     }
 

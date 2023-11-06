@@ -56,7 +56,6 @@ public class Main extends Application {
         actualizarVistaPila(klondike.obtenerPilaDelTableau(5), pila6, vistaCarta, Variante.KLONDIKE);
         actualizarVistaPila(klondike.obtenerPilaDelTableau(6), pila7, vistaCarta, Variante.KLONDIKE);
 
-
         stage.setScene(scene);
         stage.setTitle("Solitario");
         stage.setResizable(false);
