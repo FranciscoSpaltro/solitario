@@ -48,26 +48,13 @@ public class Main extends Application {
 
         actualizarBasura(klondike.obtenerBasura(), basura, vistaCarta, Variante.KLONDIKE);
 
-        List<ImageView> lista1 = generarEventosPila(klondike, klondike.obtenerPilaDelTableau(0), pila1, vistaCarta, clicCartaEvento);
-        actualizarVistaPila(lista1, pila1, vistaCarta, Variante.KLONDIKE);
-
-        List<ImageView> lista2 = generarEventosPila(klondike, klondike.obtenerPilaDelTableau(1), pila2, vistaCarta, clicCartaEvento);
-        actualizarVistaPila(lista2, pila2, vistaCarta, Variante.KLONDIKE);
-
-        List<ImageView> lista3 = generarEventosPila(klondike, klondike.obtenerPilaDelTableau(2), pila3, vistaCarta, clicCartaEvento);
-        actualizarVistaPila(lista3, pila3, vistaCarta, Variante.KLONDIKE);
-
-        List<ImageView> lista4 = generarEventosPila(klondike, klondike.obtenerPilaDelTableau(3), pila4, vistaCarta, clicCartaEvento);
-        actualizarVistaPila(lista4, pila4, vistaCarta, Variante.KLONDIKE);
-
-        List<ImageView> lista5 = generarEventosPila(klondike, klondike.obtenerPilaDelTableau(4), pila5, vistaCarta, clicCartaEvento);
-        actualizarVistaPila(lista5, pila5, vistaCarta, Variante.KLONDIKE);
-
-        List<ImageView> lista6 = generarEventosPila(klondike, klondike.obtenerPilaDelTableau(5), pila6, vistaCarta, clicCartaEvento);
-        actualizarVistaPila(lista6, pila6, vistaCarta, Variante.KLONDIKE);
-
-        List<ImageView> lista7 = generarEventosPila(klondike, klondike.obtenerPilaDelTableau(6), pila7, vistaCarta, clicCartaEvento);
-        actualizarVistaPila(lista7, pila7, vistaCarta, Variante.KLONDIKE);
+        actualizarVistaPila(klondike.obtenerPilaDelTableau(0), pila1, vistaCarta, Variante.KLONDIKE);
+        actualizarVistaPila(klondike.obtenerPilaDelTableau(1), pila2, vistaCarta, Variante.KLONDIKE);
+        actualizarVistaPila(klondike.obtenerPilaDelTableau(2), pila3, vistaCarta, Variante.KLONDIKE);
+        actualizarVistaPila(klondike.obtenerPilaDelTableau(3), pila4, vistaCarta, Variante.KLONDIKE);
+        actualizarVistaPila(klondike.obtenerPilaDelTableau(4), pila5, vistaCarta, Variante.KLONDIKE);
+        actualizarVistaPila(klondike.obtenerPilaDelTableau(5), pila6, vistaCarta, Variante.KLONDIKE);
+        actualizarVistaPila(klondike.obtenerPilaDelTableau(6), pila7, vistaCarta, Variante.KLONDIKE);
 
 
         stage.setScene(scene);
@@ -122,11 +109,17 @@ public class Main extends Application {
         }
         return lista;
     }
-    private void actualizarVistaPila(List<ImageView> lista, StackPane stackpane, VistaCarta vistaCarta, Variante variante){
-        if(lista.isEmpty()) {
-            stackpane.getChildren().add(vistaCarta.obtenerImagen(null, variante));
+    private void actualizarVistaPila(PilaDelTableau pila, StackPane stackpane, VistaCarta vistaCarta, Variante variante){
+        if(pila.estaVacia()) {
+            ImageView aux = vistaCarta.obtenerImagen(null, variante);
+            stackpane.getChildren().add(aux);
         }
-        for(ImageView aux : lista) {
+        int posicionY = 0;
+        for(Carta carta : pila) {
+            ImageView aux = vistaCarta.obtenerImagen(carta, variante);
+            StackPane.setAlignment(aux, javafx.geometry.Pos.TOP_CENTER);
+            aux.setTranslateY(posicionY);
+            posicionY += 20;
             stackpane.getChildren().add(aux);
         }
     }
