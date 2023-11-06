@@ -89,25 +89,6 @@ public class Main extends Application {
         }
     }
 
-    private List<ImageView> generarEventosPila(Klondike klondike, PilaDelTableau pila, StackPane stackpane, VistaCarta vistaCarta, ClicCartaEvento clicCartaEvento){
-        if(pila.estaVacia()) {
-            ImageView aux = vistaCarta.obtenerImagen(null, klondike.obtenerVariante());
-            aux.setOnMouseClicked(event -> {
-                clicCartaEvento.hacerClic(klondike, pila, 0);
-            });
-            return List.of(aux);
-        }
-        int posicionY = 0;
-        List<ImageView> lista = new ArrayList<>();
-        for(Carta carta : pila) {
-            ImageView aux = vistaCarta.obtenerImagen(carta, klondike.obtenerVariante());
-            StackPane.setAlignment(aux, javafx.geometry.Pos.TOP_CENTER);
-            aux.setTranslateY(posicionY);
-            posicionY += 20;
-            lista.add(aux);
-        }
-        return lista;
-    }
     private void actualizarVistaPila(PilaDelTableau pila, StackPane stackpane, VistaCarta vistaCarta, Variante variante){
         if(pila.estaVacia()) {
             ImageView aux = vistaCarta.obtenerImagen(null, variante);
