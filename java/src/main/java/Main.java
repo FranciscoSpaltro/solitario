@@ -5,12 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import solitario.*;
+import modelo.*;
 import ui.ClicCartaEvento;
 import ui.VistaCarta;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends Application {
 

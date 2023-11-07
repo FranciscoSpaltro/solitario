@@ -1,51 +1,51 @@
 @startuml
 
-class solitario.Basura {
-  + mostrarUltimasTres(): ArrayList<solitario.Carta>
-  + agregarCarta(carta: solitario.Carta): void
+class modelo.Basura {
+  + mostrarUltimasTres(): ArrayList<modelo.Carta>
+  + agregarCarta(carta: modelo.Carta): void
 }
 
-class solitario.ListaDeCartas {
+class modelo.ListaDeCartas {
   + cantidadCartas(): int
   + estaVacia(): boolean
-  + extraerUltima(): solitario.Carta
-  + verUltima(): solitario.Carta
-  + agregarCarta(carta: solitario.Carta): void
-  + obtenerCarta(index: int): solitario.Carta
-  + extraerUltimasN(n: int): ArrayList<solitario.Carta>
+  + extraerUltima(): modelo.Carta
+  + verUltima(): modelo.Carta
+  + agregarCarta(carta: modelo.Carta): void
+  + obtenerCarta(index: int): modelo.Carta
+  + extraerUltimasN(n: int): ArrayList<modelo.Carta>
   + cantidadCartasOcultas(): int
-  + anexarCartas(cartas: ArrayList<solitario.Carta>): boolean
+  + anexarCartas(cartas: ArrayList<modelo.Carta>): boolean
   + cantidadCartasVisibles(): int
   + darVueltaIndex(n: int): boolean
 }
 
-class solitario.Carta {
+class modelo.Carta {
   - bocaArriba: boolean
-  + solitario.Carta(valor: solitario.Valor, palo: solitario.Palo, bocaArriba: boolean)
-  + verPalo(): solitario.Palo
-  + verValor(): solitario.Valor
+  + modelo.Carta(valor: modelo.Valor, palo: modelo.Palo, bocaArriba: boolean)
+  + verPalo(): modelo.Palo
+  + verValor(): modelo.Valor
   + estaBocaArriba(): boolean
   + darVuelta(): boolean
-  + verColor(): solitario.ColorPalo
+  + verColor(): modelo.ColorPalo
 }
 
-class solitario.Cimiento {
+class modelo.Cimiento {
   - id: int
-  + solitario.Cimiento(id: int)
+  + modelo.Cimiento(id: int)
   + verId(): int
   + estaCompleto(): boolean
 }
 
-enum solitario.ColorPalo {
+enum modelo.ColorPalo {
   ROJO,
   NEGRO
 }
 
-class solitario.InvalidMovementException{
+class modelo.InvalidMovementException{
 }
 
 
-enum solitario.ErrorAlMover {
+enum modelo.ErrorAlMover {
   PILA_VACIA_NO_REY,
   ORDEN_NO_DESCENDENTE,
   ORDEN_NO_ASCENDENTE,
@@ -61,25 +61,25 @@ enum solitario.ErrorAlMover {
   PILA_DIFERENTE_PALO_NO_PUEDE_IR_A_CIMIENTO
 }
 
-class solitario.Klondike {
+class modelo.Klondike {
   + inicializarJuego(): void
   + reiniciar(): void
-  + repartirCartas(mazo: solitario.Mazo): void
-  + moverPilaAPila(pilaOrigen: solitario.PilaDelTableau, pilaDestino: solitario.PilaDelTableau, n: int): boolean
-  + moverPilaACimiento(pila: solitario.PilaDelTableau, cimiento: solitario.Cimiento): boolean
-  + moverBasuraAPila(pila: solitario.PilaDelTableau): boolean
-  + moverBasuraACimiento(cimiento: solitario.Cimiento): boolean
+  + repartirCartas(mazo: modelo.Mazo): void
+  + moverPilaAPila(pilaOrigen: modelo.PilaDelTableau, pilaDestino: modelo.PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: modelo.PilaDelTableau, cimiento: modelo.Cimiento): boolean
+  + moverBasuraAPila(pila: modelo.PilaDelTableau): boolean
+  + moverBasuraACimiento(cimiento: modelo.Cimiento): boolean
   + moverBasuraAMazo(): boolean
   + moverMazoABasura(): boolean
-  + moverCimientoAPila(cimiento: solitario.Cimiento, pilaDestino: solitario.PilaDelTableau): boolean
+  + moverCimientoAPila(cimiento: modelo.Cimiento, pilaDestino: modelo.PilaDelTableau): boolean
 }
 
-abstract class solitario.Spider{
+abstract class modelo.Spider{
   + inicializarJuego(): void
   + reiniciar(): void
-  + repartirCartas(mazo: solitario.Mazo): void
-  + moverPilaAPila(pilaOrigen: solitario.PilaDelTableau, pilaDestino: solitario.PilaDelTableau, n: int): boolean
-  + moverPilaACimiento(pila: solitario.PilaDelTableau, cimiento: solitario.Cimiento): boolean
+  + repartirCartas(mazo: modelo.Mazo): void
+  + moverPilaAPila(pilaOrigen: modelo.PilaDelTableau, pilaDestino: modelo.PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: modelo.PilaDelTableau, cimiento: modelo.Cimiento): boolean
 }
 
 class SpiderFacil{
@@ -91,43 +91,43 @@ class SpiderDificil{
 
 
 
-class solitario.Mazo {
+class modelo.Mazo {
   + mezclar(): void
-  + extraerUltima(): solitario.Carta
+  + extraerUltima(): modelo.Carta
 }
 
-enum solitario.Palo {
+enum modelo.Palo {
   CORAZONES,
   DIAMANTES,
   TREBOLES,
   PICAS
 }
 
-class solitario.PilaDelTableau {
+class modelo.PilaDelTableau {
   - id: int
 }
 
-class solitario.Persistencia {
+class modelo.Persistencia {
   + escribirObjeto(OutputStream, Object): void
   + importarObjeto(InputStream): Object
 }
 
-abstract class solitario.Solitario {
+abstract class modelo.Solitario {
   - puntos: int
   + inicializarJuego(): void
   + jugadorGano(): boolean
   + reiniciar(): void
-  + repartirCartas(mazo: solitario.Mazo): void
-  + moverPilaAPila(pilaOrigen: solitario.PilaDelTableau, pilaDestino: solitario.PilaDelTableau, n: int): boolean
-  + moverPilaACimiento(pila: solitario.PilaDelTableau, cimiento: solitario.Cimiento): boolean
-  + moverBasuraAPila(pila: solitario.PilaDelTableau): boolean
-  + moverBasuraACimiento(cimiento: solitario.Cimiento): boolean
+  + repartirCartas(mazo: modelo.Mazo): void
+  + moverPilaAPila(pilaOrigen: modelo.PilaDelTableau, pilaDestino: modelo.PilaDelTableau, n: int): boolean
+  + moverPilaACimiento(pila: modelo.PilaDelTableau, cimiento: modelo.Cimiento): boolean
+  + moverBasuraAPila(pila: modelo.PilaDelTableau): boolean
+  + moverBasuraACimiento(cimiento: modelo.Cimiento): boolean
   + moverBasuraAMazo(): boolean
-  + moverCimientoAPila(cimiento: solitario.Cimiento, pilaDestino: solitario.PilaDelTableau): boolean
+  + moverCimientoAPila(cimiento: modelo.Cimiento, pilaDestino: modelo.PilaDelTableau): boolean
   + moverMazoABasura(): boolean
 }
 
-enum solitario.Valor {
+enum modelo.Valor {
   AS,
   DOS,
   TRES,
@@ -143,32 +143,32 @@ enum solitario.Valor {
   REY
 }
 
-enum solitario.Variante {
+enum modelo.Variante {
   KLONDIKE,
   SPIDER
 }
 
 class RunTimeException {}
 
-solitario.ListaDeCartas "0" o--> "*" solitario.Carta : lista
-solitario.Basura --|> solitario.ListaDeCartas
-solitario.Carta *-.-> solitario.Valor
-solitario.Carta *-.-> solitario.Palo
-solitario.Palo "1" o--> "1" solitario.ColorPalo
-solitario.InvalidMovementException "1"*-->"1" solitario.ErrorAlMover : motivo
-solitario.InvalidMovementException --|> RunTimeException
-solitario.Cimiento --|> solitario.ListaDeCartas
-solitario.Klondike --|> solitario.Solitario
-solitario.Spider --|> solitario.Solitario
-SpiderFacil --|> solitario.Spider
-SpiderDificil --|> solitario.Spider
-solitario.Mazo --|> solitario.ListaDeCartas
-solitario.PilaDelTableau --|> solitario.ListaDeCartas
-solitario.Solitario "1"*-->"1" solitario.Variante
-solitario.Solitario "1"*-->"1" solitario.Mazo
-solitario.Solitario "1"*-->"4" solitario.Cimiento : cimientos
-solitario.Solitario "1"*-->"7" solitario.PilaDelTableau :pilasTableau
-solitario.Solitario "1"*-->"1" solitario.Basura
+modelo.ListaDeCartas "0" o--> "*" modelo.Carta : lista
+modelo.Basura --|> modelo.ListaDeCartas
+modelo.Carta *-.-> modelo.Valor
+modelo.Carta *-.-> modelo.Palo
+modelo.Palo "1" o--> "1" modelo.ColorPalo
+modelo.InvalidMovementException "1"*-->"1" modelo.ErrorAlMover : motivo
+modelo.InvalidMovementException --|> RunTimeException
+modelo.Cimiento --|> modelo.ListaDeCartas
+modelo.Klondike --|> modelo.Solitario
+modelo.Spider --|> modelo.Solitario
+SpiderFacil --|> modelo.Spider
+SpiderDificil --|> modelo.Spider
+modelo.Mazo --|> modelo.ListaDeCartas
+modelo.PilaDelTableau --|> modelo.ListaDeCartas
+modelo.Solitario "1"*-->"1" modelo.Variante
+modelo.Solitario "1"*-->"1" modelo.Mazo
+modelo.Solitario "1"*-->"4" modelo.Cimiento : cimientos
+modelo.Solitario "1"*-->"7" modelo.PilaDelTableau :pilasTableau
+modelo.Solitario "1"*-->"1" modelo.Basura
 
 
 @enduml

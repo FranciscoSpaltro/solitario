@@ -2,8 +2,8 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import solitario.Klondike;
-import solitario.PilaDelTableau;
+import modelo.Klondike;
+import modelo.PilaDelTableau;
 
 public class ClicCartaEvento implements EventHandler<ActionEvent> {
     private boolean clicAnterior = false;
