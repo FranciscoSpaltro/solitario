@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import  java.util.List;
-abstract class Solitario implements Serializable {
+public abstract class Solitario implements Serializable {
     //Atributos
     public Variante tipoSolitario;
     public Mazo mazo;
