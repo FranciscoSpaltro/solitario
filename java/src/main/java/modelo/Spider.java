@@ -5,7 +5,7 @@ public class Spider extends Solitario{
     //private final IMovimientoAPilaSpiderStrategy movimientoAPila;
     private final IMovimientoACimientoSpiderStrategy movimientoACimiento;
 
-    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila,  boolean prueba) {
+    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaStrategy movimientoAPila,  boolean prueba) {
         super(tipo);
         this.movimientoACimiento = movimientoACimiento;
         super.movimientoAPila = movimientoAPila;

@@ -9,7 +9,7 @@ public class Klondike extends Solitario {
     // Métodos
     // NOTA: Los cimientos y las pilas están ordenados de 0 a n-1, siendo n la cantidad de cimientos o pilas
 
-    public Klondike(Variante tipo, IMovimientoAPilaSpiderStrategy movimientoAPila, boolean prueba) {
+    public Klondike(Variante tipo, IMovimientoAPilaStrategy movimientoAPila, boolean prueba) {
         super(tipo);
         super.movimientoAPila = movimientoAPila;
         var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));

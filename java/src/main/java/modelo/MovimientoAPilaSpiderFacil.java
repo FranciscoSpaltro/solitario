@@ -3,7 +3,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MovimientoAPilaSpiderFacil implements IMovimientoAPilaSpiderStrategy, Serializable {
+public class MovimientoAPilaSpiderFacil implements IMovimientoAPilaStrategy, Serializable {
     @Override
     public void validarMovimientoAPila(ArrayList<Carta> cartasAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
         Carta primeraCartaAMover = cartasAMover.get(0);

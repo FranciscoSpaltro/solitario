@@ -12,7 +12,7 @@ public abstract class Solitario implements Serializable {
     public List<PilaDelTableau> pilasTableau;
     public int puntos;
 
-    public IMovimientoAPilaSpiderStrategy movimientoAPila;
+    public IMovimientoAPilaStrategy movimientoAPila;
 
     //Métodos
 
