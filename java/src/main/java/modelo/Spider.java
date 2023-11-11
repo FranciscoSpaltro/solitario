@@ -2,35 +2,13 @@ package modelo;
 
 import java.util.ArrayList;
 public class Spider extends Solitario{
-    private final IMovimientoAPilaSpiderStrategy movimientoAPila;
+    //private final IMovimientoAPilaSpiderStrategy movimientoAPila;
     private final IMovimientoACimientoSpiderStrategy movimientoACimiento;
 
-    /*public Spider(Variante tipo, Palo paloElegido, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila,  boolean prueba) {
-        super(tipo, prueba);
-        this.movimientoACimiento = movimientoACimiento;
-        this.movimientoAPila = movimientoAPila;
-
-        pilasTableau = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_SPIDER; i++) {
-            pilasTableau.add(new PilaDelTableau(i));
-        }
-        cimientos = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_CIMIENTOS_SPIDER; i++) {
-            cimientos.add(new Cimiento(i));
-        }
-
-        var palos = new ArrayList<Palo>();
-        palos.add(paloElegido);
-    super.mazo = new Mazo(palos, Constantes.REPETICIONES_POR_PALO_SPIDER);
-
-        super.mazo.mezclar();
-    }*/
-
-    // Para más dificultad
     public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila,  boolean prueba) {
-        super(tipo, prueba);
+        super(tipo);
         this.movimientoACimiento = movimientoACimiento;
-        this.movimientoAPila = movimientoAPila;
+        super.movimientoAPila = movimientoAPila;
 
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_SPIDER; i++) {
@@ -40,8 +18,6 @@ public class Spider extends Solitario{
         for (int i = 0; i < Constantes.CANTIDAD_CIMIENTOS_SPIDER; i++) {
             cimientos.add(new Cimiento(i));
         }
-
-       // super.mazo = new Mazo(palosElegidos, Constantes.REPETICIONES_POR_PALO_SPIDER);
 
         super.mazo = new Mazo(palosElegidos, Constantes.REPETICIONES_POR_PALO_SPIDER/palosElegidos.size());
         if (!prueba)
@@ -144,7 +120,9 @@ public class Spider extends Solitario{
         }
     }
 
+    /*
     @Override
+
     public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
 
         ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
@@ -168,7 +146,7 @@ public class Spider extends Solitario{
             puntos -= Constantes.PUNTOS_PILA_A_PILA_SPIDER;
             throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);
         }
-    }
+    }*/
 
     @Override
     public void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {

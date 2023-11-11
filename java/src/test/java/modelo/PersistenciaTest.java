@@ -12,7 +12,7 @@ public class PersistenciaTest {
 
     private void guardarJuegoKlondike() throws IOException {
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), true);
         klondike.inicializarJuego();
         // Directorio en el que deseas guardar el archivo serializado
         File directorio = new File("prueba");

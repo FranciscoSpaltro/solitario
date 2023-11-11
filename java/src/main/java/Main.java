@@ -2,6 +2,7 @@ import controlador.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import modelo.Klondike;
+import modelo.MovimientoAPilaKlondike;
 import modelo.Variante;
 import vista.VistaMazo;
 import vista.VistaPrincipal;
@@ -9,7 +10,7 @@ import vista.VistaPrincipal;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Klondike klondike = new Klondike(Variante.KLONDIKE, false);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(),false);
         klondike.inicializarJuego();
 
         VistaPrincipal vistaPrincipal = new VistaPrincipal(stage, klondike);

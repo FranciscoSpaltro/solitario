@@ -12,22 +12,14 @@ public abstract class Solitario implements Serializable {
     public List<PilaDelTableau> pilasTableau;
     public int puntos;
 
+    public IMovimientoAPilaSpiderStrategy movimientoAPila;
+
     //Métodos
-    /*public Solitario(Variante tipo) {
+
+    public Solitario(Variante tipo){
         this.tipoSolitario = tipo;
         puntos = 0;
-    }*/
-
-    public Solitario(Variante tipo, boolean prueba){
-        this.tipoSolitario = tipo;
-        puntos = 0;
-
-        /*if(prueba) {
-            var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
-            mazo = new Mazo(palos, 1);
-        }*/
     }
-
 
     abstract void inicializarJuego();
 
@@ -47,8 +39,6 @@ public abstract class Solitario implements Serializable {
     }
 
     public abstract void repartirCartas(Mazo mazo);
-
-    public abstract void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException;
 
     public abstract void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException;
 
@@ -70,5 +60,30 @@ public abstract class Solitario implements Serializable {
 
     public Mazo obtenerMazo(){
         return mazo;
+    }
+
+    public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
+
+        ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
+        try {
+            movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
+        }catch (InvalidMovementException e){
+            if(!pilaOrigen.estaVacia())
+                pilaOrigen.darVueltaIndex(pilaOrigen.cantidadCartas() - 1);
+            pilaOrigen.anexarCartas(cartasAMover);
+            throw e;
+        }
+        // Llegado a este punto, el movimiento es válido
+
+        if (pilaOrigen.cantidadCartasVisibles() == n)
+            puntos += Constantes.PUNTOS_PILA_A_PILA;
+
+        //ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
+
+        if (!pilaDestino.anexarCartas(cartasAMover)) {
+            pilaOrigen.anexarCartas(cartasAMover);
+            puntos -= Constantes.PUNTOS_PILA_A_PILA;
+            throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);
+        }
     }
 }

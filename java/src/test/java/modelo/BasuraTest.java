@@ -10,7 +10,7 @@ public class BasuraTest {
     @Test
     public void testMostrarUltimasTres() {
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        Klondike klondike = new Klondike(Variante.KLONDIKE,new MovimientoAPilaKlondike(), true);
         klondike.inicializarJuego();
 
         // Act

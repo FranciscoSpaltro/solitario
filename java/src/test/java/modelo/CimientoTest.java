@@ -9,7 +9,7 @@ public class CimientoTest {
 
     public void testChequearId(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, false);
+        Klondike klondike = new Klondike(Variante.KLONDIKE,new MovimientoAPilaKlondike(), false);
         klondike.inicializarJuego();
 
         // Act
@@ -21,7 +21,7 @@ public class CimientoTest {
     @Test
     public void testCimientoEstaCompleto(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, true);
+        Klondike klondike = new Klondike(Variante.KLONDIKE,new MovimientoAPilaKlondike(), true);
         klondike.inicializarJuego();
 
         // Act

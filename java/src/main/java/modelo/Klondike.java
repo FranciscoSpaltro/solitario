@@ -9,27 +9,9 @@ public class Klondike extends Solitario {
     // Métodos
     // NOTA: Los cimientos y las pilas están ordenados de 0 a n-1, siendo n la cantidad de cimientos o pilas
 
-    /*public Klondike(Variante tipo) {
-        super(tipo, false);
-        // Creo el mazo, nuevo
-        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
-        mazo = new Mazo(palos, 1);
-
-        mazo.mezclar();
-
-        pilasTableau = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_KLONDIKE; i++) {
-            pilasTableau.add(new PilaDelTableau(i));
-        }
-        cimientos = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_CIMIENTOS_KLONDIKE; i++) {
-            cimientos.add(new Cimiento(i));
-        }
-        basura = new Basura();
-    }*/
-
-    public Klondike(Variante tipo, boolean prueba) {
-        super(tipo, prueba);
+    public Klondike(Variante tipo, IMovimientoAPilaSpiderStrategy movimientoAPila, boolean prueba) {
+        super(tipo);
+        super.movimientoAPila = movimientoAPila;
         var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
         mazo = new Mazo(palos, 1);
 
@@ -87,14 +69,20 @@ public class Klondike extends Solitario {
         }
     }
 
-    @Override
-    public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
-        int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
+    //@Override
+    //public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
+         /*int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
         Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
-
         try {
             validarMovimientoAPila(primeraCartaOrigen, pilaDestino);
         } catch (InvalidMovementException e) {
+            throw e;
+        }*/
+/*
+        ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
+        try {
+            movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
+        }catch (InvalidMovementException e){
             throw e;
         }
         // Llegado a este punto, el movimiento es válido
@@ -102,7 +90,7 @@ public class Klondike extends Solitario {
         if (pilaOrigen.cantidadCartasVisibles() == n)
             puntos += Constantes.PUNTOS_PILA_A_PILA_KLONDIKE;
 
-        ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
+        //ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
 
         if (!pilaDestino.anexarCartas(cartasAMover)) {
             pilaOrigen.anexarCartas(cartasAMover);
@@ -110,7 +98,7 @@ public class Klondike extends Solitario {
             throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);
         }
 
-    }
+    }*/
 
     public void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
         Carta ultimaCartaPila = pila.extraerUltima();
@@ -130,16 +118,24 @@ public class Klondike extends Solitario {
     }
 
     public void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
-        Carta cartaAAgregar = basura.extraerUltima();
+        /*Carta cartaAAgregar = basura.extraerUltima();
 
         try {
             validarMovimientoAPila(cartaAAgregar, pila);
         } catch (InvalidMovementException e) {
             basura.agregarCarta(cartaAAgregar);
             throw e;
+        }*/
+
+        ArrayList<Carta> cartasAMover = basura.extraerUltimasN(1);
+
+        try {
+            movimientoAPila.validarMovimientoAPila(cartasAMover, pila);
+        }catch (InvalidMovementException e){
+            throw e;
         }
 
-        pila.agregarCarta(cartaAAgregar);
+        pila.agregarCarta(cartasAMover.get(0));
         puntos += 5;
     }
 
@@ -191,16 +187,25 @@ public class Klondike extends Solitario {
 
 
     public void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
-        Carta ultimaCartaCimiento = cimiento.extraerUltima();
+        /*Carta ultimaCartaCimiento = cimiento.extraerUltima();
 
         try {
             validarMovimientoAPila(ultimaCartaCimiento, pilaDestino);
         } catch (InvalidMovementException e) {
             cimiento.agregarCarta(ultimaCartaCimiento);
             throw e;
+        }*/
+
+        ArrayList<Carta> cartasAMover = cimiento.extraerUltimasN(1);
+
+        try {
+            movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
+        }catch (InvalidMovementException e){
+            throw e;
         }
 
         // Llegado a este punto, el movimiento es válido
+        Carta ultimaCartaCimiento = cimiento.extraerUltima();
         pilaDestino.agregarCarta(ultimaCartaCimiento);
 
         if (puntos > Constantes.PUNTOS_CIMIENTO_A_PILA_KLONDIKE)
@@ -227,7 +232,8 @@ public class Klondike extends Solitario {
         if (cartaAMover.verValor() != Valor.values()[valorUltimaCartaCimiento.ordinal() + 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_ASCENDENTE);
     }
-    public void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
+
+   /* public void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
         if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
             throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_REY);
 
@@ -246,5 +252,5 @@ public class Klondike extends Solitario {
 
         if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
-    }
+    }*/
 }
