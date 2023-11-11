@@ -3,6 +3,7 @@ package vista;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.*;
 
@@ -12,7 +13,7 @@ public class VistaPrincipal {
     private static Stage stage;
     private Scene scene;
     private MenuBar menuBar;
-    //private Solitario solitario;
+    private Klondike klondnike;
     private ArrayList<VistaPila> vistaPilas;
     private ArrayList<VistaCimiento> vistaCimientos;
     private VistaMazo vistaMazo;
@@ -42,6 +43,7 @@ public class VistaPrincipal {
         this.vistaMazo = new VistaMazo(klondike.obtenerMazo());
 
         this.vistaBasura = new VistaBasura(klondike.obtenerBasura());
+        this.klondnike = klondike;
     }
 
     public void iniciar(){
@@ -65,9 +67,15 @@ public class VistaPrincipal {
         // Crear la escena
         scene = new Scene(pane, 640, 480);
 
+        Label puntajeLabel = new Label("PUNTAJE: " + klondnike.obtenerPuntos());
+        puntajeLabel.setLayoutX(pane.getWidth() - 120);
+        puntajeLabel.setLayoutY(5);
+        puntajeLabel.setFont(new Font("Arial", 15));
         menuBar.setPrefWidth(pane.getWidth());
         menuBar.setLayoutY(0);
-        pane.getChildren().add(menuBar);
+        pane.getChildren().addAll(menuBar, puntajeLabel);
+
+
 
         pane.getChildren().add(vistaMazo);
 
@@ -88,7 +96,11 @@ public class VistaPrincipal {
             vistaCimiento.actualizar();
         for (VistaPila vistaPila : vistaPilas)
             vistaPila.actualizar();
-        pane.getChildren().add(menuBar);
+        Label puntajeLabel = new Label("PUNTAJE: " + klondnike.obtenerPuntos());
+        puntajeLabel.setLayoutX(pane.getWidth() - 120);
+        puntajeLabel.setLayoutY(5);
+        puntajeLabel.setFont(new Font("Arial", 15));
+        pane.getChildren().addAll(menuBar, puntajeLabel);
         pane.getChildren().add(vistaMazo);
         pane.getChildren().add(vistaBasura);
         pane.getChildren().addAll(vistaPilas);
