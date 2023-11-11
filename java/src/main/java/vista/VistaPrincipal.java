@@ -117,17 +117,18 @@ public class VistaPrincipal {
         MenuItem creditosItem = new MenuItem("Créditos");
         ayudaMenu.getItems().addAll(contactanosItem, creditosItem);
 
-        // TESTING
-        Menu testing = new Menu("Testing");
-        MenuItem testingItem = new MenuItem("Deseleccionar");
-        testing.getItems().addAll(testingItem);
-
         // Agregar menús a la barra de menú
-        this.menuBar.getMenus().addAll(juegoMenu, ayudaMenu, testing);
+        this.menuBar.getMenus().addAll(juegoMenu, ayudaMenu);
     }
 
     public MenuItem obtenerNuevoJuegoItem() {
         return this.menuBar.getMenus().get(0).getItems().get(0);
+    }
+
+    public void configurarNuevaStage(Scene nuevaScene){
+        scene = nuevaScene;
+        stage.setScene(nuevaScene);
+        stage.show();
     }
 
     public MenuItem obtenerKlondikeItem() {
@@ -180,9 +181,5 @@ public class VistaPrincipal {
     }
     public VistaPila obtenerVistaPila(int i) {
         return this.vistaPilas.get(i);
-    }
-
-    public MenuItem obtenerTestingItem() {
-        return this.menuBar.getMenus().get(2).getItems().get(0);
     }
 }

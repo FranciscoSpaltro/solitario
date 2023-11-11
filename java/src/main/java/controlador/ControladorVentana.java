@@ -4,12 +4,9 @@ import javafx.event.EventHandler;
 import vista.VistaPrincipal;
 public class ControladorVentana {
     private final VistaPrincipal vistaPrincipal;
-    //TESTING
-    private DatosMovimiento datosMovimiento;
 
     public ControladorVentana(VistaPrincipal vistaPrincipal, DatosMovimiento datosMovimiento) {
         this.vistaPrincipal = vistaPrincipal;
-        this.datosMovimiento = datosMovimiento;
     }
 
     public void iniciar(){
@@ -58,14 +55,6 @@ public class ControladorVentana {
             public void handle(ActionEvent event) {
                 // Lógica para "Créditos"
                 System.out.println("Créditos seleccionado");
-            }
-        });
-
-        vistaPrincipal.obtenerTestingItem().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Lógica para "Deseleccionar"
-                datosMovimiento.resetear();
             }
         });
 

@@ -21,6 +21,10 @@ public class DatosMovimiento {
             realizarMovimiento = false;
             yaHuboClic = true;
         } else {
+            if (origen == listaDeCartas) {
+                resetear();
+                return;
+            }
             destino = listaDeCartas;
             yaHuboClic = false;
             realizarMovimiento = true;
