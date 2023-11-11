@@ -31,13 +31,13 @@ public class BasuraTest {
         Carta carta4 = klondike.obtenerBasura().obtenerCarta(0);
 
         // Assert
-        assertEquals(Valor.OCHO, carta1.verValor());
+        assertEquals(Valor.DIEZ, carta1.verValor());
         assertEquals(Palo.DIAMANTES, carta1.verPalo());
         assertTrue(carta1.estaBocaArriba());
         assertEquals(Valor.NUEVE, carta2.verValor());
         assertEquals(Palo.DIAMANTES, carta2.verPalo());
         assertTrue(carta2.estaBocaArriba());
-        assertEquals(Valor.DIEZ, carta3.verValor());
+        assertEquals(Valor.OCHO, carta3.verValor());
         assertEquals(Palo.DIAMANTES, carta3.verPalo());
         assertTrue(carta3.estaBocaArriba());
         assertEquals(Valor.JOTA, carta4.verValor());

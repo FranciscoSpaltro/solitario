@@ -8,7 +8,7 @@ public class SolitarioTest {
     @Test
     public void testReiniciarJuego(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, false);
         klondike.inicializarJuego();
 
         // Act

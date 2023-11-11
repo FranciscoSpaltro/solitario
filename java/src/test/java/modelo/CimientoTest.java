@@ -9,7 +9,7 @@ public class CimientoTest {
 
     public void testChequearId(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, false);
         klondike.inicializarJuego();
 
         // Act

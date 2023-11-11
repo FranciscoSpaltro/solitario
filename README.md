@@ -19,7 +19,7 @@ Diego Essaya
 - [x] ¿Cuál es la razón por la que eligieron usar herencia para Spider y sus dos variantes? Pregunto porque no veo que usen polimorfismo (por ejemplo, alguna función que reciba un Spider). Si no hay polimorfismo, tal vez es mejor usar composición (por ejemplo, Strategy). Es una sugerencia, tal vez en la etapa 3 sacan provecho de esta herencia.
   > Se aplicó Strategy
 - [ ] Hay bastante repetición de código en los diferentes constructores de Spider
-  > FALTA. Son uno para fácil, otro para difícil y el doble de eso por las pruebas
+  > Ahora solo hay 1 constructor por variante de Solitario.
 - [ ] También veo un poco de código repetido entre Klondike y Spider. Por ejemplo, ambas implementaciones de moverPilaAPila terminan más o menos igual (la parte de anexarCartas)
   > FALTA
 - [x] Veo también "números mágicos": 5, 8, 10, 13... que deberían ser constantes o valores que se obtienen a partir de algún cálculo

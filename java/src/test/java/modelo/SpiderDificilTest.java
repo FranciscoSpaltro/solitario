@@ -15,7 +15,7 @@ public class SpiderDificilTest {
         palos.add(Palo.CORAZONES);
         palos.add(Palo.TREBOLES);
 
-        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderDificil(), new MovimientoAPilaSpiderDificil(), true);
+        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderDificil(), new MovimientoAPilaSpiderDificil(), false);
 
         // Assert
         assertEquals(104, spider.obtenerMazo().cantidadCartas());

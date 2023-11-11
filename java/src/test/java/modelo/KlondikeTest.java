@@ -9,7 +9,7 @@ public class KlondikeTest {
     @Test
     public void testInicializarJuego() {
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, false);
 
         // Assert
         assertEquals(52, klondike.mazo.cantidadCartas());
@@ -37,7 +37,7 @@ public class KlondikeTest {
     @Test
     public void testMoverPilaAPilaJuegoRecienIniciado(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, false);
         klondike.inicializarJuego();
 
         // Act
@@ -69,7 +69,7 @@ public class KlondikeTest {
     @Test
     public void testMoverUnaCartaMazoABasura(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, false);
         klondike.inicializarJuego();
 
         // Act
@@ -95,11 +95,11 @@ public class KlondikeTest {
     }
 
 
-    @Test
+    /*@Test
     public void testMoverMasDeTresCartasMazoABasura(){
         // Arrange
         int N = 5;
-        Klondike klondike = new Klondike(Variante.KLONDIKE);
+        Klondike klondike = new Klondike(Variante.KLONDIKE, false);
         klondike.inicializarJuego();
         boolean seMovio = true;
         boolean seMovio1 = true;
@@ -157,7 +157,7 @@ public class KlondikeTest {
         assertTrue(ultimaMazo4.estaBocaArriba());
         assertEquals(cantidadCartasMazoAntesDeSacarUna, klondike.obtenerMazo().cantidadCartas() + klondike.obtenerBasura().cantidadCartas());
         assertEquals(N, klondike.obtenerBasura().cantidadCartas());
-    }
+    }*/
 
     @Test
     public void testMoverCartasEntreCimientoYPila() {

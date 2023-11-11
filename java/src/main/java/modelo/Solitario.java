@@ -13,16 +13,19 @@ public abstract class Solitario implements Serializable {
     public int puntos;
 
     //Métodos
-    public Solitario(Variante tipo) {
+    /*public Solitario(Variante tipo) {
         this.tipoSolitario = tipo;
         puntos = 0;
-    }
+    }*/
 
     public Solitario(Variante tipo, boolean prueba){
         this.tipoSolitario = tipo;
         puntos = 0;
-        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
-        mazo = new Mazo(palos, 1);
+
+        /*if(prueba) {
+            var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+            mazo = new Mazo(palos, 1);
+        }*/
     }
 
 

@@ -3,6 +3,7 @@ package modelo;
 import org.junit.Test;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -53,7 +54,10 @@ public class PersistenciaTest {
     // PARA SPIDER
     private void guardarJuegoSpider() throws IOException {
         // Arrange
-        var spider = new Spider(Variante.SPIDER, Palo.PICAS, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
+        ArrayList<Palo> palos = new ArrayList<Palo>();
+        palos.add(Palo.PICAS);
+
+        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
         // Directorio en el que deseas guardar el archivo serializado
         File directorio = new File("prueba");

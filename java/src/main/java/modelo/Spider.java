@@ -5,8 +5,8 @@ public class Spider extends Solitario{
     private final IMovimientoAPilaSpiderStrategy movimientoAPila;
     private final IMovimientoACimientoSpiderStrategy movimientoACimiento;
 
-    public Spider(Variante tipo, Palo paloElegido, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila) {
-        super(tipo);
+    /*public Spider(Variante tipo, Palo paloElegido, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila,  boolean prueba) {
+        super(tipo, prueba);
         this.movimientoACimiento = movimientoACimiento;
         this.movimientoAPila = movimientoAPila;
 
@@ -24,11 +24,11 @@ public class Spider extends Solitario{
     super.mazo = new Mazo(palos, Constantes.REPETICIONES_POR_PALO_SPIDER);
 
         super.mazo.mezclar();
-    }
+    }*/
 
     // Para más dificultad
-    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila) {
-        super(tipo);
+    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila,  boolean prueba) {
+        super(tipo, prueba);
         this.movimientoACimiento = movimientoACimiento;
         this.movimientoAPila = movimientoAPila;
 
@@ -41,11 +41,14 @@ public class Spider extends Solitario{
             cimientos.add(new Cimiento(i));
         }
 
-        super.mazo = new Mazo(palosElegidos, Constantes.REPETICIONES_POR_PALO_SPIDER);
+       // super.mazo = new Mazo(palosElegidos, Constantes.REPETICIONES_POR_PALO_SPIDER);
 
-        super.mazo.mezclar();
+        super.mazo = new Mazo(palosElegidos, Constantes.REPETICIONES_POR_PALO_SPIDER/palosElegidos.size());
+        if (!prueba)
+            super.mazo.mezclar();
     }
 
+    /*
     public Spider(Variante tipo, Palo paloElegido, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila, boolean prueba) {
         super(tipo, prueba);
         this.movimientoACimiento = movimientoACimiento;
@@ -82,7 +85,7 @@ public class Spider extends Solitario{
         }
 
         super.mazo = new Mazo(palosElegidos, 4);
-    }
+    }*/
 
     @Override
     void inicializarJuego() {

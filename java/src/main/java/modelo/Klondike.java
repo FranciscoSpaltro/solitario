@@ -8,8 +8,9 @@ public class Klondike extends Solitario {
 
     // Métodos
     // NOTA: Los cimientos y las pilas están ordenados de 0 a n-1, siendo n la cantidad de cimientos o pilas
-    public Klondike(Variante tipo) {
-        super(tipo);
+
+    /*public Klondike(Variante tipo) {
+        super(tipo, false);
         // Creo el mazo, nuevo
         var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
         mazo = new Mazo(palos, 1);
@@ -25,11 +26,17 @@ public class Klondike extends Solitario {
             cimientos.add(new Cimiento(i));
         }
         basura = new Basura();
-    }
+    }*/
 
-    // SOLO PARA TESTING (sin mezclar)
     public Klondike(Variante tipo, boolean prueba) {
         super(tipo, prueba);
+        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        mazo = new Mazo(palos, 1);
+
+        if (!prueba) { // Creo el mazo, nuevo
+            mazo.mezclar();
+        }
+
         pilasTableau = new ArrayList<>();
         for (int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_KLONDIKE; i++) {
             pilasTableau.add(new PilaDelTableau(i));
@@ -111,7 +118,8 @@ public class Klondike extends Solitario {
         try {
             validarMovimientoACimiento(ultimaCartaPila, cimiento);
         } catch (InvalidMovementException e) {
-            pila.verUltima().darVuelta();
+            if (!pila.estaVacia())  // Si solo quedaba una sola carta, al dar vuelta iba a fallar
+                pila.verUltima().darVuelta();
             pila.agregarCarta(ultimaCartaPila);
             throw e;
         }
