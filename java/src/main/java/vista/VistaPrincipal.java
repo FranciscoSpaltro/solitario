@@ -23,7 +23,6 @@ public class VistaPrincipal {
 
     public VistaPrincipal(Stage stage , Klondike klondike){
         this.stage = stage;
-        //this.solitario = solitario;
         this.vistaPilas = new ArrayList<>();
         for (int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_KLONDIKE; i++) {
             this.vistaPilas.add(new VistaPila(klondike.obtenerPilaDelTableau(i), i));
@@ -32,12 +31,6 @@ public class VistaPrincipal {
         for (int i = 0; i < Constantes.CANTIDAD_CIMIENTOS_KLONDIKE; i++) {
             var vistaCimiento = new VistaCimiento(klondike.obtenerCimiento(i), i);
             this.vistaCimientos.add(vistaCimiento);
-        }
-
-        this.vistaPilas = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_KLONDIKE; i++) {
-            var vistaPila = new VistaPila(klondike.obtenerPilaDelTableau(i), i);
-            this.vistaPilas.add(vistaPila);
         }
 
         this.vistaMazo = new VistaMazo(klondike.obtenerMazo());
@@ -188,7 +181,7 @@ public class VistaPrincipal {
     public VistaBasura obtenerVistaBasura() {
         return this.vistaBasura;
     }
-    public VistaCimiento obtenerVistaCimiento(int i) {
+   public VistaCimiento obtenerVistaCimiento(int i) {
         return this.vistaCimientos.get(i);
     }
     public VistaPila obtenerVistaPila(int i) {
