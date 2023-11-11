@@ -151,6 +151,8 @@ public class Spider extends Solitario{
         try {
             movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
         } catch (InvalidMovementException e) {
+            if(!pilaOrigen.estaVacia())
+                pilaOrigen.darVueltaIndex(pilaOrigen.cantidadCartas() - 1);
             pilaOrigen.anexarCartas(cartasAMover);
             throw e;
         }
@@ -160,6 +162,8 @@ public class Spider extends Solitario{
             puntos += Constantes.PUNTOS_PILA_A_PILA_SPIDER;
 
         if (!pilaDestino.anexarCartas(cartasAMover)) {
+            if(!pilaOrigen.estaVacia())
+                pilaOrigen.darVueltaIndex(pilaOrigen.cantidadCartas() - 1);
             pilaOrigen.anexarCartas(cartasAMover);
             puntos -= Constantes.PUNTOS_PILA_A_PILA_SPIDER;
             throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);

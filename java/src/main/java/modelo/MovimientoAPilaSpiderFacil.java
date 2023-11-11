@@ -14,6 +14,11 @@ public class MovimientoAPilaSpiderFacil implements IMovimientoAPilaSpiderStrateg
 
         Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
 
+        for (int i = 0; i < cartasAMover.size() - 1; i++) {
+            if (cartasAMover.get(i).verValor().ordinal() != cartasAMover.get(i + 1).verValor().ordinal() + 1)
+                throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
+        }
+
         if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
     }
