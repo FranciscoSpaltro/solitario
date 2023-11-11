@@ -34,12 +34,14 @@ public class Basura extends ListaDeCartas {
 
     @Override
     public void agregarCarta(Carta carta) {
-            if (super.cantidadCartasVisibles() == Constantes.CARTAS_VISIBLES_BASURA){
-                int primeraCartaVisible = super.cantidadCartas() - Constantes.CARTAS_VISIBLES_BASURA;
-                super.darVueltaIndex(primeraCartaVisible);
-            }
+        /*
+        if (super.cantidadCartasVisibles() == Constantes.CARTAS_VISIBLES_BASURA){
+            int primeraCartaVisible = super.cantidadCartas() - Constantes.CARTAS_VISIBLES_BASURA;
+            super.darVueltaIndex(primeraCartaVisible);
+        }
+        */
         // La carta viene del mazo boca abajo
-        carta.darVuelta();
+        //carta.darVuelta();
         lista.add(carta);
     }
 

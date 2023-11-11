@@ -22,6 +22,7 @@ public class VistaPila extends StackPane {
     }
 
     public void actualizar(){
+        this.getChildren().clear();
         imagenesCartas = new ArrayList<>();
         if(pila.estaVacia()) {
             this.getChildren().add(new ImageView(VistaCarta.obtenerImagenNoCarta()));

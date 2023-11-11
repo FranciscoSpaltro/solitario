@@ -83,4 +83,8 @@ public abstract class ListaDeCartas implements Serializable, Iterable<Carta> {
         Carta carta = lista.get(n);
         return carta.darVuelta();
     }
+
+    public boolean esLaUltimaCarta(Carta carta){
+        return this.verUltima() == carta;
+    }
 }

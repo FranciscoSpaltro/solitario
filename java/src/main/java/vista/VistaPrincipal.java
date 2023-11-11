@@ -117,8 +117,13 @@ public class VistaPrincipal {
         MenuItem creditosItem = new MenuItem("Créditos");
         ayudaMenu.getItems().addAll(contactanosItem, creditosItem);
 
+        // TESTING
+        Menu testing = new Menu("Testing");
+        MenuItem testingItem = new MenuItem("Deseleccionar");
+        testing.getItems().addAll(testingItem);
+
         // Agregar menús a la barra de menú
-        this.menuBar.getMenus().addAll(juegoMenu, ayudaMenu);
+        this.menuBar.getMenus().addAll(juegoMenu, ayudaMenu, testing);
     }
 
     public MenuItem obtenerNuevoJuegoItem() {
@@ -175,5 +180,9 @@ public class VistaPrincipal {
     }
     public VistaPila obtenerVistaPila(int i) {
         return this.vistaPilas.get(i);
+    }
+
+    public MenuItem obtenerTestingItem() {
+        return this.menuBar.getMenus().get(2).getItems().get(0);
     }
 }

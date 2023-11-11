@@ -111,6 +111,7 @@ public class Klondike extends Solitario {
         try {
             validarMovimientoACimiento(ultimaCartaPila, cimiento);
         } catch (InvalidMovementException e) {
+            pila.verUltima().darVuelta();
             pila.agregarCarta(ultimaCartaPila);
             throw e;
         }
@@ -136,14 +137,12 @@ public class Klondike extends Solitario {
 
     public void moverBasuraACimiento(Cimiento cimiento) throws InvalidMovementException {
         Carta cartaBasura = basura.extraerUltima();
-
         try {
             validarMovimientoACimiento(cartaBasura, cimiento);
         } catch (InvalidMovementException e) {
             basura.agregarCarta(cartaBasura);
             throw e;
         }
-
         cimiento.agregarCarta(cartaBasura);
         puntos += Constantes.PUNTOS_PILA_A_CIMIENTO_KLONDIKE;
     }
@@ -177,6 +176,8 @@ public class Klondike extends Solitario {
 
         Carta cartaAMover = mazo.verUltima();
         mazo.extraerUltima();
+        if (!cartaAMover.estaBocaArriba())
+            cartaAMover.darVuelta();
         basura.agregarCarta(cartaAMover);
     }
 

@@ -11,4 +11,5 @@ public class PilaDelTableau extends ListaDeCartas{
     public int obtenerId(){
         return id;
     }
+
 }
