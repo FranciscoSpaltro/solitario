@@ -5,11 +5,13 @@ public class ControladorCimiento {
     private VistaPrincipal vistaPrincipal;
     private Cimiento cimiento;
     private int id;
+    private DatosMovimiento datosMovimiento;
 
-    public ControladorCimiento(VistaPrincipal vistaPrincipal, Cimiento cimiento, int id) {
+    public ControladorCimiento(VistaPrincipal vistaPrincipal, Cimiento cimiento, int id, DatosMovimiento datosMovimiento) {
         this.vistaPrincipal = vistaPrincipal;
         this.cimiento = cimiento;
         this.id = id;
+        this.datosMovimiento = datosMovimiento;
         actualizar();
     }
 
@@ -17,7 +19,7 @@ public class ControladorCimiento {
         this.vistaPrincipal.obtenerVistaCimiento(id).setOnMouseClicked(event -> {
             // Lógica para "Apretar Cimiento"
             int idCimiento = id + 1;
-            System.out.println("Ultima carta del cimiento " + idCimiento + " seleccionada");
+            datosMovimiento.clic(cimiento, 1);
             ControladorPrincipal.actualizar();
         });
     }

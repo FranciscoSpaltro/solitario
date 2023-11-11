@@ -10,11 +10,13 @@ public class ControladorPila {
     private VistaPrincipal vistaPrincipal;
     private PilaDelTableau pila;
     private int id;
+    private DatosMovimiento datosMovimiento;
 
-    public ControladorPila(VistaPrincipal vistaPrincipal, PilaDelTableau pila, int id) {
+    public ControladorPila(VistaPrincipal vistaPrincipal, PilaDelTableau pila, int id, DatosMovimiento datosMovimiento) {
         this.vistaPrincipal = vistaPrincipal;
         this.pila = pila;
         this.id = id;
+        this.datosMovimiento = datosMovimiento;
         actualizar();
     }
 
@@ -23,8 +25,8 @@ public class ControladorPila {
         for (ImageView imagen : cartasVisibles) {
             imagen.setOnMouseClicked(event -> {
                 // Lógica para "Apretar Pila"
-                int idPila = id + 1;
-                System.out.println("Carta de la pila " + idPila + " seleccionada");
+                int posicionAbsoluta = pila.cantidadCartas() - cartasVisibles.indexOf(imagen);
+                datosMovimiento.clic(pila, posicionAbsoluta);
                 ControladorPrincipal.actualizar();
             });
         }
