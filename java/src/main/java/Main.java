@@ -5,37 +5,45 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import modelo.*;
 import vista.VistaInicio;
-import vista.VistaPrincipal;
+import vista.VistaSolitario;
 
 public class Main extends Application {
+    static boolean seJugo = false;
     @Override
     public void start(Stage stage) throws Exception {
         ControladorArchivos controladorArchivos = new ControladorArchivos();
         boolean hayJuegoGuardado = controladorArchivos.hayJuegoGuardado();
-        VistaPrincipal vistaPrincipal = null;
+        VistaSolitario vistaSolitario = null;
         if (!hayJuegoGuardado) {
-            VistaInicio vistaInicio = new VistaInicio(stage, vistaPrincipal);
+            VistaInicio vistaInicio = new VistaInicio(stage, vistaSolitario);
+            vistaInicio.mostrar();
         } else {
+            seJugo = true;
             Solitario solitario = (Solitario) controladorArchivos.abrirJuegoGuardado();
-            vistaPrincipal = new VistaPrincipal(stage, solitario);
-            vistaPrincipal.iniciar();
+            vistaSolitario = new VistaSolitario(stage, solitario);
+            vistaSolitario.iniciar();
 
             if(solitario.obtenerVariante() == Variante.KLONDIKE){
-                var controladorKlondike = new ControladorKlondike(vistaPrincipal, (Klondike) solitario);
+                var controladorKlondike = new ControladorKlondike(vistaSolitario, (Klondike) solitario);
                 controladorKlondike.actualizar();
+                vistaSolitario.iniciar();
             } else {
-                var controladorSpider = new ControladorSpider(vistaPrincipal, (Spider) solitario);
+                var controladorSpider = new ControladorSpider(vistaSolitario, (Spider) solitario);
                 controladorSpider.actualizar();
+                vistaSolitario.iniciar();
             }
-
-
-            vistaPrincipal.mostrar();
         }
     }
 
 
     @Override
     public void stop() throws Exception {
+        if(seJugo){
+            guardarJuego();
+        }
+    }
+
+    private void guardarJuego() {
         // Crear un botón de alerta
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Solitario");
@@ -56,7 +64,6 @@ public class Main extends Application {
             }
         });
     }
-
     public static void main(String[] args) {
         launch();
     }

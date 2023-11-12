@@ -1,14 +1,14 @@
 package controlador;
 import modelo.Cimiento;
-import vista.VistaPrincipal;
+import vista.VistaSolitario;
 public class ControladorCimiento {
-    private VistaPrincipal vistaPrincipal;
+    private VistaSolitario vistaSolitario;
     private Cimiento cimiento;
     private int id;
     private DatosMovimiento datosMovimiento;
 
-    public ControladorCimiento(VistaPrincipal vistaPrincipal, Cimiento cimiento, int id, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
-        this.vistaPrincipal = vistaPrincipal;
+    public ControladorCimiento(VistaSolitario vistaSolitario, Cimiento cimiento, int id, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
+        this.vistaSolitario = vistaSolitario;
         this.cimiento = cimiento;
         this.id = id;
         this.datosMovimiento = datosMovimiento;
@@ -16,7 +16,7 @@ public class ControladorCimiento {
     }
 
     public void actualizar(ControladorSolitario controladorSolitario) {
-        this.vistaPrincipal.obtenerVistaCimiento(id).setOnMouseClicked(event -> {
+        this.vistaSolitario.obtenerVistaCimiento(id).setOnMouseClicked(event -> {
             // Lógica para "Apretar Cimiento"
             datosMovimiento.clic(cimiento, 1);
             controladorSolitario.actualizar();

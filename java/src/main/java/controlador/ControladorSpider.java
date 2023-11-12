@@ -5,22 +5,20 @@ import modelo.InvalidMovementException;
 import modelo.PilaDelTableau;
 import modelo.Spider;
 import vista.VistaAlerta;
-import vista.VistaPrincipal;
+import vista.VistaSolitario;
 
 public class ControladorSpider extends ControladorSolitario {
-    private Spider spider;
-    public ControladorSpider(VistaPrincipal vistaPrincipal, Spider spider){
-        super(vistaPrincipal, spider);
-        this.spider = spider;
-        controladorMazo = new ControladorMazoSpider(vistaPrincipal, spider, datosMovimiento, this);
+    public ControladorSpider(VistaSolitario vistaSolitario, Spider spider){
+        super(vistaSolitario, spider);
+        controladorMazo = new ControladorMazoSpider(vistaSolitario, spider, datosMovimiento, this);
     }
 
     @Override
     public void actualizar(){
         evaluarMovimiento();
         evaluarGanador();
-        vistaPrincipal.actualizar();
-        controladorVentana.iniciar();
+        vistaSolitario.actualizar();
+        controladorMenu.iniciar();
         controladorMazo.iniciar(this);
         for(ControladorCimiento controladorCimiento : controladoresCimiento)
             controladorCimiento.actualizar(this);

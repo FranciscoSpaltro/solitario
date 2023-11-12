@@ -1,29 +1,25 @@
 package controlador;
 
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import modelo.*;
 import vista.VistaAlerta;
-import vista.VistaPrincipal;
+import vista.VistaSolitario;
 
 public class ControladorKlondike extends ControladorSolitario {
     private static Klondike klondike;
     private static ControladorBasura controladorBasura;
-    public ControladorKlondike(VistaPrincipal vistaPrincipal, Klondike klondike) {
-        super(vistaPrincipal, klondike);
-        controladorMazo = new ControladorMazoKlondike(vistaPrincipal, klondike, datosMovimiento, this);
-        controladorBasura = new ControladorBasura(vistaPrincipal, klondike.obtenerBasura(), datosMovimiento, this);
+    public ControladorKlondike(VistaSolitario vistaSolitario, Klondike klondike) {
+        super(vistaSolitario, klondike);
+        this.klondike = klondike;
+        controladorMazo = new ControladorMazoKlondike(vistaSolitario, klondike, datosMovimiento, this);
+        controladorBasura = new ControladorBasura(vistaSolitario, klondike.obtenerBasura(), datosMovimiento, this);
     }
 
     @Override
     public void actualizar(){
         evaluarMovimiento();
         evaluarGanador();
-        vistaPrincipal.actualizar();
-        controladorVentana.iniciar();
+        vistaSolitario.actualizar();
+        controladorMenu.iniciar();
         controladorMazo.iniciar(this);
         controladorBasura.actualizar(this);
         for(ControladorCimiento controladorCimiento : controladoresCimiento)

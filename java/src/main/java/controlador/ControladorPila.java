@@ -2,18 +2,18 @@ package controlador;
 
 import javafx.scene.image.ImageView;
 import modelo.PilaDelTableau;
-import vista.VistaPrincipal;
+import vista.VistaSolitario;
 
 import java.util.ArrayList;
 
 public class ControladorPila {
-    private VistaPrincipal vistaPrincipal;
+    private VistaSolitario vistaSolitario;
     private PilaDelTableau pila;
     private int id;
     private DatosMovimiento datosMovimiento;
 
-    public ControladorPila(VistaPrincipal vistaPrincipal, PilaDelTableau pila, int id, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
-        this.vistaPrincipal = vistaPrincipal;
+    public ControladorPila(VistaSolitario vistaSolitario, PilaDelTableau pila, int id, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
+        this.vistaSolitario = vistaSolitario;
         this.pila = pila;
         this.id = id;
         this.datosMovimiento = datosMovimiento;
@@ -21,7 +21,7 @@ public class ControladorPila {
     }
 
     public void actualizar(ControladorSolitario controladorSolitario) {
-        ArrayList<ImageView> cartasVisibles = vistaPrincipal.obtenerVistaPila(pila.obtenerId()).obtenerCartasVisibles();
+        ArrayList<ImageView> cartasVisibles = vistaSolitario.obtenerVistaPila(pila.obtenerId()).obtenerCartasVisibles();
         for (ImageView imagen : cartasVisibles) {
             imagen.setOnMouseClicked(event -> {
                 // Lógica para "Apretar Pila"

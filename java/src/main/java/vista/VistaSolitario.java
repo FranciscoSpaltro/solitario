@@ -9,7 +9,7 @@ import modelo.*;
 
 import java.util.ArrayList;
 
-public class VistaPrincipal {
+public class VistaSolitario {
     private static Stage stage;
     private Scene scene;
     private Pane menuPane;
@@ -22,7 +22,7 @@ public class VistaPrincipal {
     private Pane pane;
 
 
-    public VistaPrincipal(Stage stage , Solitario solitario){
+    public VistaSolitario(Stage stage , Solitario solitario){
         this.stage = stage;
         this.vistaPilas = new ArrayList<>();
         for (int i = 0; i < Constantes.obtenerCantidadPilasTableau(solitario.obtenerVariante()); i++) {
@@ -38,8 +38,6 @@ public class VistaPrincipal {
 
         if (solitario.obtenerVariante() == Variante.KLONDIKE)
             this.vistaBasura = new VistaBasura(solitario.obtenerBasura(), solitario.obtenerVariante());
-        else
-            this.vistaBasura = null;
 
         this.solitario = solitario;
     }
@@ -48,10 +46,6 @@ public class VistaPrincipal {
         this.armarMenu();
         this.armarVentana();
         stage.setResizable(false);
-    }
-
-    public void mostrar(){
-        this.armarVentana();
         stage.show();
     }
 
@@ -75,7 +69,9 @@ public class VistaPrincipal {
 
         pane.getChildren().add(vistaMazo);
 
-        pane.getChildren().add(vistaBasura);
+        if(solitario.obtenerVariante() == Variante.KLONDIKE)
+            pane.getChildren().add(vistaBasura);
+
         pane.getChildren().addAll(vistaPilas);
 
         pane.getChildren().addAll(vistaCimientos);
@@ -87,7 +83,9 @@ public class VistaPrincipal {
     public void actualizar(){
         pane.getChildren().clear();
         vistaMazo.actualizar();
-        vistaBasura.actualizar();
+        if (solitario.obtenerVariante() == Variante.KLONDIKE)
+            vistaBasura.actualizar();
+
         for (VistaCimiento vistaCimiento : vistaCimientos)
             vistaCimiento.actualizar();
         for (VistaPila vistaPila : vistaPilas)
@@ -98,7 +96,8 @@ public class VistaPrincipal {
         puntajeLabel.setFont(new Font("Arial", 15));
         pane.getChildren().addAll(menuPane, puntajeLabel);
         pane.getChildren().add(vistaMazo);
-        pane.getChildren().add(vistaBasura);
+        if (solitario.obtenerVariante() == Variante.KLONDIKE)
+            pane.getChildren().add(vistaBasura);
         pane.getChildren().addAll(vistaPilas);
         pane.getChildren().addAll(vistaCimientos);
         stage.setScene(scene);
@@ -112,12 +111,11 @@ public class VistaPrincipal {
         Button nuevoJuegoButton = new Button("Nuevo Juego");
         nuevoJuegoButton.setLayoutX(10);
         nuevoJuegoButton.setLayoutY(2.5);
-        Button contactanosButton = new Button("Contáctanos");
+        Button contactanosButton = new Button("Contactanos");
         contactanosButton.setLayoutX(100);
         contactanosButton.setLayoutY(2.5);
         menuPane.getChildren().addAll(nuevoJuegoButton, contactanosButton);
     }
-
 
     public Button obtenerNuevoJuegoItem() {
         return (Button) menuPane.getChildren().get(0);

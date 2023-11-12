@@ -1,15 +1,14 @@
 package controlador;
-import modelo.Klondike;
 import modelo.Solitario;
-import vista.VistaPrincipal;
+import vista.VistaSolitario;
 
 public abstract class ControladorMazo {
-    protected VistaPrincipal vistaPrincipal;
+    protected VistaSolitario vistaSolitario;
     protected Solitario solitario;
     protected DatosMovimiento datosMovimiento;
 
-    public ControladorMazo(VistaPrincipal vistaPrincipal, Solitario solitario, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
-        this.vistaPrincipal = vistaPrincipal;
+    public ControladorMazo(VistaSolitario vistaSolitario, Solitario solitario, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
+        this.vistaSolitario = vistaSolitario;
         this.solitario = solitario;
         this.datosMovimiento = datosMovimiento;
         iniciar(controladorSolitario);

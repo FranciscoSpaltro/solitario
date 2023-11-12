@@ -6,29 +6,29 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import modelo.*;
-import vista.VistaPrincipal;
+import vista.VistaSolitario;
 
 import java.util.ArrayList;
 
 public abstract class ControladorSolitario {
-    protected static VistaPrincipal vistaPrincipal;
-    protected static ControladorVentana controladorVentana;
+    protected static VistaSolitario vistaSolitario;
+    protected static ControladorMenu controladorMenu;
     protected static ControladorMazo controladorMazo;
     protected static ArrayList<ControladorPila> controladoresPila = new ArrayList<>();
     protected static ArrayList<ControladorCimiento> controladoresCimiento = new ArrayList<>();
     protected static Solitario solitario;
     protected static DatosMovimiento datosMovimiento = new DatosMovimiento();
 
-    public ControladorSolitario(VistaPrincipal vistaPrincipal, Solitario solitario){
-        this.vistaPrincipal = vistaPrincipal;
+    public ControladorSolitario(VistaSolitario vistaSolitario, Solitario solitario){
+        this.vistaSolitario = vistaSolitario;
         this.solitario = solitario;
-        controladorVentana = new ControladorVentana(vistaPrincipal, datosMovimiento);
+        this.controladorMenu = new ControladorMenu(vistaSolitario);
 
         for(int i = 0; i < Constantes.obtenerCantidadCimientos(solitario.obtenerVariante()); i++)
-            controladoresCimiento.add(new ControladorCimiento(vistaPrincipal, solitario.obtenerCimiento(i), i, datosMovimiento, this));
+            controladoresCimiento.add(new ControladorCimiento(vistaSolitario, solitario.obtenerCimiento(i), i, datosMovimiento, this));
 
         for(int i = 0; i < Constantes.obtenerCantidadPilasTableau(solitario.obtenerVariante()); i++)
-            controladoresPila.add(new ControladorPila(vistaPrincipal, solitario.obtenerPilaDelTableau(i), i, datosMovimiento, this));
+            controladoresPila.add(new ControladorPila(vistaSolitario, solitario.obtenerPilaDelTableau(i), i, datosMovimiento, this));
     }
 
     public abstract void actualizar();
@@ -52,7 +52,7 @@ public abstract class ControladorSolitario {
             Scene scene = new Scene(root, 640, 480, Color.GREEN);
 
             // Configurar la escena en el stage
-            vistaPrincipal.configurarNuevaStage(scene);
+            vistaSolitario.configurarNuevaStage(scene);
         }
     }
 }

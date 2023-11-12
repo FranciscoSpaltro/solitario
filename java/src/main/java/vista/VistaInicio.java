@@ -1,7 +1,6 @@
 package vista;
 
 import controlador.ControladorKlondike;
-import controlador.ControladorSolitario;
 import controlador.ControladorSpider;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,18 +14,18 @@ import java.util.ArrayList;
 
 public class VistaInicio {
     Stage stage;
-    VistaPrincipal vistaPrincipal;
+    VistaSolitario vistaSolitario;
+    Pane ventana;
 
-    public VistaInicio(Stage stage, VistaPrincipal vistaPrincipal) throws Exception {
+    public VistaInicio(Stage stage, VistaSolitario vistaSolitario) throws Exception {
         this.stage = stage;
-        this.vistaPrincipal = vistaPrincipal;
+        this.vistaSolitario = vistaSolitario;
+        var loader = new FXMLLoader(getClass().getResource("/ventana.fxml"));
+        ventana = loader.load();
         armarVentana();
     }
 
     public void armarVentana() throws Exception {
-        var loader = new FXMLLoader(getClass().getResource("/ventana.fxml"));
-        Pane ventana = loader.load();
-
         ventana.setStyle("-fx-background-image: url('/fondo_inicio.png'); " +
                 "-fx-background-size: cover; " +
                 "-fx-background-position: center;");
@@ -38,27 +37,30 @@ public class VistaInicio {
         sel_klondike.setOnMouseClicked(event -> {
             Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
             klondike.inicializarJuego();
-            vistaPrincipal = new VistaPrincipal(stage, klondike);
-            vistaPrincipal.iniciar();
 
-            var controladorKlondike = new ControladorKlondike(vistaPrincipal, klondike);
+            vistaSolitario = new VistaSolitario(stage, klondike);
+            vistaSolitario.iniciar();
+
+            var controladorKlondike = new ControladorKlondike(vistaSolitario, klondike);
             controladorKlondike.actualizar();
 
-            vistaPrincipal.mostrar();
+            vistaSolitario.iniciar();
         });
 
         sel_spider.setOnMouseClicked(event -> {
+            // GENERALIZAR!!!!!!!!!!!
             ArrayList<Palo> palos = new ArrayList<Palo>();
             palos.add(Palo.CORAZONES);
             var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), false);
             spider.inicializarJuego();
-            vistaPrincipal = new VistaPrincipal(stage, spider);
-            vistaPrincipal.iniciar();
 
-            var controladorSpider = new ControladorSpider(vistaPrincipal, spider);
+            vistaSolitario = new VistaSolitario(stage, spider);
+            vistaSolitario.iniciar();
+
+            var controladorSpider = new ControladorSpider(vistaSolitario, spider);
             controladorSpider.actualizar();
 
-            vistaPrincipal.mostrar();
+            vistaSolitario.iniciar();
         });
 
         sel_info.setOnMouseClicked(event -> {
@@ -68,7 +70,9 @@ public class VistaInicio {
             alert.setContentText("Créditos del fondo: Amanda Jones en Unsplash");
             alert.showAndWait();
         });
+    }
 
+    public void mostrar() {
         var scene = new Scene(ventana, 400, 400);
         stage.setScene(scene);
         stage.setTitle("Nuevo juego");
