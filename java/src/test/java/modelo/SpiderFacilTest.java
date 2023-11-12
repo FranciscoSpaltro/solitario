@@ -12,7 +12,7 @@ public class SpiderFacilTest {
         // Arrange
         ArrayList<Palo> palos = new ArrayList<Palo>();
         palos.add(Palo.CORAZONES);
-        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), false);
+        var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), false);
 
         // Assert
         assertEquals(104, spider.obtenerMazo().cantidadCartas());
@@ -42,7 +42,7 @@ public class SpiderFacilTest {
         // Arrange
         ArrayList<Palo> palos = new ArrayList<Palo>();
         palos.add(Palo.CORAZONES);
-        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), false);
+        var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), false);
 
         spider.inicializarJuego();
 
@@ -68,7 +68,7 @@ public class SpiderFacilTest {
         // Arrange
         ArrayList<Palo> palos = new ArrayList<Palo>();
         palos.add(Palo.TREBOLES);
-        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
+        var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
 
         spider.inicializarJuego();
 
@@ -93,7 +93,7 @@ public class SpiderFacilTest {
         // Arrange
         ArrayList<Palo> palos = new ArrayList<Palo>();
         palos.add(Palo.CORAZONES);
-        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
+        var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
 
         // Act
@@ -135,7 +135,7 @@ public class SpiderFacilTest {
         // Arrange
         ArrayList<Palo> palos = new ArrayList<Palo>();
         palos.add(Palo.CORAZONES);
-        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
+        var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
 
         // Act
@@ -169,7 +169,7 @@ public class SpiderFacilTest {
         // Arrange
         ArrayList<Palo> palos = new ArrayList<Palo>();
         palos.add(Palo.CORAZONES);
-        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
+        var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
 
         // Act

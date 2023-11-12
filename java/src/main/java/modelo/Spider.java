@@ -3,10 +3,11 @@ package modelo;
 import java.util.ArrayList;
 public class Spider extends Solitario{
     //private final IMovimientoAPilaSpiderStrategy movimientoAPila;
+    private final Variante tipoSolitario = Variante.SPIDER;;
     private final IMovimientoACimientoSpiderStrategy movimientoACimiento;
 
-    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaStrategy movimientoAPila,  boolean prueba) {
-        super(tipo);
+    public Spider(ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaStrategy movimientoAPila,  boolean prueba) {
+        super();
         this.movimientoACimiento = movimientoACimiento;
         super.movimientoAPila = movimientoAPila;
 
@@ -62,6 +63,10 @@ public class Spider extends Solitario{
 
         super.mazo = new Mazo(palosElegidos, 4);
     }*/
+
+    public Variante obtenerVariante(){
+        return tipoSolitario;
+    }
 
     @Override
     void inicializarJuego() {

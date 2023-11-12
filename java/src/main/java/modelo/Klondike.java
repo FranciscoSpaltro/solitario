@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Klondike extends Solitario {
+    private final Variante tipoSolitario = Variante.KLONDIKE;
     private Basura basura;
 
     // Métodos
     // NOTA: Los cimientos y las pilas están ordenados de 0 a n-1, siendo n la cantidad de cimientos o pilas
 
-    public Klondike(Variante tipo, IMovimientoAPilaStrategy movimientoAPila, boolean prueba) {
-        super(tipo);
+    public Klondike(IMovimientoAPilaStrategy movimientoAPila, boolean prueba) {
+        super();
         super.movimientoAPila = movimientoAPila;
         var palos = new ArrayList<>(Arrays.asList(Palo.values()));
         mazo = new Mazo(palos, 1);
@@ -69,6 +70,9 @@ public class Klondike extends Solitario {
         }
     }
 
+    Variante obtenerVariante(){
+        return tipoSolitario;
+    }
     //@Override
     //public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
          /*int comienzoSegmento = pilaOrigen.cantidadCartas() - n;

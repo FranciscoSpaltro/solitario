@@ -9,7 +9,7 @@ public class KlondikeTest {
     @Test
     public void testInicializarJuego() {
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), false);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), false);
 
         // Assert
         assertEquals(52, klondike.mazo.cantidadCartas());
@@ -37,7 +37,7 @@ public class KlondikeTest {
     @Test
     public void testMoverPilaAPilaJuegoRecienIniciado(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), false);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), false);
         klondike.inicializarJuego();
 
         // Act
@@ -69,7 +69,7 @@ public class KlondikeTest {
     @Test
     public void testMoverUnaCartaMazoABasura(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), false);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), false);
         klondike.inicializarJuego();
 
         // Act
@@ -162,7 +162,7 @@ public class KlondikeTest {
     @Test
     public void testMoverCartasEntreCimientoYPila() {
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(),true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(),true);
         klondike.inicializarJuego();
 
         // Act
@@ -229,7 +229,7 @@ public class KlondikeTest {
     @Test
     public void testMoverMazoABasura() {
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
 
         // Act
         while (klondike.mazo.cantidadCartas() > 0) {
@@ -251,7 +251,7 @@ public class KlondikeTest {
     @Test
     public void testMoverBasuraAPila(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
         klondike.inicializarJuego();
 
         // Act
@@ -279,7 +279,7 @@ public class KlondikeTest {
     @Test
     public void testMoverBasuraACimiento(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
         klondike.inicializarJuego();
 
         // Act
@@ -309,7 +309,7 @@ public class KlondikeTest {
     @Test
     public void testMoverBasuraAMazo(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
 
         // Act
         while (klondike.mazo.cantidadCartas() > 5) {
@@ -347,7 +347,7 @@ public class KlondikeTest {
     @Test
     public void testMoverPilaAPilaVacia() {
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
         klondike.inicializarJuego();
 
         // Act
@@ -368,7 +368,7 @@ public class KlondikeTest {
     @Test
     public void testMoverPilaAPilaPorColor(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
         klondike.inicializarJuego();
 
         // Act

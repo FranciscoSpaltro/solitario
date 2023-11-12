@@ -10,7 +10,7 @@ import vista.VistaPrincipal;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(),false);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(),false);
         klondike.inicializarJuego();
 
         VistaPrincipal vistaPrincipal = new VistaPrincipal(stage, klondike);

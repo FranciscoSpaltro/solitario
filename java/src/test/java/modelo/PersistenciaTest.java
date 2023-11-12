@@ -12,7 +12,7 @@ public class PersistenciaTest {
 
     private void guardarJuegoKlondike() throws IOException {
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
         klondike.inicializarJuego();
         // Directorio en el que deseas guardar el archivo serializado
         File directorio = new File("prueba");
@@ -57,7 +57,7 @@ public class PersistenciaTest {
         ArrayList<Palo> palos = new ArrayList<Palo>();
         palos.add(Palo.PICAS);
 
-        var spider = new Spider(Variante.SPIDER, palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
+        var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), true);
         spider.inicializarJuego();
         // Directorio en el que deseas guardar el archivo serializado
         File directorio = new File("prueba");

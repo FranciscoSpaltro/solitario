@@ -6,7 +6,6 @@ import java.util.Arrays;
 import  java.util.List;
 public abstract class Solitario implements Serializable {
     //Atributos
-    public Variante tipoSolitario;
     public Mazo mazo;
     public List<Cimiento> cimientos;
     public List<PilaDelTableau> pilasTableau;
@@ -16,8 +15,7 @@ public abstract class Solitario implements Serializable {
 
     //Métodos
 
-    public Solitario(Variante tipo){
-        this.tipoSolitario = tipo;
+    public Solitario(){
         puntos = 0;
     }
 
@@ -29,10 +27,6 @@ public abstract class Solitario implements Serializable {
                 return false;
         }
         return true;
-    }
-
-    public Variante obtenerVariante(){
-        return tipoSolitario;
     }
     public int obtenerPuntos() {
         return puntos;

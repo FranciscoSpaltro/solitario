@@ -48,7 +48,7 @@ public class PilaDelTableauTest {
     @Test
     public void testChequearId(){
         // Arrange
-        Klondike klondike = new Klondike(Variante.KLONDIKE, new MovimientoAPilaKlondike(), false);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), false);
         klondike.inicializarJuego();
 
         // Act
