@@ -12,7 +12,7 @@ public class Klondike extends Solitario {
     public Klondike(Variante tipo, IMovimientoAPilaStrategy movimientoAPila, boolean prueba) {
         super(tipo);
         super.movimientoAPila = movimientoAPila;
-        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        var palos = new ArrayList<>(Arrays.asList(Palo.values()));
         mazo = new Mazo(palos, 1);
 
         if (!prueba) { // Creo el mazo, nuevo
@@ -40,7 +40,7 @@ public class Klondike extends Solitario {
     public void reiniciar(){
         puntos = 0;
         // Al dejar sin referencia, la máquina virtual de Java elimina la memoria anterior
-        var palos = new ArrayList<Palo>(Arrays.asList(Palo.values()));
+        var palos = new ArrayList<>(Arrays.asList(Palo.values()));
         mazo = new Mazo(palos, 1);
 
         mazo.mezclar();
@@ -118,15 +118,6 @@ public class Klondike extends Solitario {
     }
 
     public void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
-        /*Carta cartaAAgregar = basura.extraerUltima();
-
-        try {
-            validarMovimientoAPila(cartaAAgregar, pila);
-        } catch (InvalidMovementException e) {
-            basura.agregarCarta(cartaAAgregar);
-            throw e;
-        }*/
-
         ArrayList<Carta> cartasAMover = basura.extraerUltimasN(1);
 
         try {
@@ -188,20 +179,12 @@ public class Klondike extends Solitario {
 
 
     public void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
-        /*Carta ultimaCartaCimiento = cimiento.extraerUltima();
-
-        try {
-            validarMovimientoAPila(ultimaCartaCimiento, pilaDestino);
-        } catch (InvalidMovementException e) {
-            cimiento.agregarCarta(ultimaCartaCimiento);
-            throw e;
-        }*/
-
         ArrayList<Carta> cartasAMover = cimiento.extraerUltimasN(1);
 
         try {
             movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
         }catch (InvalidMovementException e){
+            cimiento.agregarCarta(cartasAMover.get(0));
             throw e;
         }
 
