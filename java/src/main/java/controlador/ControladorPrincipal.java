@@ -25,7 +25,7 @@ public class ControladorPrincipal {
         this.vistaPrincipal = vistaPrincipal;
         this.klondike = klondike;
         controladorVentana = new ControladorVentana(vistaPrincipal, datosMovimiento);
-        controladorMazo = new ControladorMazo(vistaPrincipal, klondike);
+        controladorMazo = new ControladorMazo(vistaPrincipal, klondike, datosMovimiento);
         controladorBasura = new ControladorBasura(vistaPrincipal, klondike.obtenerBasura(), datosMovimiento);
         for(int i = 0; i < Constantes.CANTIDAD_CIMIENTOS_KLONDIKE; i++)
             controladoresCimiento.add(new ControladorCimiento(vistaPrincipal, klondike.obtenerCimiento(i), i, datosMovimiento));

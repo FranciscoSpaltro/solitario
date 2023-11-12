@@ -18,7 +18,6 @@ public class ControladorCimiento {
     public void actualizar() {
         this.vistaPrincipal.obtenerVistaCimiento(id).setOnMouseClicked(event -> {
             // Lógica para "Apretar Cimiento"
-            int idCimiento = id + 1;
             datosMovimiento.clic(cimiento, 1);
             ControladorPrincipal.actualizar();
         });

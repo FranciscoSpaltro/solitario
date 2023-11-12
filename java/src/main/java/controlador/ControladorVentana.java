@@ -1,6 +1,8 @@
 package controlador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import vista.VistaInicio;
 import vista.VistaPrincipal;
 public class ControladorVentana {
     private final VistaPrincipal vistaPrincipal;
@@ -10,35 +12,16 @@ public class ControladorVentana {
     }
 
     public void iniciar(){
+
         vistaPrincipal.obtenerNuevoJuegoItem().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 // Lógica para "Nuevo Juego"
-                System.out.println("Nuevo Juego seleccionado");
-            }
-        });
-
-        vistaPrincipal.obtenerGuardarJuegoItem().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Lógica para "Guardar Juego"
-                System.out.println("Guardar Juego seleccionado");
-            }
-        });
-
-        vistaPrincipal.obtenerKlondikeItem().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Lógica para "Klondike"
-                System.out.println("Klondike seleccionado");
-            }
-        });
-
-        vistaPrincipal.obtenerSpiderItem().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Lógica para "Spider"
-                System.out.println("Spider seleccionado");
+                try {
+                    VistaInicio vistaInicio = new VistaInicio(vistaPrincipal.obtenerStage(), vistaPrincipal);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -46,15 +29,11 @@ public class ControladorVentana {
             @Override
             public void handle(ActionEvent event) {
                 // Lógica para "Contáctanos"
-                System.out.println("Contáctanos seleccionado");
-            }
-        });
-
-        vistaPrincipal.obtenerCreditosItem().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Lógica para "Créditos"
-                System.out.println("Créditos seleccionado");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(null);
+                alert.setHeaderText("Leandro Peña [email]\nFrancisco Spaltro [email]");
+                alert.setContentText(null);
+                alert.showAndWait();
             }
         });
 

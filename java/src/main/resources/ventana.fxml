@@ -1,51 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="640.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Juego">
-               <items>
-                  <Menu mnemonicParsing="false" text="Nuevo juego">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Klondike" />
-                        <Menu mnemonicParsing="false" text="Spider">
-                          <items>
-                              <MenuItem mnemonicParsing="false" text="Fácil" />
-                            <MenuItem mnemonicParsing="false" text="Difícil" />
-                          </items>
-                        </Menu>
-                    </items>
-                  </Menu>
-               </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Ayuda">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Créditos" />
-                  <MenuItem mnemonicParsing="false" text="Contactanos" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <StackPane fx:id="mazo" layoutX="24.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
-      <StackPane fx:id="cimiento4" layoutX="552.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
-      <StackPane fx:id="cimiento3" layoutX="464.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
-      <StackPane fx:id="cimiento2" layoutX="376.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
-      <StackPane fx:id="cimiento1" layoutX="288.0" layoutY="49.0" prefHeight="94.0" prefWidth="64.0" />
-      <StackPane fx:id="basura" layoutX="112.0" layoutY="49.0" prefHeight="94.0" prefWidth="94.0" />
-      <StackPane fx:id="pila1" layoutX="24.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <StackPane fx:id="pila2" layoutX="112.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <StackPane fx:id="pila3" layoutX="200.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <StackPane fx:id="pila4" layoutX="288.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <StackPane fx:id="pila5" layoutX="376.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <StackPane fx:id="pila6" layoutX="464.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
-      <StackPane fx:id="pila7" layoutX="552.0" layoutY="167.0" prefHeight="289.0" prefWidth="64.0" />
+      <ImageView fx:id="sel_klondike" fitHeight="170.0" fitWidth="94.0" layoutX="73.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="sel_spider" fitHeight="170.0" fitWidth="94.0" layoutX="231.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="sel_info" fitHeight="35.0" fitWidth="34.0" layoutX="183.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

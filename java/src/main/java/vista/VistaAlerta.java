@@ -7,7 +7,7 @@ import modelo.InvalidMovementException;
 public class VistaAlerta {
     public static void mostrarAlerta(InvalidMovementException e) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(obtenerTitutlo());
+        alert.setTitle(obtenerTitulo());
         alert.setHeaderText(null);
         alert.setContentText(obtenerMensaje(e.obtenerMotivo()));
         alert.show();
@@ -32,7 +32,7 @@ public class VistaAlerta {
         }
     }
 
-    private static String obtenerTitutlo() {
+    private static String obtenerTitulo() {
         return "Movimiento inválido";
     }
 }

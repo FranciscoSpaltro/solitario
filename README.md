@@ -13,6 +13,7 @@ La entrega forma parte de la rama MAIN
 ## Corrector
 Diego Essaya
 
+- Ver excepciones en ControladorVentana
 # Correcciones de la etapa 2
 - [x] El atributo basura solo se usa en Klondike. Spider lo hereda pero no lo usa para nada
   > Se eliminó el atributo basura de Solitario y pasó a ser parte solo de Klondike

@@ -1,5 +1,6 @@
 package vista;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class VistaPrincipal {
     private static Stage stage;
     private Scene scene;
-    private MenuBar menuBar;
+    private Pane menuPane;
     private Klondike klondnike;
     private ArrayList<VistaPila> vistaPilas;
     private ArrayList<VistaCimiento> vistaCimientos;
@@ -64,10 +65,8 @@ public class VistaPrincipal {
         puntajeLabel.setLayoutX(pane.getWidth() - 120);
         puntajeLabel.setLayoutY(5);
         puntajeLabel.setFont(new Font("Arial", 15));
-        menuBar.setPrefWidth(pane.getWidth());
-        menuBar.setLayoutY(0);
-        pane.getChildren().addAll(menuBar, puntajeLabel);
-
+        menuPane.setLayoutY(0);
+        pane.getChildren().addAll(menuPane, puntajeLabel);
 
 
         pane.getChildren().add(vistaMazo);
@@ -93,7 +92,7 @@ public class VistaPrincipal {
         puntajeLabel.setLayoutX(pane.getWidth() - 120);
         puntajeLabel.setLayoutY(5);
         puntajeLabel.setFont(new Font("Arial", 15));
-        pane.getChildren().addAll(menuBar, puntajeLabel);
+        pane.getChildren().addAll(menuPane, puntajeLabel);
         pane.getChildren().add(vistaMazo);
         pane.getChildren().add(vistaBasura);
         pane.getChildren().addAll(vistaPilas);
@@ -103,75 +102,31 @@ public class VistaPrincipal {
     }
 
     private void armarMenu() {
-        this.menuBar = new MenuBar();
-
-        // Menú Juego
-        Menu juegoMenu = new Menu("Juego");
-        MenuItem nuevoJuegoItem = new MenuItem("Nuevo Juego");
-        Menu juegosSubMenu = new Menu("Seleccionar Juego");
-        MenuItem klondikeItem = new MenuItem("Klondike");
-        MenuItem spiderItem = new MenuItem("Spider");
-        juegosSubMenu.getItems().addAll(klondikeItem, spiderItem);
-
-        MenuItem guardarJuegoItem = new MenuItem("Guardar Juego");
-        juegoMenu.getItems().addAll(nuevoJuegoItem, juegosSubMenu, guardarJuegoItem);
-
-        // Menú Ayuda
-        Menu ayudaMenu = new Menu("Ayuda");
-        MenuItem contactanosItem = new MenuItem("Contáctanos");
-        MenuItem creditosItem = new MenuItem("Créditos");
-        ayudaMenu.getItems().addAll(contactanosItem, creditosItem);
-
-        // Agregar menús a la barra de menú
-        this.menuBar.getMenus().addAll(juegoMenu, ayudaMenu);
+        menuPane = new Pane();
+        menuPane.setStyle("-fx-background-color: #DDDDDD;");
+        menuPane.setPrefSize(640, 30);
+        Button nuevoJuegoButton = new Button("Nuevo Juego");
+        nuevoJuegoButton.setLayoutX(10);
+        nuevoJuegoButton.setLayoutY(2.5);
+        Button contactanosButton = new Button("Contáctanos");
+        contactanosButton.setLayoutX(100);
+        contactanosButton.setLayoutY(2.5);
+        menuPane.getChildren().addAll(nuevoJuegoButton, contactanosButton);
     }
 
-    public MenuItem obtenerNuevoJuegoItem() {
-        return this.menuBar.getMenus().get(0).getItems().get(0);
+
+    public Button obtenerNuevoJuegoItem() {
+        return (Button) menuPane.getChildren().get(0);
+    }
+
+    public Button obtenerContactanosItem() {
+        return (Button) menuPane.getChildren().get(1);
     }
 
     public void configurarNuevaStage(Scene nuevaScene){
         scene = nuevaScene;
         stage.setScene(nuevaScene);
         stage.show();
-    }
-
-    public MenuItem obtenerKlondikeItem() {
-        // Obtener el primer menú (Juego)
-        Menu juegoMenu = (Menu) menuBar.getMenus().get(0);
-
-        // Obtener el segundo elemento del menú (Seleccionar Juego)
-        Menu juegosSubMenu = (Menu) juegoMenu.getItems().get(1);
-
-        // Obtener el primer elemento del submenú (Klondike)
-        MenuItem klondikeItem = juegosSubMenu.getItems().get(0);
-
-        return klondikeItem;
-    }
-
-    public MenuItem obtenerSpiderItem() {
-        // Obtener el primer menú (Juego)
-        Menu juegoMenu = (Menu) menuBar.getMenus().get(0);
-
-        // Obtener el segundo elemento del menú (Seleccionar Juego)
-        Menu juegosSubMenu = (Menu) juegoMenu.getItems().get(1);
-
-        // Obtener el primer elemento del submenú (Klondike)
-        MenuItem spiderItem = juegosSubMenu.getItems().get(1);
-
-        return spiderItem;
-    }
-
-    public MenuItem obtenerGuardarJuegoItem() {
-        return this.menuBar.getMenus().get(0).getItems().get(2);
-    }
-
-    public MenuItem obtenerContactanosItem() {
-        return this.menuBar.getMenus().get(1).getItems().get(0);
-    }
-
-    public MenuItem obtenerCreditosItem() {
-        return this.menuBar.getMenus().get(1).getItems().get(1);
     }
 
     public VistaMazo obtenerVistaMazo() {
@@ -186,5 +141,9 @@ public class VistaPrincipal {
     }
     public VistaPila obtenerVistaPila(int i) {
         return this.vistaPilas.get(i);
+    }
+
+    public Stage obtenerStage() {
+        return stage;
     }
 }
