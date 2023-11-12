@@ -1,9 +1,5 @@
 package controlador;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import modelo.Klondike;
-import modelo.Mazo;
-import vista.VistaMazo;
 import vista.VistaPrincipal;
 
 public class ControladorMazo {

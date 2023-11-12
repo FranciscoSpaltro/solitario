@@ -7,10 +7,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 
 public class VistaPrincipal {

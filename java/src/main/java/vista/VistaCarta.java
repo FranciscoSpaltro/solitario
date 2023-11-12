@@ -1,6 +1,5 @@
 package vista;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import modelo.Carta;
 import modelo.Palo;
 import modelo.Valor;

@@ -73,36 +73,7 @@ public class Klondike extends Solitario {
     Variante obtenerVariante(){
         return tipoSolitario;
     }
-    //@Override
-    //public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
-         /*int comienzoSegmento = pilaOrigen.cantidadCartas() - n;
-        Carta primeraCartaOrigen = pilaOrigen.obtenerCarta(comienzoSegmento);
-        try {
-            validarMovimientoAPila(primeraCartaOrigen, pilaDestino);
-        } catch (InvalidMovementException e) {
-            throw e;
-        }*/
-/*
-        ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
-        try {
-            movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
-        }catch (InvalidMovementException e){
-            throw e;
-        }
-        // Llegado a este punto, el movimiento es válido
 
-        if (pilaOrigen.cantidadCartasVisibles() == n)
-            puntos += Constantes.PUNTOS_PILA_A_PILA_KLONDIKE;
-
-        //ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
-
-        if (!pilaDestino.anexarCartas(cartasAMover)) {
-            pilaOrigen.anexarCartas(cartasAMover);
-            puntos -= Constantes.PUNTOS_PILA_A_PILA_KLONDIKE;
-            throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);
-        }
-
-    }*/
 
     public void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
         Carta ultimaCartaPila = pila.extraerUltima();
@@ -220,25 +191,4 @@ public class Klondike extends Solitario {
         if (cartaAMover.verValor() != Valor.values()[valorUltimaCartaCimiento.ordinal() + 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_ASCENDENTE);
     }
-
-   /* public void validarMovimientoAPila(Carta primeraCartaAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
-        if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
-            throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_REY);
-
-        if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() == Valor.REY)
-            return;
-
-        Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
-
-        if (!primeraCartaAMover.estaBocaArriba())
-            throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
-
-        if(primeraCartaAMover.verPalo().mismoColor(ultimaCartaDestino.verPalo()))
-            throw new InvalidMovementException(ErrorAlMover.PILA_CARTAS_MISMO_COLOR);
-
-        Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
-
-        if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
-            throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
-    }*/
 }

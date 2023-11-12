@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import modelo.*;
+import vista.VistaAlerta;
 import vista.VistaPrincipal;
 
 import java.util.ArrayList;
@@ -78,17 +79,15 @@ public class ControladorPrincipal {
                 // Lógica para "Mover de Basura a Cimiento"
                 try {
                     klondike.moverBasuraACimiento((Cimiento) datosMovimiento.obtenerListaDestino());
-                    System.out.println("Mover de Basura a Cimiento");
                 } catch (InvalidMovementException e) {
-                    System.out.println(e.obtenerMotivo());
+                    VistaAlerta.mostrarAlerta(e);
                 }
             } else if (datosMovimiento.esPila(datosMovimiento.obtenerListaDestino())) {
                 // Lógica para "Mover de Basura a Pila"
                 try {
                     klondike.moverBasuraAPila((PilaDelTableau) datosMovimiento.obtenerListaDestino());
-                    System.out.println("Mover de Basura a Pila");
                 } catch (InvalidMovementException e) {
-                    System.out.println(e.obtenerMotivo());
+                    VistaAlerta.mostrarAlerta(e);
                 }
             }
         } else if (datosMovimiento.esCimiento(datosMovimiento.obtenerListaOrigen())) {
@@ -96,29 +95,26 @@ public class ControladorPrincipal {
                 // Lógica para "Mover de Cimiento a Pila"
                 try {
                     klondike.moverCimientoAPila((Cimiento) datosMovimiento.obtenerListaOrigen(), (PilaDelTableau) datosMovimiento.obtenerListaDestino());
-                    System.out.println("Mover de Cimiento a Pila");
                 } catch (InvalidMovementException e) {
-                    System.out.println(e.obtenerMotivo());
+                    VistaAlerta.mostrarAlerta(e);
                 }
             }
         } else if (datosMovimiento.esPila(datosMovimiento.obtenerListaOrigen())) {
             if (datosMovimiento.esPila(datosMovimiento.obtenerListaDestino())) {
                 // Lógica para "Mover de Pila a Pila"
                 try {
-                    System.out.println("Mover de Pila a Pila");
                     klondike.moverPilaAPila((PilaDelTableau) datosMovimiento.obtenerListaOrigen(), (PilaDelTableau) datosMovimiento.obtenerListaDestino(), datosMovimiento.obtenerListaOrigen().cantidadCartas() - datosMovimiento.obtenerIndiceOrigen() + 1);
                     datosMovimiento.resetear();
                 } catch (InvalidMovementException e) {
-                    System.out.println(e.obtenerMotivo());
+                    VistaAlerta.mostrarAlerta(e);
                 }
             } else if (datosMovimiento.esCimiento(datosMovimiento.obtenerListaDestino())) {
                 // Lógica para "Mover de Pila a Cimiento"
                 if (datosMovimiento.obtenerIndiceOrigen() == datosMovimiento.obtenerListaOrigen().cantidadCartas()) {
                     try {
-                        System.out.println("Mover de Pila a Cimiento");
                         klondike.moverPilaACimiento((PilaDelTableau) datosMovimiento.obtenerListaOrigen(), (Cimiento) datosMovimiento.obtenerListaDestino());
                     } catch (InvalidMovementException e) {
-                        System.out.println(e.obtenerMotivo());
+                        VistaAlerta.mostrarAlerta(e);
                     }
                 }
             }

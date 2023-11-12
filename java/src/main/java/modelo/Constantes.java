@@ -18,4 +18,5 @@ public interface Constantes {
     int CANTIDAD_CARTAS_OCULTAS_INICIAL_TABLEAU_GRUPO_1_SPIDER = 5;
     int CANTIDAD_PILAS_TABLEAU_GRUPO_1_SPIDER = 4;
 
+    String RUTA_POR_DEFECTO = "solitario.txt";
 }

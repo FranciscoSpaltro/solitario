@@ -1,7 +1,6 @@
 package controlador;
 
 import modelo.Basura;
-import vista.VistaBasura;
 import vista.VistaPrincipal;
 
 public class ControladorBasura {

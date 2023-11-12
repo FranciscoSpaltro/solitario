@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.ArrayList;
 public class Spider extends Solitario{
-    //private final IMovimientoAPilaSpiderStrategy movimientoAPila;
     private final Variante tipoSolitario = Variante.SPIDER;;
     private final IMovimientoACimientoSpiderStrategy movimientoACimiento;
 
@@ -25,51 +24,12 @@ public class Spider extends Solitario{
             super.mazo.mezclar();
     }
 
-    /*
-    public Spider(Variante tipo, Palo paloElegido, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila, boolean prueba) {
-        super(tipo, prueba);
-        this.movimientoACimiento = movimientoACimiento;
-        this.movimientoAPila = movimientoAPila;
-
-        pilasTableau = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_SPIDER; i++) {
-            pilasTableau.add(new PilaDelTableau(i));
-        }
-        cimientos = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_CIMIENTOS_SPIDER; i++) {
-            cimientos.add(new Cimiento(i));
-        }
-
-        var palos = new ArrayList<Palo>();
-        palos.add(paloElegido);
-        // Para test solo uso cuatro mazos por palo
-        super.mazo = new Mazo(palos, Constantes.REPETICIONES_POR_PALO_SPIDER);
-    }
-
-    // Para más dificultad
-    public Spider(Variante tipo, ArrayList<Palo> palosElegidos, IMovimientoACimientoSpiderStrategy movimientoACimiento, IMovimientoAPilaSpiderStrategy movimientoAPila, boolean prueba) {
-        super(tipo, prueba);
-        this.movimientoACimiento = movimientoACimiento;
-        this.movimientoAPila = movimientoAPila;
-
-        pilasTableau = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_SPIDER; i++) {
-            pilasTableau.add(new PilaDelTableau(i));
-        }
-        cimientos = new ArrayList<>();
-        for (int i = 0; i < Constantes.CANTIDAD_CIMIENTOS_SPIDER; i++) {
-            cimientos.add(new Cimiento(i));
-        }
-
-        super.mazo = new Mazo(palosElegidos, 4);
-    }*/
-
     public Variante obtenerVariante(){
         return tipoSolitario;
     }
 
     @Override
-    void inicializarJuego() {
+    public void inicializarJuego() {
         this.repartirCartas(super.mazo); // Hay que modificar como se genera el mazo
     }
 
@@ -124,34 +84,6 @@ public class Spider extends Solitario{
             pila.agregarCarta(cartaVisible);
         }
     }
-
-    /*
-    @Override
-
-    public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
-
-        ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
-        try {
-            movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
-        } catch (InvalidMovementException e) {
-            if(!pilaOrigen.estaVacia())
-                pilaOrigen.darVueltaIndex(pilaOrigen.cantidadCartas() - 1);
-            pilaOrigen.anexarCartas(cartasAMover);
-            throw e;
-        }
-        // Llegado a este punto, el movimiento es válido
-
-        if (pilaOrigen.cantidadCartasVisibles() == n)
-            puntos += Constantes.PUNTOS_PILA_A_PILA_SPIDER;
-
-        if (!pilaDestino.anexarCartas(cartasAMover)) {
-            if(!pilaOrigen.estaVacia())
-                pilaOrigen.darVueltaIndex(pilaOrigen.cantidadCartas() - 1);
-            pilaOrigen.anexarCartas(cartasAMover);
-            puntos -= Constantes.PUNTOS_PILA_A_PILA_SPIDER;
-            throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);
-        }
-    }*/
 
     @Override
     public void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {

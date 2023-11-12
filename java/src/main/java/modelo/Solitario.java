@@ -19,7 +19,7 @@ public abstract class Solitario implements Serializable {
         puntos = 0;
     }
 
-    abstract void inicializarJuego();
+    public abstract void inicializarJuego();
 
     public boolean jugadorGano(){
         for (Cimiento cimiento : cimientos){
