@@ -70,7 +70,8 @@ public class Klondike extends Solitario {
         }
     }
 
-    Variante obtenerVariante(){
+    @Override
+    public Variante obtenerVariante(){
         return tipoSolitario;
     }
 

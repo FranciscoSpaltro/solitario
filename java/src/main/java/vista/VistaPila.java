@@ -4,20 +4,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import modelo.Carta;
 import modelo.PilaDelTableau;
+import modelo.Variante;
 
 import java.util.ArrayList;
 
 public class VistaPila extends StackPane {
     private PilaDelTableau pila;
     private ArrayList<ImageView> imagenesCartas;
+    private Variante variante;
     private int id;
 
-    public VistaPila(PilaDelTableau pila, int id) {
+    public VistaPila(PilaDelTableau pila, int id, Variante variante) {
         this.pila = pila;
         this.id = id;
         setLayoutX(24 + id * 88);
         setLayoutY(167);
         imagenesCartas = new ArrayList<>();
+        this.variante = variante;
         actualizar();
     }
 
@@ -25,13 +28,13 @@ public class VistaPila extends StackPane {
         this.getChildren().clear();
         imagenesCartas = new ArrayList<>();
         if(pila.estaVacia()) {
-            var imagen = new ImageView(VistaCarta.obtenerImagenNoCarta());
+            var imagen = new ImageView(VistaCarta.obtenerImagenNoCarta(variante));
             imagenesCartas.add(imagen);
             this.getChildren().addAll(imagenesCartas);
         } else {
             int i = 0;
             for (Carta carta : pila) {
-                var imagen = new ImageView(VistaCarta.obtenerImagen(carta));
+                var imagen = new ImageView(VistaCarta.obtenerImagen(carta, variante));
                 imagen.setTranslateY(i * 15);
                 imagenesCartas.add(imagen);
                 i++;

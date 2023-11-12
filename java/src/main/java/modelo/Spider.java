@@ -24,8 +24,14 @@ public class Spider extends Solitario{
             super.mazo.mezclar();
     }
 
+    @Override
     public Variante obtenerVariante(){
         return tipoSolitario;
+    }
+
+    @Override
+    public Basura obtenerBasura(){
+        return null;
     }
 
     @Override

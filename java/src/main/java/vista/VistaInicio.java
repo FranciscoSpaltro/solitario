@@ -1,15 +1,17 @@
 package vista;
 
-import controlador.ControladorPrincipal;
+import controlador.ControladorKlondike;
+import controlador.ControladorSolitario;
+import controlador.ControladorSpider;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import modelo.Klondike;
-import modelo.MovimientoAPilaKlondike;
+import modelo.*;
+
+import java.util.ArrayList;
 
 public class VistaInicio {
     Stage stage;
@@ -35,24 +37,35 @@ public class VistaInicio {
 
         sel_klondike.setOnMouseClicked(event -> {
             Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
+            klondike.inicializarJuego();
             vistaPrincipal = new VistaPrincipal(stage, klondike);
             vistaPrincipal.iniciar();
 
-            ControladorPrincipal controladorPrincipal = new ControladorPrincipal(vistaPrincipal, klondike);
-            controladorPrincipal.actualizar();
+            var controladorKlondike = new ControladorKlondike(vistaPrincipal, klondike);
+            controladorKlondike.actualizar();
 
             vistaPrincipal.mostrar();
         });
 
         sel_spider.setOnMouseClicked(event -> {
-            System.out.println("Spider");
+            ArrayList<Palo> palos = new ArrayList<Palo>();
+            palos.add(Palo.CORAZONES);
+            var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), false);
+            spider.inicializarJuego();
+            vistaPrincipal = new VistaPrincipal(stage, spider);
+            vistaPrincipal.iniciar();
+
+            var controladorSpider = new ControladorSpider(vistaPrincipal, spider);
+            controladorSpider.actualizar();
+
+            vistaPrincipal.mostrar();
         });
 
         sel_info.setOnMouseClicked(event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ayuda");
             alert.setHeaderText("Seleccione un modo de juego para comenzar a jugar");
-            alert.setContentText("Créditos de la foto: Amanda Jones en Unsplash");
+            alert.setContentText("Créditos del fondo: Amanda Jones en Unsplash");
             alert.showAndWait();
         });
 

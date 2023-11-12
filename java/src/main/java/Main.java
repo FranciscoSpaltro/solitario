@@ -16,12 +16,18 @@ public class Main extends Application {
         if (!hayJuegoGuardado) {
             VistaInicio vistaInicio = new VistaInicio(stage, vistaPrincipal);
         } else {
-            Klondike klondike = (Klondike) controladorArchivos.abrirJuegoGuardado();
-            vistaPrincipal = new VistaPrincipal(stage, klondike);
+            Solitario solitario = (Solitario) controladorArchivos.abrirJuegoGuardado();
+            vistaPrincipal = new VistaPrincipal(stage, solitario);
             vistaPrincipal.iniciar();
 
-            ControladorPrincipal controladorPrincipal = new ControladorPrincipal(vistaPrincipal, klondike);
-            controladorPrincipal.actualizar();
+            if(solitario.obtenerVariante() == Variante.KLONDIKE){
+                var controladorKlondike = new ControladorKlondike(vistaPrincipal, (Klondike) solitario);
+                controladorKlondike.actualizar();
+            } else {
+                var controladorSpider = new ControladorSpider(vistaPrincipal, (Spider) solitario);
+                controladorSpider.actualizar();
+            }
+
 
             vistaPrincipal.mostrar();
         }

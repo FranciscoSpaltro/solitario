@@ -7,19 +7,19 @@ public class ControladorCimiento {
     private int id;
     private DatosMovimiento datosMovimiento;
 
-    public ControladorCimiento(VistaPrincipal vistaPrincipal, Cimiento cimiento, int id, DatosMovimiento datosMovimiento) {
+    public ControladorCimiento(VistaPrincipal vistaPrincipal, Cimiento cimiento, int id, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
         this.vistaPrincipal = vistaPrincipal;
         this.cimiento = cimiento;
         this.id = id;
         this.datosMovimiento = datosMovimiento;
-        actualizar();
+        actualizar(controladorSolitario);
     }
 
-    public void actualizar() {
+    public void actualizar(ControladorSolitario controladorSolitario) {
         this.vistaPrincipal.obtenerVistaCimiento(id).setOnMouseClicked(event -> {
             // Lógica para "Apretar Cimiento"
             datosMovimiento.clic(cimiento, 1);
-            ControladorPrincipal.actualizar();
+            controladorSolitario.actualizar();
         });
     }
 

@@ -19,4 +19,43 @@ public interface Constantes {
     int CANTIDAD_PILAS_TABLEAU_GRUPO_1_SPIDER = 4;
 
     String RUTA_POR_DEFECTO = "solitario.txt";
+    int ANCHO_VENTANA_KLONDIKE = 640;
+    int ALTO_VENTANA_KLONDIKE = 480;
+    int ANCHO_VENTANA_SPIDER = 904;
+    int ALTO_VENTANA_SPIDER = 680;
+
+    static int obtenerCantidadPilasTableau(Variante variante){
+        if(variante == Variante.KLONDIKE)
+            return CANTIDAD_PILAS_TABLEAU_KLONDIKE;
+        else if(variante == Variante.SPIDER)
+            return CANTIDAD_PILAS_TABLEAU_SPIDER;
+        else
+            return 0;
+    }
+    static int obtenerCantidadCimientos(Variante variante){
+        if(variante == Variante.KLONDIKE)
+            return CANTIDAD_CIMIENTOS_KLONDIKE;
+        else if(variante == Variante.SPIDER)
+            return CANTIDAD_CIMIENTOS_SPIDER;
+        else
+            return 0;
+    }
+
+    static int obtenerAncho(Variante variante){
+        if(variante == Variante.KLONDIKE)
+            return ANCHO_VENTANA_KLONDIKE;
+        else if(variante == Variante.SPIDER)
+            return ANCHO_VENTANA_SPIDER;
+        else
+            return 0;
+    }
+
+    static int obtenerAlto(Variante variante){
+        if(variante == Variante.KLONDIKE)
+            return ALTO_VENTANA_KLONDIKE;
+        else if(variante == Variante.SPIDER)
+            return ALTO_VENTANA_SPIDER;
+        else
+            return 0;
+    }
 }

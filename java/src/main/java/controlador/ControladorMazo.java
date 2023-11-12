@@ -1,30 +1,19 @@
 package controlador;
 import modelo.Klondike;
+import modelo.Solitario;
 import vista.VistaPrincipal;
 
-public class ControladorMazo {
-    private VistaPrincipal vistaPrincipal;
-    private Klondike klondike;
-    private DatosMovimiento datosMovimiento;
+public abstract class ControladorMazo {
+    protected VistaPrincipal vistaPrincipal;
+    protected Solitario solitario;
+    protected DatosMovimiento datosMovimiento;
 
-    public ControladorMazo(VistaPrincipal vistaPrincipal, Klondike klondike, DatosMovimiento datosMovimiento) {
+    public ControladorMazo(VistaPrincipal vistaPrincipal, Solitario solitario, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
         this.vistaPrincipal = vistaPrincipal;
-        this.klondike = klondike;
+        this.solitario = solitario;
         this.datosMovimiento = datosMovimiento;
-        iniciar();
+        iniciar(controladorSolitario);
     }
 
-    public void iniciar() {
-        vistaPrincipal.obtenerVistaMazo().setOnMouseClicked(event -> {
-            // Lógica para "Apretar Mazo"
-            if(klondike.obtenerMazo().estaVacia()){
-                klondike.moverBasuraAMazo();
-                datosMovimiento.resetear();
-            } else {
-                klondike.moverMazoABasura();
-                datosMovimiento.resetear();
-            }
-            ControladorPrincipal.actualizar();
-        });
-    }
+    public abstract void iniciar(ControladorSolitario controladorSolitario);
 }

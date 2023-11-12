@@ -8,18 +8,18 @@ public class ControladorBasura {
     private Basura basura;
     private DatosMovimiento datosMovimiento;
 
-    public ControladorBasura(VistaPrincipal vistaPrincipal, Basura basura, DatosMovimiento datosMovimiento) {
+    public ControladorBasura(VistaPrincipal vistaPrincipal, Basura basura, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
         this.vistaPrincipal = vistaPrincipal;
         this.basura = basura;
         this.datosMovimiento = datosMovimiento;
-        actualizar();
+        actualizar(controladorSolitario);
     }
 
-    public void actualizar() {
+    public void actualizar(ControladorSolitario controladorSolitario) {
         this.vistaPrincipal.obtenerVistaBasura().obtenerUltimaCarta().setOnMouseClicked(event -> {
             // Lógica para "Apretar Basura"
             datosMovimiento.clic(basura,1);
-            ControladorPrincipal.actualizar();
+            controladorSolitario.actualizar();
         });
     }
 }

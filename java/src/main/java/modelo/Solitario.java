@@ -55,6 +55,8 @@ public abstract class Solitario implements Serializable {
     public Mazo obtenerMazo(){
         return mazo;
     }
+    public abstract Variante obtenerVariante();
+    public abstract Basura obtenerBasura();
 
     public void moverPilaAPila(PilaDelTableau pilaOrigen, PilaDelTableau pilaDestino, int n) throws InvalidMovementException {
 

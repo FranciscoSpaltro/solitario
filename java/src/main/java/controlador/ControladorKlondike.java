@@ -9,66 +9,27 @@ import modelo.*;
 import vista.VistaAlerta;
 import vista.VistaPrincipal;
 
-import java.util.ArrayList;
-
-public class ControladorPrincipal {
-    private static VistaPrincipal vistaPrincipal;
-    private static ControladorVentana controladorVentana;
-    private static ControladorMazo controladorMazo;
-    private static ControladorBasura controladorBasura;
-    private static ArrayList<ControladorPila> controladoresPila = new ArrayList<>();
-    private static ArrayList<ControladorCimiento> controladoresCimiento = new ArrayList<>();
+public class ControladorKlondike extends ControladorSolitario {
     private static Klondike klondike;
-    private static DatosMovimiento datosMovimiento = new DatosMovimiento();
-
-    public ControladorPrincipal(VistaPrincipal vistaPrincipal, Klondike klondike){
-        this.vistaPrincipal = vistaPrincipal;
-        this.klondike = klondike;
-        controladorVentana = new ControladorVentana(vistaPrincipal, datosMovimiento);
-        controladorMazo = new ControladorMazo(vistaPrincipal, klondike, datosMovimiento);
-        controladorBasura = new ControladorBasura(vistaPrincipal, klondike.obtenerBasura(), datosMovimiento);
-        for(int i = 0; i < Constantes.CANTIDAD_CIMIENTOS_KLONDIKE; i++)
-            controladoresCimiento.add(new ControladorCimiento(vistaPrincipal, klondike.obtenerCimiento(i), i, datosMovimiento));
-
-        for(int i = 0; i < Constantes.CANTIDAD_PILAS_TABLEAU_KLONDIKE; i++)
-            controladoresPila.add(new ControladorPila(vistaPrincipal, klondike.obtenerPilaDelTableau(i), i, datosMovimiento));
+    private static ControladorBasura controladorBasura;
+    public ControladorKlondike(VistaPrincipal vistaPrincipal, Klondike klondike) {
+        super(vistaPrincipal, klondike);
+        controladorMazo = new ControladorMazoKlondike(vistaPrincipal, klondike, datosMovimiento, this);
+        controladorBasura = new ControladorBasura(vistaPrincipal, klondike.obtenerBasura(), datosMovimiento, this);
     }
 
-    public static void actualizar(){
+    @Override
+    public void actualizar(){
         evaluarMovimiento();
         evaluarGanador();
         vistaPrincipal.actualizar();
         controladorVentana.iniciar();
-        controladorMazo.iniciar();
-        controladorBasura.actualizar();
+        controladorMazo.iniciar(this);
+        controladorBasura.actualizar(this);
         for(ControladorCimiento controladorCimiento : controladoresCimiento)
-            controladorCimiento.actualizar();
+            controladorCimiento.actualizar(this);
         for(ControladorPila controladorPila : controladoresPila)
-            controladorPila.actualizar();
-    }
-
-    private static void evaluarGanador() {
-        if (klondike.jugadorGano()) {
-            StackPane root = new StackPane();
-            // Configurar el fondo en verde
-            root.setStyle("-fx-background-color: green;");
-
-            // Crear un mensaje Label
-            Label mensajeLabel = new Label("¡GANASTE!");
-            mensajeLabel.setStyle("-fx-font-size: 24; -fx-text-fill: white;");
-
-            // Agregar el mensaje Label al StackPane
-            root.getChildren().add(mensajeLabel);
-
-            // Centrar el mensaje en el StackPane
-            StackPane.setAlignment(mensajeLabel, Pos.CENTER);
-
-            // Crear la escena
-            Scene scene = new Scene(root, 640, 480, Color.GREEN);
-
-            // Configurar la escena en el stage
-            vistaPrincipal.configurarNuevaStage(scene);
-        }
+            controladorPila.actualizar(this);
     }
 
     public static void evaluarMovimiento() {
