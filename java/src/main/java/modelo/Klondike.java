@@ -132,6 +132,7 @@ public class Klondike extends Solitario {
         try {
             movimientoAPila.validarMovimientoAPila(cartasAMover, pila);
         }catch (InvalidMovementException e){
+            basura.agregarCarta(cartasAMover.get(0));
             throw e;
         }
 

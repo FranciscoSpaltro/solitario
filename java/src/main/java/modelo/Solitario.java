@@ -78,8 +78,6 @@ public abstract class Solitario implements Serializable {
         if (pilaOrigen.cantidadCartasVisibles() == n)
             puntos += Constantes.PUNTOS_PILA_A_PILA;
 
-        //ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
-
         if (!pilaDestino.anexarCartas(cartasAMover)) {
             pilaOrigen.anexarCartas(cartasAMover);
             puntos -= Constantes.PUNTOS_PILA_A_PILA;
