@@ -12,12 +12,12 @@ import vista.VistaSolitario;
 
 import java.util.ArrayList;
 
-public class ElegirSpiderEventHandler implements EventHandler<MouseEvent> {
+public class ElegirSpiderFacilEventHandler implements EventHandler<MouseEvent> {
     Palo paloElegido;
     private VistaSolitario vistaSolitario;
     private Stage stage;
 
-    public ElegirSpiderEventHandler(Palo palo, VistaSolitario vistaSolitario, Stage stage) {
+    public ElegirSpiderFacilEventHandler(Palo palo, VistaSolitario vistaSolitario, Stage stage) {
         this.paloElegido = palo;
         this.vistaSolitario = vistaSolitario;
         this.stage = stage;

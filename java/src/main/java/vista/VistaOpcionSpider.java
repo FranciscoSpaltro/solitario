@@ -1,6 +1,7 @@
 package vista;
 
-import controlador.Handlers.ElegirSpiderEventHandler;
+import controlador.Handlers.ElegirSpiderDificilEventHandler;
+import controlador.Handlers.ElegirSpiderFacilEventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -32,13 +33,15 @@ public class VistaOpcionSpider {
         var btn_picas = (ImageView) ventana.lookup("#btn_picas");
         var btn_dificil = (ImageView) ventana.lookup("#btn_dificil");
 
-        btn_corazones.setOnMouseClicked(new ElegirSpiderEventHandler(Palo.CORAZONES, vistaSolitario, stage));
+        btn_corazones.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.CORAZONES, vistaSolitario, stage));
 
-        btn_picas.setOnMouseClicked(new ElegirSpiderEventHandler(Palo.PICAS, vistaSolitario, stage));
+        btn_picas.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.PICAS, vistaSolitario, stage));
 
-        btn_treboles.setOnMouseClicked(new ElegirSpiderEventHandler(Palo.TREBOLES, vistaSolitario, stage));
+        btn_treboles.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.TREBOLES, vistaSolitario, stage));
 
-        btn_dificil.setOnMouseClicked(new ElegirSpiderEventHandler(Palo.DIAMANTES, vistaSolitario, stage));
+        btn_diamantes.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.DIAMANTES, vistaSolitario, stage));
+
+        btn_dificil.setOnMouseClicked(new ElegirSpiderDificilEventHandler(vistaSolitario, stage));
 
     }
 
