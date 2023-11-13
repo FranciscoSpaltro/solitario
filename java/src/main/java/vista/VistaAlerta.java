@@ -30,6 +30,7 @@ public class VistaAlerta {
             case PILA_DIFERENTE_PALO_NO_PUEDE_IR_A_CIMIENTO : return "El cimiento solo puede recibir cartas del mismo palo";
             case CIMIENTO_VACIO_NO_SACAR_CARTA : return "El cimiento está vacío";
             case BASURA_VACIA_NO_SACAR_CARTA : return "La basura está vacía";
+            case PILA_VACIA_NO_SACAR_CARTA : return "La pila está vacía";
             default : return "Movimiento desconocido";
         }
     }
