@@ -5,6 +5,7 @@ import javafx.scene.layout.StackPane;
 import modelo.Carta;
 import modelo.PilaDelTableau;
 import modelo.Variante;
+import modelo.Constantes;
 
 import java.util.ArrayList;
 
@@ -17,8 +18,8 @@ public class VistaPila extends StackPane {
     public VistaPila(PilaDelTableau pila, int id, Variante variante) {
         this.pila = pila;
         this.id = id;
-        setLayoutX(24 + id * 88);
-        setLayoutY(167);
+        setLayoutX(Constantes.MARCO + id * (Constantes.ANCHO_CARTA + Constantes.MARCO));
+        setLayoutY(Constantes.POSICION_Y_PILAS);
         imagenesCartas = new ArrayList<>();
         this.variante = variante;
         actualizar();
@@ -35,7 +36,7 @@ public class VistaPila extends StackPane {
             int i = 0;
             for (Carta carta : pila) {
                 var imagen = new ImageView(VistaCarta.obtenerImagen(carta, variante));
-                imagen.setTranslateY(i * 15);
+                imagen.setTranslateY(i * Constantes.ESPACIADO_ENTRE_CARTAS);
                 imagenesCartas.add(imagen);
                 i++;
             }

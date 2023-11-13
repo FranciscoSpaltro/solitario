@@ -64,8 +64,12 @@ public abstract class Solitario implements Serializable {
             throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_SACAR_CARTA);
         }
 
+        boolean estabaDadaVuelta = false;
+
+        if (n < pilaOrigen.cantidadCartas())
+            estabaDadaVuelta = pilaOrigen.obtenerCarta(pilaOrigen.cantidadCartas() - n - 1).estaBocaArriba();
+
         ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
-        boolean estabaDadaVuelta = pilaOrigen.verUltima().estaBocaArriba();
 
         try {
             movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);

@@ -1,5 +1,6 @@
 package controlador;
 
+import javafx.scene.effect.*;
 import javafx.scene.image.ImageView;
 import modelo.PilaDelTableau;
 import vista.VistaSolitario;

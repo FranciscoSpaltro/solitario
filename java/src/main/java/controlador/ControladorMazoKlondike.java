@@ -1,5 +1,8 @@
 package controlador;
 
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
 import modelo.Klondike;
 import vista.VistaSolitario;
 

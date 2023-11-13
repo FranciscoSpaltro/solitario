@@ -23,6 +23,10 @@ public interface Constantes {
     int ALTO_VENTANA_KLONDIKE = 480;
     int ANCHO_VENTANA_SPIDER = 904;
     int ALTO_VENTANA_SPIDER = 680;
+    double POSICION_Y_PILAS = 167;
+    double MARCO = 24;
+    double ANCHO_CARTA = 64;
+    double ESPACIADO_ENTRE_CARTAS = 20;
 
     static int obtenerCantidadPilasTableau(Variante variante){
         if(variante == Variante.KLONDIKE)
