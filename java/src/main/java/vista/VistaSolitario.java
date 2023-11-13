@@ -128,9 +128,9 @@ public class VistaSolitario {
         contactanosButton.setOnAction(event -> {
             // Lógica para "Contáctanos"
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(null);
-            alert.setHeaderText("Leandro Peña [email]\nFrancisco Spaltro [email]");
-            alert.setContentText(null);
+            alert.setTitle("Correos de contacto");
+            alert.setHeaderText(null);
+            alert.setContentText("Leandro Peña [lpena@fi.uba.ar]\nFrancisco Spaltro [fspaltro@fi.uba.ar]");
             alert.showAndWait();
         });
 

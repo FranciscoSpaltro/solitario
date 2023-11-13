@@ -8,7 +8,6 @@ import vista.VistaInicio;
 import vista.VistaSolitario;
 
 public class Main extends Application {
-    static boolean seJugo = false;
     @Override
     public void start(Stage stage) throws Exception {
         ControladorArchivos controladorArchivos = new ControladorArchivos();
@@ -18,7 +17,6 @@ public class Main extends Application {
             VistaInicio vistaInicio = new VistaInicio(stage, vistaSolitario);
             vistaInicio.mostrar();
         } else {
-            seJugo = true;
             Solitario solitario = (Solitario) controladorArchivos.abrirJuegoGuardado();
             vistaSolitario = new VistaSolitario(stage, solitario);
             vistaSolitario.iniciar();
@@ -38,7 +36,7 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        if(seJugo){
+        if(false){
             guardarJuego();
         }
     }
