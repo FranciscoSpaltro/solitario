@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="btn_corazones" fitHeight="60.0" fitWidth="65.0" layoutX="55.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="btn_picas" fitHeight="75.0" fitWidth="65.0" layoutX="55.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="btn_diamantes" fitHeight="85.0" fitWidth="65.0" layoutX="135.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="btn_treboles" fitHeight="75.0" fitWidth="65.0" layoutX="135.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="btn_dificil" fitHeight="177.0" fitWidth="97.0" layoutX="249.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</Pane>
