@@ -94,6 +94,10 @@ public class Klondike extends Solitario {
     }
 
     public void moverBasuraAPila(PilaDelTableau pila) throws InvalidMovementException {
+        if (basura.estaVacia()){
+            throw new InvalidMovementException(ErrorAlMover.BASURA_VACIA_NO_SACAR_CARTA);
+        }
+
         ArrayList<Carta> cartasAMover = basura.extraerUltimasN(1);
 
         try {
@@ -155,8 +159,11 @@ public class Klondike extends Solitario {
 
 
     public void moverCimientoAPila(Cimiento cimiento, PilaDelTableau pilaDestino) throws InvalidMovementException {
-        ArrayList<Carta> cartasAMover = cimiento.extraerUltimasN(1);
+        if (cimiento.estaVacia()){
+            throw new InvalidMovementException(ErrorAlMover.CIMIENTO_VACIO_NO_SACAR_CARTA);
+        }
 
+        ArrayList<Carta> cartasAMover = cimiento.extraerUltimasN(1);
         try {
             movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
         }catch (InvalidMovementException e){

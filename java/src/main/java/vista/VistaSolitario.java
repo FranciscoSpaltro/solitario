@@ -1,9 +1,11 @@
 package vista;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import modelo.*;
 
@@ -46,6 +48,7 @@ public class VistaSolitario {
         this.armarMenu();
         this.armarVentana();
         stage.setResizable(false);
+        centrarVentana(stage);
         stage.show();
     }
 
@@ -100,6 +103,7 @@ public class VistaSolitario {
         pane.getChildren().addAll(vistaPilas);
         pane.getChildren().addAll(vistaCimientos);
         stage.setScene(scene);
+        centrarVentana(stage);
         stage.show();
     }
 
@@ -148,6 +152,7 @@ public class VistaSolitario {
     public void configurarNuevaStage(Scene nuevaScene){
         scene = nuevaScene;
         stage.setScene(nuevaScene);
+        centrarVentana(stage);
         stage.show();
     }
 
@@ -167,5 +172,19 @@ public class VistaSolitario {
 
     public Stage obtenerStage() {
         return stage;
+    }
+
+    public static void centrarVentana(Stage stage) {
+        // Obtener la pantalla actual
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        // Calcular las coordenadas para centrar la ventana
+        double centerX = bounds.getMinX() + (bounds.getWidth() - stage.getWidth()) / 2;
+        double centerY = bounds.getMinY() + (bounds.getHeight() - stage.getHeight()) / 2;
+
+        // Establecer las coordenadas de la ventana
+        stage.setX(centerX);
+        stage.setY(centerY);
     }
 }

@@ -28,6 +28,8 @@ public class VistaAlerta {
             case PILA_INCOMPLETA_NO_PUEDE_IR_A_CIMIENTO : return "No se puede mover una pila incompleta a un cimiento";
             case CARTAS_A_MOVER_DISTINTO_PALO : return "Las cartas a mover deben ser del mismo palo";
             case PILA_DIFERENTE_PALO_NO_PUEDE_IR_A_CIMIENTO : return "El cimiento solo puede recibir cartas del mismo palo";
+            case CIMIENTO_VACIO_NO_SACAR_CARTA : return "El cimiento está vacío";
+            case BASURA_VACIA_NO_SACAR_CARTA : return "La basura está vacía";
             default : return "Movimiento desconocido";
         }
     }

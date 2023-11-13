@@ -74,6 +74,8 @@ public class ControladorKlondike extends ControladorSolitario {
                     }
                 }
             }
+        } else {
+            datosMovimiento.resetear();
         }
 
     }

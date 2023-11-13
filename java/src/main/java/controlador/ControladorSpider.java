@@ -47,6 +47,8 @@ public class ControladorSpider extends ControladorSolitario {
                         VistaAlerta.mostrarAlerta(e);
                     }
                 }
+            } else {
+                datosMovimiento.resetear();
             }
         }
 
