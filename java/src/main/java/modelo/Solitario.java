@@ -65,11 +65,13 @@ public abstract class Solitario implements Serializable {
         }
 
         ArrayList<Carta> cartasAMover = pilaOrigen.extraerUltimasN(n);
+        boolean estabaDadaVuelta = pilaOrigen.verUltima().estaBocaArriba();
+
         try {
             movimientoAPila.validarMovimientoAPila(cartasAMover, pilaDestino);
         }catch (InvalidMovementException e){
-            if(!pilaOrigen.estaVacia())
-                pilaOrigen.darVueltaIndex(pilaOrigen.cantidadCartas() - 1);
+            if(!pilaOrigen.estaVacia() && !estabaDadaVuelta)
+                pilaOrigen.verUltima().darVuelta();
             pilaOrigen.anexarCartas(cartasAMover);
             throw e;
         }

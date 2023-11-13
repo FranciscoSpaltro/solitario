@@ -54,7 +54,7 @@ public abstract class ListaDeCartas implements Serializable, Iterable<Carta> {
 
         if (!this.estaVacia()) {
             if (!this.verUltima().estaBocaArriba())
-                this.darVueltaIndex(this.cantidadCartas() - 1);
+                this.verUltima().darVuelta();
         }
         return cartasAExtraer;
     }
