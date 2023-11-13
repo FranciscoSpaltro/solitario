@@ -7,8 +7,6 @@ import javafx.stage.Stage;
 import modelo.*;
 import vista.VistaSolitario;
 
-import java.util.ArrayList;
-
 public class ElegirSpiderDificilEventHandler implements EventHandler<MouseEvent> {
     private Stage stage;
     private VistaSolitario vistaSolitario;
@@ -19,10 +17,7 @@ public class ElegirSpiderDificilEventHandler implements EventHandler<MouseEvent>
     }
     @Override
     public void handle(MouseEvent mouseEvent) {
-        ArrayList<Palo> palos = new ArrayList<Palo>();
-        palos.add(Palo.CORAZONES);
-        palos.add(Palo.TREBOLES);
-        var spider = new Spider(palos, new MovimientoACimientoSpiderDificil(), new MovimientoAPilaSpiderDificil(), false);
+        var spider = new Spider(Palo.obtenerDosAlAzar(), new MovimientoACimientoSpiderDificil(), new MovimientoAPilaSpiderDificil(), false);
         spider.inicializarJuego();
 
         vistaSolitario = new VistaSolitario(stage, spider);
