@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public abstract class ControladorSolitario {
     protected static VistaSolitario vistaSolitario;
-    protected static ControladorMenu controladorMenu;
     protected static ControladorMazo controladorMazo;
     protected static ArrayList<ControladorPila> controladoresPila = new ArrayList<>();
     protected static ArrayList<ControladorCimiento> controladoresCimiento = new ArrayList<>();
@@ -22,13 +21,13 @@ public abstract class ControladorSolitario {
     public ControladorSolitario(VistaSolitario vistaSolitario, Solitario solitario){
         this.vistaSolitario = vistaSolitario;
         this.solitario = solitario;
-        this.controladorMenu = new ControladorMenu(vistaSolitario);
 
         for(int i = 0; i < Constantes.obtenerCantidadCimientos(solitario.obtenerVariante()); i++)
             controladoresCimiento.add(new ControladorCimiento(vistaSolitario, solitario.obtenerCimiento(i), i, datosMovimiento, this));
 
         for(int i = 0; i < Constantes.obtenerCantidadPilasTableau(solitario.obtenerVariante()); i++)
             controladoresPila.add(new ControladorPila(vistaSolitario, solitario.obtenerPilaDelTableau(i), i, datosMovimiento, this));
+
     }
 
     public abstract void actualizar();

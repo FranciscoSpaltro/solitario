@@ -18,7 +18,6 @@ public class ControladorSpider extends ControladorSolitario {
         evaluarMovimiento();
         evaluarGanador();
         vistaSolitario.actualizar();
-        controladorMenu.iniciar();
         controladorMazo.iniciar(this);
         for(ControladorCimiento controladorCimiento : controladoresCimiento)
             controladorCimiento.actualizar(this);

@@ -85,7 +85,6 @@ public class VistaSolitario {
         vistaMazo.actualizar();
         if (solitario.obtenerVariante() == Variante.KLONDIKE)
             vistaBasura.actualizar();
-
         for (VistaCimiento vistaCimiento : vistaCimientos)
             vistaCimiento.actualizar();
         for (VistaPila vistaPila : vistaPilas)
@@ -108,12 +107,33 @@ public class VistaSolitario {
         menuPane = new Pane();
         menuPane.setStyle("-fx-background-color: #DDDDDD;");
         menuPane.setPrefSize(Constantes.obtenerAncho(solitario.obtenerVariante()), 30);
+
         Button nuevoJuegoButton = new Button("Nuevo Juego");
         nuevoJuegoButton.setLayoutX(10);
         nuevoJuegoButton.setLayoutY(2.5);
         Button contactanosButton = new Button("Contactanos");
         contactanosButton.setLayoutX(100);
         contactanosButton.setLayoutY(2.5);
+
+        nuevoJuegoButton.setOnAction(event -> {
+            // Lógica para "Nuevo Juego"
+            try {
+                VistaInicio vistaInicio = new VistaInicio(stage, this);
+                vistaInicio.mostrar();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        contactanosButton.setOnAction(event -> {
+            // Lógica para "Contáctanos"
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(null);
+            alert.setHeaderText("Leandro Peña [email]\nFrancisco Spaltro [email]");
+            alert.setContentText(null);
+            alert.showAndWait();
+        });
+
         menuPane.getChildren().addAll(nuevoJuegoButton, contactanosButton);
     }
 

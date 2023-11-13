@@ -19,7 +19,6 @@ public class ControladorKlondike extends ControladorSolitario {
         evaluarMovimiento();
         evaluarGanador();
         vistaSolitario.actualizar();
-        controladorMenu.iniciar();
         controladorMazo.iniciar(this);
         controladorBasura.actualizar(this);
         for(ControladorCimiento controladorCimiento : controladoresCimiento)
