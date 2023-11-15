@@ -1,5 +1,6 @@
 package controlador.Handlers;
 
+import controlador.ControladorArchivos;
 import controlador.ControladorSpider;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -16,20 +17,23 @@ public class ElegirSpiderFacilEventHandler implements EventHandler<MouseEvent> {
     Palo paloElegido;
     private VistaSolitario vistaSolitario;
     private Stage stage;
+    private ControladorArchivos controladorArchivos;
 
-    public ElegirSpiderFacilEventHandler(Palo palo, VistaSolitario vistaSolitario, Stage stage) {
+    public ElegirSpiderFacilEventHandler(Palo palo, VistaSolitario vistaSolitario, Stage stage, ControladorArchivos controladorArchivos) {
         this.paloElegido = palo;
         this.vistaSolitario = vistaSolitario;
         this.stage = stage;
+        this.controladorArchivos = controladorArchivos;
     }
     @Override
     public void handle(MouseEvent mouseEvent) {
         ArrayList<Palo> palos = new ArrayList<Palo>();
         palos.add(paloElegido);
         var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), false);
+        controladorArchivos.configurarSolitario(spider);
         spider.inicializarJuego();
 
-        vistaSolitario = new VistaSolitario(stage, spider);
+        vistaSolitario = new VistaSolitario(stage, spider, controladorArchivos);
         vistaSolitario.iniciar();
 
         var controladorSpider = new ControladorSpider(vistaSolitario, spider);

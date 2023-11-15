@@ -1,4 +1,5 @@
 import controlador.*;
+import controlador.Handlers.JuegoIniciadoException;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -7,18 +8,28 @@ import modelo.*;
 import vista.VistaInicio;
 import vista.VistaSolitario;
 
+import java.io.IOException;
+
 public class Main extends Application {
+    private ControladorArchivos controladorArchivos = new ControladorArchivos();
+
+
     @Override
     public void start(Stage stage) throws Exception {
-        ControladorArchivos controladorArchivos = new ControladorArchivos();
         boolean hayJuegoGuardado = controladorArchivos.hayJuegoGuardado();
         VistaSolitario vistaSolitario = null;
         if (!hayJuegoGuardado) {
-            VistaInicio vistaInicio = new VistaInicio(stage, vistaSolitario);
+            VistaInicio vistaInicio = null;
+            try {
+                 vistaInicio = new VistaInicio(stage, vistaSolitario, controladorArchivos);
+            } catch (IOException e) {
+                return;
+                // ???
+            }
             vistaInicio.mostrar();
         } else {
             Solitario solitario = (Solitario) controladorArchivos.abrirJuegoGuardado();
-            vistaSolitario = new VistaSolitario(stage, solitario);
+            vistaSolitario = new VistaSolitario(stage, solitario, controladorArchivos);
             vistaSolitario.iniciar();
 
             if(solitario.obtenerVariante() == Variante.KLONDIKE){
@@ -36,7 +47,7 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        if(false){
+        if(controladorArchivos.hayJuegoIniciado()){
             guardarJuego();
         }
     }
@@ -58,7 +69,9 @@ public class Main extends Application {
         // Mostrar la alerta y esperar a que se seleccione un botón
         alert.showAndWait().ifPresent(response -> {
             if (response == buttonTypeSi) {
-                ControladorArchivos.guardarJuego();
+                controladorArchivos.guardarJuego();
+            } else {
+                controladorArchivos.borrarJuegoGuardado();
             }
         });
     }

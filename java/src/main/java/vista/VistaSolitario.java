@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.ControladorArchivos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,9 +23,8 @@ public class VistaSolitario {
     private VistaMazo vistaMazo;
     private VistaBasura vistaBasura;
     private Pane pane;
-
-
-    public VistaSolitario(Stage stage , Solitario solitario){
+    private ControladorArchivos controladorArchivos;
+    public VistaSolitario(Stage stage , Solitario solitario, ControladorArchivos controladorArchivos) {
         this.stage = stage;
         this.vistaPilas = new ArrayList<>();
         for (int i = 0; i < Constantes.obtenerCantidadPilasTableau(solitario.obtenerVariante()); i++) {
@@ -42,6 +42,12 @@ public class VistaSolitario {
             this.vistaBasura = new VistaBasura(solitario.obtenerBasura(), solitario.obtenerVariante());
 
         this.solitario = solitario;
+        this.controladorArchivos = controladorArchivos;
+        this.controladorArchivos.configurarSolitario(solitario);
+    }
+
+    public Solitario obtenerSolitario() {
+        return solitario;
     }
 
     public void iniciar(){
@@ -122,7 +128,7 @@ public class VistaSolitario {
         nuevoJuegoButton.setOnAction(event -> {
             // Lógica para "Nuevo Juego"
             try {
-                VistaInicio vistaInicio = new VistaInicio(stage, this);
+                VistaInicio vistaInicio = new VistaInicio(stage, this, controladorArchivos);
                 vistaInicio.mostrar();
             } catch (Exception e) {
                 throw new RuntimeException(e);

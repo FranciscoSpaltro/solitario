@@ -19,4 +19,9 @@ public class Persistencia {
             return objetoEntrada.readObject();
         }
     }
+
+    public static void borrarArchivo(String rutaPorDefecto) {
+        File archivo = new File(rutaPorDefecto);
+        archivo.delete();
+    }
 }

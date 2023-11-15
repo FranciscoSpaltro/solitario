@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.ControladorArchivos;
 import controlador.Handlers.ElegirSpiderDificilEventHandler;
 import controlador.Handlers.ElegirSpiderFacilEventHandler;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +14,14 @@ public class VistaOpcionSpider {
     Stage stage;
     VistaSolitario vistaSolitario;
     Pane ventana;
+    private ControladorArchivos controladorArchivos;
 
-    public VistaOpcionSpider(Stage stage, VistaSolitario vistaSolitario) throws Exception {
+    public VistaOpcionSpider(Stage stage, VistaSolitario vistaSolitario, ControladorArchivos controladorArchivos) throws Exception {
         this.stage = stage;
         this.vistaSolitario = vistaSolitario;
         var loader = new FXMLLoader(getClass().getResource("/ventana_spider.fxml"));
         ventana = loader.load();
+        this.controladorArchivos = controladorArchivos;
         armarVentana();
     }
 
@@ -33,15 +36,15 @@ public class VistaOpcionSpider {
         var btn_picas = (ImageView) ventana.lookup("#btn_picas");
         var btn_dificil = (ImageView) ventana.lookup("#btn_dificil");
 
-        btn_corazones.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.CORAZONES, vistaSolitario, stage));
+        btn_corazones.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.CORAZONES, vistaSolitario, stage, controladorArchivos));
 
-        btn_picas.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.PICAS, vistaSolitario, stage));
+        btn_picas.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.PICAS, vistaSolitario, stage, controladorArchivos));
 
-        btn_treboles.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.TREBOLES, vistaSolitario, stage));
+        btn_treboles.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.TREBOLES, vistaSolitario, stage, controladorArchivos));
 
-        btn_diamantes.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.DIAMANTES, vistaSolitario, stage));
+        btn_diamantes.setOnMouseClicked(new ElegirSpiderFacilEventHandler(Palo.DIAMANTES, vistaSolitario, stage, controladorArchivos));
 
-        btn_dificil.setOnMouseClicked(new ElegirSpiderDificilEventHandler(vistaSolitario, stage));
+        btn_dificil.setOnMouseClicked(new ElegirSpiderDificilEventHandler(vistaSolitario, stage, controladorArchivos));
 
     }
 

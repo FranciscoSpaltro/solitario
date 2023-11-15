@@ -8,10 +8,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ControladorArchivos {
-    static Solitario solitario;
+    private Solitario solitario;
 
     public boolean hayJuegoGuardado() {
         return Persistencia.existeArchivo(Constantes.RUTA_POR_DEFECTO);
+    }
+
+    public void configurarSolitario(Solitario solitario){
+        this.solitario = solitario;
     }
 
     public Solitario abrirJuegoGuardado() {
@@ -26,11 +30,18 @@ public class ControladorArchivos {
         return solitario;
     }
 
-    public static void guardarJuego() {
+    public void guardarJuego() {
         try {
             Persistencia.escribirObjeto(new FileOutputStream(Constantes.RUTA_POR_DEFECTO), solitario);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean hayJuegoIniciado() {
+        return solitario != null;
+    }
+    public void borrarJuegoGuardado() {
+        Persistencia.borrarArchivo(Constantes.RUTA_POR_DEFECTO);
     }
 }

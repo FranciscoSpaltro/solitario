@@ -1,5 +1,6 @@
 package controlador.Handlers;
 
+import controlador.ControladorArchivos;
 import controlador.ControladorKlondike;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -12,17 +13,20 @@ import java.util.ArrayList;
 public class OpcionKlondikeEventHandler implements EventHandler<MouseEvent> {
     private VistaSolitario vistaSolitario;
     private Stage stage;
+    private ControladorArchivos controladorArchivos;
 
-    public OpcionKlondikeEventHandler(VistaSolitario vistaSolitario, Stage stage) {
+    public OpcionKlondikeEventHandler(VistaSolitario vistaSolitario, Stage stage, ControladorArchivos controladorArchivos) {
         this.vistaSolitario = vistaSolitario;
         this.stage = stage;
+        this.controladorArchivos = controladorArchivos;
     }
     @Override
     public void handle(MouseEvent mouseEvent) {
         Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
+        controladorArchivos.configurarSolitario(klondike);
         klondike.inicializarJuego();
 
-        vistaSolitario = new VistaSolitario(stage, klondike);
+        vistaSolitario = new VistaSolitario(stage, klondike, controladorArchivos);
         vistaSolitario.iniciar();
 
         var controladorKlondike = new ControladorKlondike(vistaSolitario, klondike);
