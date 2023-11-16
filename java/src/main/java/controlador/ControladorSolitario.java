@@ -26,7 +26,7 @@ public abstract class ControladorSolitario {
             controladoresCimiento.add(new ControladorCimiento(vistaSolitario, solitario.obtenerCimiento(i), i, datosMovimiento, this));
 
         for(int i = 0; i < Constantes.obtenerCantidadPilasTableau(solitario.obtenerVariante()); i++)
-            controladoresPila.add(new ControladorPila(vistaSolitario, solitario.obtenerPilaDelTableau(i), i, datosMovimiento, this));
+            controladoresPila.add(new ControladorPila(vistaSolitario, solitario.obtenerPilaDelTableau(i), datosMovimiento, this));
 
     }
 
@@ -38,7 +38,7 @@ public abstract class ControladorSolitario {
             root.setStyle("-fx-background-color: green;");
 
             // Crear un mensaje Label
-            Label mensajeLabel = new Label("¡GANASTE!");
+            Label mensajeLabel = new Label(Constantes.MENSAJE_GANADOR + solitario.obtenerPuntos());
             mensajeLabel.setStyle("-fx-font-size: 24; -fx-text-fill: white;");
 
             // Agregar el mensaje Label al StackPane

@@ -2,7 +2,6 @@ package vista;
 
 import controlador.ControladorArchivos;
 import controlador.Handlers.AyudaEventHandler;
-import controlador.Handlers.JuegoIniciadoException;
 import controlador.Handlers.OpcionKlondikeEventHandler;
 import controlador.Handlers.OpcionSpiderEventHandler;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,7 @@ public class VistaInicio {
     Pane ventana;
     ControladorArchivos controladorArchivos;
 
-    public VistaInicio(Stage stage, VistaSolitario vistaSolitario, ControladorArchivos controladorArchivos) throws JuegoIniciadoException, IOException {
+    public VistaInicio(Stage stage, VistaSolitario vistaSolitario, ControladorArchivos controladorArchivos) throws IOException {
         this.stage = stage;
         this.vistaSolitario = vistaSolitario;
         var loader = new FXMLLoader(getClass().getResource("/ventana.fxml"));
@@ -28,7 +27,7 @@ public class VistaInicio {
         armarVentana();
     }
 
-    public void armarVentana() throws JuegoIniciadoException {
+    public void armarVentana() {
         ventana.setStyle("-fx-background-image: url('/fondo_inicio.png'); " +
                 "-fx-background-size: cover; " +
                 "-fx-background-position: center;");

@@ -2,6 +2,7 @@ package controlador;
 
 import javafx.scene.effect.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import modelo.PilaDelTableau;
 import vista.VistaSolitario;
 
@@ -10,13 +11,11 @@ import java.util.ArrayList;
 public class ControladorPila {
     private VistaSolitario vistaSolitario;
     private PilaDelTableau pila;
-    private int id;
     private DatosMovimiento datosMovimiento;
 
-    public ControladorPila(VistaSolitario vistaSolitario, PilaDelTableau pila, int id, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
+    public ControladorPila(VistaSolitario vistaSolitario, PilaDelTableau pila, DatosMovimiento datosMovimiento, ControladorSolitario controladorSolitario) {
         this.vistaSolitario = vistaSolitario;
         this.pila = pila;
-        this.id = id;
         this.datosMovimiento = datosMovimiento;
         actualizar(controladorSolitario);
     }
@@ -28,7 +27,9 @@ public class ControladorPila {
                 // Lógica para "Apretar Pila"
                 int posicionAbsoluta = pila.cantidadCartas() - cartasVisibles.indexOf(imagen);
                 datosMovimiento.clic(pila, posicionAbsoluta);
+
                 controladorSolitario.actualizar();
+
             });
         }
     }

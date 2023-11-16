@@ -27,6 +27,7 @@ public interface Constantes {
     double MARCO = 24;
     double ANCHO_CARTA = 64;
     double ESPACIADO_ENTRE_CARTAS = 20;
+    String MENSAJE_GANADOR = "    ¡Felicitaciones!\nGanaste con un puntaje de: ";
 
     static int obtenerCantidadPilasTableau(Variante variante){
         if(variante == Variante.KLONDIKE)

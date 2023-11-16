@@ -1,5 +1,4 @@
 import controlador.*;
-import controlador.Handlers.JuegoIniciadoException;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -13,18 +12,16 @@ import java.io.IOException;
 public class Main extends Application {
     private ControladorArchivos controladorArchivos = new ControladorArchivos();
 
-
     @Override
     public void start(Stage stage) throws Exception {
         boolean hayJuegoGuardado = controladorArchivos.hayJuegoGuardado();
         VistaSolitario vistaSolitario = null;
         if (!hayJuegoGuardado) {
-            VistaInicio vistaInicio = null;
+            VistaInicio vistaInicio;
             try {
                  vistaInicio = new VistaInicio(stage, vistaSolitario, controladorArchivos);
             } catch (IOException e) {
-                return;
-                // ???
+                throw e;
             }
             vistaInicio.mostrar();
         } else {
