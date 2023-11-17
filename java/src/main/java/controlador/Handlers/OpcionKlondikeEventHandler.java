@@ -22,7 +22,7 @@ public class OpcionKlondikeEventHandler implements EventHandler<MouseEvent> {
     }
     @Override
     public void handle(MouseEvent mouseEvent) {
-        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), true);
+        Klondike klondike = new Klondike(new MovimientoAPilaKlondike(), false);
         controladorArchivos.configurarSolitario(klondike);
         klondike.inicializarJuego();
 

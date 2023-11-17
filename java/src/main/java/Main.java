@@ -1,5 +1,6 @@
 import controlador.*;
 import javafx.application.Application;
+import javafx.fxml.LoadException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
@@ -18,9 +19,10 @@ public class Main extends Application {
         VistaSolitario vistaSolitario = null;
         if (!hayJuegoGuardado) {
             VistaInicio vistaInicio;
+            // Este try/catch lo sacaría porque simplemente burbujea y lo agarra el start y no haces ningun manejo sobre la excepción.
             try {
                  vistaInicio = new VistaInicio(stage, vistaSolitario, controladorArchivos);
-            } catch (IOException e) {
+            } catch (LoadException e) { // Excepción que lanza si no encuentra el archivo
                 throw e;
             }
             vistaInicio.mostrar();

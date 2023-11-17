@@ -82,11 +82,12 @@ public class Klondike extends Solitario {
         }
 
         Carta ultimaCartaPila = pila.extraerUltima();
+        boolean anteUltimaCartaPilaDadaVuelta = pila.verUltima().estaBocaArriba();
 
         try {
             validarMovimientoACimiento(ultimaCartaPila, cimiento);
         } catch (InvalidMovementException e) {
-            if (!pila.estaVacia())  // Si solo quedaba una sola carta, al dar vuelta iba a fallar
+            if (!pila.estaVacia() && !anteUltimaCartaPilaDadaVuelta)  // Si solo quedaba una sola carta, al dar vuelta iba a fallar
                 pila.verUltima().darVuelta();
             pila.agregarCarta(ultimaCartaPila);
             throw e;
@@ -179,7 +180,7 @@ public class Klondike extends Solitario {
         }
 
         // Llegado a este punto, el movimiento es válido
-        Carta ultimaCartaCimiento = cimiento.extraerUltima();
+        Carta ultimaCartaCimiento = cartasAMover.get(0);
         pilaDestino.agregarCarta(ultimaCartaCimiento);
 
         if (puntos > Constantes.PUNTOS_CIMIENTO_A_PILA_KLONDIKE)

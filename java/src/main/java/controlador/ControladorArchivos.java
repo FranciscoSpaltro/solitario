@@ -22,7 +22,7 @@ public class ControladorArchivos {
         try {
             solitario = (Solitario) Persistencia.importarObjeto(new FileInputStream(Constantes.RUTA_POR_DEFECTO));
         } catch (FileNotFoundException | ClassNotFoundException e) {
-            solitario = new Klondike(new MovimientoAPilaKlondike(),true);
+            solitario = new Klondike(new MovimientoAPilaKlondike(),false);
             solitario.inicializarJuego();
         } catch (IOException e) {
             throw new RuntimeException(e);
