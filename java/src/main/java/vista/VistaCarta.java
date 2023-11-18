@@ -89,4 +89,9 @@ public class VistaCarta {
     }
 
 
+    public void resetearControladores() {
+        for (Map.Entry<Carta, ImageView> entry : catalogo.entrySet()) {
+            entry.getValue().setOnMouseClicked(null);
+        }
+    }
 }

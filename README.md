@@ -1,5 +1,14 @@
-# Importante (ETAPA 2)
-La entrega forma parte de la rama MAIN
+Exception in thread "JavaFX Application Thread" java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 0
+at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+at java.base/java.util.Objects.checkIndex(Objects.java:385)
+at java.base/java.util.ArrayList.get(ArrayList.java:427)
+at modelo.ListaDeCartas.verUltima(ListaDeCartas.java:35)
+at modelo.Klondike.moverPilaACimiento(Klondike.java:85)
+at controlador.ControladorKlondike.evaluarMovimiento(ControladorKlondike.java:75)
+at controlador.ControladorKlondike.actualizar(ControladorKlondike.java:19)
+at controlador.ControladorCimiento.lambda$actualizar$0(ControladorCimiento.java:23)
 
 # Trabajo Práctico: modelo.Solitario
 ## (95.02) Algoritmos y Programación III
