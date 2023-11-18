@@ -19,7 +19,7 @@ public class ControladorBasura {
         this.vistaSolitario.obtenerVistaBasura().obtenerUltimaCarta().setOnMouseClicked(event -> {
             // Lógica para "Apretar Basura"
             datosMovimiento.clic(basura,1);
-            //vistaSolitario.obtenerVistaCarta().configurarEfecto(vistaSolitario.obtenerVistaBasura().obtenerUltimaCarta());
+            vistaSolitario.obtenerVistaCarta().configurarEfecto(vistaSolitario.obtenerVistaBasura().obtenerUltimaCarta());
             controladorSolitario.actualizar();
         });
     }

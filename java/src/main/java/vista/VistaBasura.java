@@ -32,6 +32,7 @@ public class VistaBasura extends StackPane {
 
         primeraCarta.setTranslateX(-24);
         this.getChildren().add(primeraCarta);
+        segundaCarta.setTranslateX(0);
         this.getChildren().add(segundaCarta);
         ultimaCarta.setTranslateX(24);
         this.getChildren().add(ultimaCarta);

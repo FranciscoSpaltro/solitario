@@ -24,6 +24,8 @@ public class VistaCimiento extends StackPane {
             this.getChildren().add(new ImageView(vistaCarta.obtenerImagenNoCarta()));
         }
         for (Carta carta : cimiento) {
+            vistaCarta.obtenerImagen(carta).setTranslateY(0);
+            vistaCarta.obtenerImagen(carta).setTranslateX(0);
             this.getChildren().add(vistaCarta.obtenerImagen(carta));
         }
     }

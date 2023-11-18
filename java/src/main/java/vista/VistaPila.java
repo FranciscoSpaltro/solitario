@@ -34,6 +34,7 @@ public class VistaPila extends StackPane {
             int i = 0;
             for (Carta carta : pila) {
                 var imagen = vistaCarta.obtenerImagen(carta);
+                imagen.setTranslateX(0);
                 imagen.setTranslateY(i * Constantes.ESPACIADO_ENTRE_CARTAS);
                 imagenesCartas.add(imagen);
                 i++;

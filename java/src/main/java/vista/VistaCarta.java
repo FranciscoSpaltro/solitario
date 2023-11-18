@@ -17,7 +17,7 @@ public class VistaCarta {
     public VistaCarta(Solitario solitario) {
         // Cargar las imágenes de las cartas y asociarlas con las combinaciones de palo y valor
         for (Carta carta : solitario.obtenerMazo()) {
-            var imagen = new ImageView(new Image(obtenerNombreDeArchivo(carta.verValor(), carta.verPalo())));
+            var imagen = new ImageView(new Image(obtenerNombreDeArchivo(carta)));
             catalogo.put(carta, imagen);
         }
         this.variante = solitario.obtenerVariante();
@@ -26,8 +26,8 @@ public class VistaCarta {
         hayEfectoActivado = false;
     }
 
-    private String obtenerNombreDeArchivo(Valor valor, Palo palo) {
-        return "/cartas/" + valor.toString() + "_" + palo.toString() + ".png";
+    private String obtenerNombreDeArchivo(Carta carta) {
+        return "/cartas/" + carta.verValor().toString() + "_" + carta.verPalo().toString() + ".png";
     }
 
     public Image obtenerImagenFondo() {
@@ -47,7 +47,7 @@ public class VistaCarta {
         else
             return null;
     }
-/*
+
     public void configurarEfecto(ImageView imagen) {
         if (imagen.getImage().equals(vacio) || imagen.getImage().equals(dorso))
             return;
@@ -77,7 +77,6 @@ public class VistaCarta {
         return null;
     }
 
- */
 
     public ImageView obtenerImagen(Carta carta) {
         if (carta == null)
@@ -88,5 +87,6 @@ public class VistaCarta {
 
         return catalogo.get(carta);
     }
+
 
 }
