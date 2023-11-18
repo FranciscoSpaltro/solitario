@@ -12,16 +12,14 @@ import java.util.ArrayList;
 public class VistaPila extends StackPane {
     private PilaDelTableau pila;
     private ArrayList<ImageView> imagenesCartas;
-    private Variante variante;
-    private int id;
+    private VistaCarta vistaCarta;
 
-    public VistaPila(PilaDelTableau pila, int id, Variante variante) {
+    public VistaPila(PilaDelTableau pila, int id, VistaCarta vistaCarta) {
         this.pila = pila;
-        this.id = id;
         setLayoutX(Constantes.MARCO + id * (Constantes.ANCHO_CARTA + Constantes.MARCO));
         setLayoutY(Constantes.POSICION_Y_PILAS);
         imagenesCartas = new ArrayList<>();
-        this.variante = variante;
+        this.vistaCarta = vistaCarta;
         actualizar();
     }
 
@@ -29,13 +27,13 @@ public class VistaPila extends StackPane {
         this.getChildren().clear();
         imagenesCartas = new ArrayList<>();
         if(pila.estaVacia()) {
-            var imagen = new ImageView(VistaCarta.obtenerImagenNoCarta(variante));
+            var imagen = new ImageView(vistaCarta.obtenerImagenNoCarta());
             imagenesCartas.add(imagen);
             this.getChildren().addAll(imagenesCartas);
         } else {
             int i = 0;
             for (Carta carta : pila) {
-                var imagen = new ImageView(VistaCarta.obtenerImagen(carta, variante));
+                var imagen = vistaCarta.obtenerImagen(carta);
                 imagen.setTranslateY(i * Constantes.ESPACIADO_ENTRE_CARTAS);
                 imagenesCartas.add(imagen);
                 i++;

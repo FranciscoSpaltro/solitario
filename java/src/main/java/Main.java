@@ -26,7 +26,7 @@ public class Main extends Application {
                 throw e;
             }
             vistaInicio.mostrar();
-        } else {
+        } /*else {
             Solitario solitario = (Solitario) controladorArchivos.abrirJuegoGuardado();
             vistaSolitario = new VistaSolitario(stage, solitario, controladorArchivos);
             vistaSolitario.iniciar();
@@ -40,7 +40,7 @@ public class Main extends Application {
                 controladorSpider.actualizar();
                 vistaSolitario.iniciar();
             }
-        }
+        }*/
     }
 
 

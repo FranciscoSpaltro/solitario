@@ -24,28 +24,33 @@ public class VistaSolitario {
     private VistaBasura vistaBasura;
     private Pane pane;
     private ControladorArchivos controladorArchivos;
-    public VistaSolitario(Stage stage , Solitario solitario, ControladorArchivos controladorArchivos) {
+    VistaCarta vistaCarta;
+    public VistaSolitario(Stage stage , Solitario solitario, ControladorArchivos controladorArchivos, VistaCarta vistaCarta) {
         this.stage = stage;
         this.vistaPilas = new ArrayList<>();
         for (int i = 0; i < Constantes.obtenerCantidadPilasTableau(solitario.obtenerVariante()); i++) {
-            this.vistaPilas.add(new VistaPila(solitario.obtenerPilaDelTableau(i), i, solitario.obtenerVariante()));
+            this.vistaPilas.add(new VistaPila(solitario.obtenerPilaDelTableau(i), i, vistaCarta));
         }
         this.vistaCimientos = new ArrayList<>();
         for (int i = 0; i < Constantes.obtenerCantidadCimientos(solitario.obtenerVariante()); i++) {
-            var vistaCimiento = new VistaCimiento(solitario.obtenerCimiento(i), i, solitario.obtenerVariante());
+            var vistaCimiento = new VistaCimiento(solitario.obtenerCimiento(i), i, vistaCarta);
             this.vistaCimientos.add(vistaCimiento);
         }
 
-        this.vistaMazo = new VistaMazo(solitario.obtenerMazo(), solitario.obtenerVariante());
+        this.vistaMazo = new VistaMazo(solitario.obtenerMazo(), solitario.obtenerVariante(), vistaCarta);
 
         if (solitario.obtenerVariante() == Variante.KLONDIKE)
-            this.vistaBasura = new VistaBasura(solitario.obtenerBasura(), solitario.obtenerVariante());
+            this.vistaBasura = new VistaBasura(solitario.obtenerBasura(), solitario.obtenerVariante(), vistaCarta);
 
         this.solitario = solitario;
         this.controladorArchivos = controladorArchivos;
         this.controladorArchivos.configurarSolitario(solitario);
+        this.vistaCarta = vistaCarta;
     }
 
+    public VistaCarta obtenerVistaCarta() {
+        return vistaCarta;
+    }
     public Solitario obtenerSolitario() {
         return solitario;
     }

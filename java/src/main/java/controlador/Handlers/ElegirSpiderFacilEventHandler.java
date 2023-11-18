@@ -9,6 +9,7 @@ import modelo.MovimientoACimientoSpiderFacil;
 import modelo.MovimientoAPilaSpiderFacil;
 import modelo.Palo;
 import modelo.Spider;
+import vista.VistaCarta;
 import vista.VistaSolitario;
 
 import java.util.ArrayList;
@@ -31,9 +32,10 @@ public class ElegirSpiderFacilEventHandler implements EventHandler<MouseEvent> {
         palos.add(paloElegido);
         var spider = new Spider(palos, new MovimientoACimientoSpiderFacil(), new MovimientoAPilaSpiderFacil(), false);
         controladorArchivos.configurarSolitario(spider);
+        VistaCarta vistaCarta = new VistaCarta(spider);
         spider.inicializarJuego();
 
-        vistaSolitario = new VistaSolitario(stage, spider, controladorArchivos);
+        vistaSolitario = new VistaSolitario(stage, spider, controladorArchivos, vistaCarta);
         vistaSolitario.iniciar();
 
         var controladorSpider = new ControladorSpider(vistaSolitario, spider);

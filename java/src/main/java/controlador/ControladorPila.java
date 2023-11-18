@@ -28,6 +28,8 @@ public class ControladorPila {
                 int posicionAbsoluta = pila.cantidadCartas() - cartasVisibles.indexOf(imagen);
                 datosMovimiento.clic(pila, posicionAbsoluta);
 
+                //vistaSolitario.obtenerVistaCarta().configurarEfecto(imagen);
+
                 controladorSolitario.actualizar();
 
             });
