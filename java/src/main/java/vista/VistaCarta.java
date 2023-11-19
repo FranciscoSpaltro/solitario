@@ -12,7 +12,7 @@ public class VistaCarta implements Serializable {
     private final Map<Carta, ImageView> catalogo = new HashMap<>();
     private final Image dorso;
     private final Image vacio;
-    private Variante variante;
+    private final Variante variante;
     boolean hayEfectoActivado;
 
     public VistaCarta(Solitario solitario) {
@@ -65,10 +65,14 @@ public class VistaCarta implements Serializable {
         if (imagen.getImage().equals(vacio) || imagen.getImage().equals(dorso))
             return;
         Carta carta = encontrarCarta(imagen);
+
+        if (carta == null) // No debería llegar a acá, debería entrar en el anterior.
+           return;
+
         if (!hayEfectoActivado) {
             hayEfectoActivado = true;
             DropShadow sombra = new DropShadow();
-            sombra.setRadius(100);
+            sombra.setRadius(50);
             catalogo.get(carta).setEffect(sombra);
         } else {
             eliminarEfectos();

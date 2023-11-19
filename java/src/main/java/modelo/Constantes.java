@@ -20,13 +20,13 @@ public interface Constantes {
 
     String RUTA_POR_DEFECTO = "solitario.txt";
     int ANCHO_VENTANA_KLONDIKE = 640;
-    int ALTO_VENTANA_KLONDIKE = 480;
+    int ALTO_VENTANA_KLONDIKE = 680;
     int ANCHO_VENTANA_SPIDER = 904;
     int ALTO_VENTANA_SPIDER = 680;
     double POSICION_Y_PILAS = 167;
     double MARCO = 24;
     double ANCHO_CARTA = 64;
-    double ESPACIADO_ENTRE_CARTAS = 20;
+    double ESPACIADO_ENTRE_CARTAS = 26;
     String MENSAJE_GANADOR = "    ¡Felicitaciones!\nGanaste con un puntaje de: ";
     String RUTA_VISTA_CARTA = "vistaCarta.txt";
 
