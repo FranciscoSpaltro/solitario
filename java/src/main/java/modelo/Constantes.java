@@ -28,6 +28,7 @@ public interface Constantes {
     double ANCHO_CARTA = 64;
     double ESPACIADO_ENTRE_CARTAS = 20;
     String MENSAJE_GANADOR = "    ¡Felicitaciones!\nGanaste con un puntaje de: ";
+    String RUTA_VISTA_CARTA = "vistaCarta.txt";
 
     static int obtenerCantidadPilasTableau(Variante variante){
         if(variante == Variante.KLONDIKE)
@@ -62,5 +63,9 @@ public interface Constantes {
             return ALTO_VENTANA_SPIDER;
         else
             return 0;
+    }
+
+    static boolean tieneBasura(Variante variante) {
+        return variante == Variante.KLONDIKE;
     }
 }

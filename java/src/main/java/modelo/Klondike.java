@@ -82,12 +82,12 @@ public class Klondike extends Solitario {
         }
 
         Carta ultimaCartaPila = pila.extraerUltima();
-        boolean anteUltimaCartaPilaDadaVuelta = pila.verUltima().estaBocaArriba();
 
+        // pila.verUltima().estaBocaArriba() == anteUltimaCartaPilaDadaVuelta;
         try {
             validarMovimientoACimiento(ultimaCartaPila, cimiento);
         } catch (InvalidMovementException e) {
-            if (!pila.estaVacia() && !anteUltimaCartaPilaDadaVuelta)  // Si solo quedaba una sola carta, al dar vuelta iba a fallar
+            if (!pila.estaVacia() && !pila.verUltima().estaBocaArriba())  // Si solo quedaba una sola carta, al dar vuelta iba a fallar
                 pila.verUltima().darVuelta();
             pila.agregarCarta(ultimaCartaPila);
             throw e;

@@ -4,10 +4,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import modelo.*;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VistaCarta {
+public class VistaCarta implements Serializable {
     private final Map<Carta, ImageView> catalogo = new HashMap<>();
     private final Image dorso;
     private final Image vacio;
@@ -21,6 +22,18 @@ public class VistaCarta {
             catalogo.put(carta, imagen);
         }
         this.variante = solitario.obtenerVariante();
+        dorso = obtenerImagenFondo();
+        vacio = obtenerImagenNoCarta();
+        hayEfectoActivado = false;
+    }
+
+    public VistaCarta(Mazo mazo, Variante variante) {
+        // Cargar las imágenes de las cartas y asociarlas con las combinaciones de palo y valor
+        for (Carta carta : mazo) {
+            var imagen = new ImageView(new Image(obtenerNombreDeArchivo(carta)));
+            catalogo.put(carta, imagen);
+        }
+        this.variante = variante;
         dorso = obtenerImagenFondo();
         vacio = obtenerImagenNoCarta();
         hayEfectoActivado = false;

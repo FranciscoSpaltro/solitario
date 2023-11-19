@@ -7,6 +7,7 @@ import modelo.PilaDelTableau;
 import modelo.Variante;
 import modelo.Constantes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class VistaPila extends StackPane {

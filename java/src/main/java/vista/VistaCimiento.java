@@ -6,6 +6,8 @@ import modelo.Carta;
 import modelo.Cimiento;
 import modelo.Variante;
 
+import java.io.Serializable;
+
 public class VistaCimiento extends StackPane {
     private Cimiento cimiento;
     private VistaCarta vistaCarta;

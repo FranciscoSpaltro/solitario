@@ -10,6 +10,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import modelo.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class VistaSolitario {
@@ -37,7 +38,7 @@ public class VistaSolitario {
             this.vistaCimientos.add(vistaCimiento);
         }
 
-        this.vistaMazo = new VistaMazo(solitario.obtenerMazo(), solitario.obtenerVariante(), vistaCarta);
+        this.vistaMazo = new VistaMazo(solitario.obtenerMazo(), vistaCarta);
 
         if (solitario.obtenerVariante() == Variante.KLONDIKE)
             this.vistaBasura = new VistaBasura(solitario.obtenerBasura(), solitario.obtenerVariante(), vistaCarta);

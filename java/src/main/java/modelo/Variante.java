@@ -1,6 +1,8 @@
 package modelo;
 
-public enum Variante {
+import java.io.Serializable;
+
+public enum Variante implements Serializable {
     KLONDIKE,
     SPIDER
 

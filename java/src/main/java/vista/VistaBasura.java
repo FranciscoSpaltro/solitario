@@ -6,6 +6,7 @@ import modelo.Basura;
 import modelo.Carta;
 import modelo.Variante;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class VistaBasura extends StackPane {
