@@ -93,10 +93,6 @@ public class Spider extends Solitario{
 
     @Override
     public void moverPilaACimiento(PilaDelTableau pila, Cimiento cimiento) throws InvalidMovementException {
-        if (cimiento.estaVacia()){
-            throw new InvalidMovementException(ErrorAlMover.CIMIENTO_VACIO_NO_SACAR_CARTA);
-        }
-
         movimientoACimiento.validarMovimientoACimiento(pila, cimiento); // Si pasa algo, lanza la excepción
 
         for (int i = 0; i < Constantes.CANTIDAD_CARTAS_POR_PALO; i++) {

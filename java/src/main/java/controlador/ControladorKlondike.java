@@ -18,6 +18,7 @@ public class ControladorKlondike extends ControladorSolitario {
     public void actualizar(){
         evaluarMovimiento();
         evaluarGanador();
+        vistaSolitario.obtenerVistaCarta().resetearControladores();
         vistaSolitario.actualizar();
         controladorMazo.iniciar(this);
         controladorBasura.actualizar(this);
@@ -30,6 +31,9 @@ public class ControladorKlondike extends ControladorSolitario {
     public static void evaluarMovimiento() {
         if (!datosMovimiento.realizarMovimiento())
             return;
+        else {
+            vistaSolitario.obtenerVistaCarta().eliminarEfectos();
+        }
         if (datosMovimiento.esBasura(datosMovimiento.obtenerListaOrigen())) {
             if (datosMovimiento.esCimiento(datosMovimiento.obtenerListaDestino())) {
                 // Lógica para "Mover de Basura a Cimiento"

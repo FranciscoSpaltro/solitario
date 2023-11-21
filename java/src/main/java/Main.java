@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import modelo.*;
+import vista.VistaCarta;
 import vista.VistaInicio;
 import vista.VistaSolitario;
 
@@ -28,7 +29,8 @@ public class Main extends Application {
             vistaInicio.mostrar();
         } else {
             Solitario solitario = (Solitario) controladorArchivos.abrirJuegoGuardado();
-            vistaSolitario = new VistaSolitario(stage, solitario, controladorArchivos);
+            VistaCarta vistaCarta = controladorArchivos.crearVistaCarta(solitario);
+            vistaSolitario = new VistaSolitario(stage, solitario, controladorArchivos, vistaCarta);
             vistaSolitario.iniciar();
 
             if(solitario.obtenerVariante() == Variante.KLONDIKE){

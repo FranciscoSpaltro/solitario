@@ -19,6 +19,7 @@ public class ControladorCimiento {
         this.vistaSolitario.obtenerVistaCimiento(id).setOnMouseClicked(event -> {
             // Lógica para "Apretar Cimiento"
             datosMovimiento.clic(cimiento, 1);
+            vistaSolitario.obtenerVistaCarta().configurarEfecto(vistaSolitario.obtenerVistaCimiento(id).obtenerUltimaCarta());
             controladorSolitario.actualizar();
         });
     }

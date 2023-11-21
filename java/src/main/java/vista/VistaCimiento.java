@@ -6,27 +6,29 @@ import modelo.Carta;
 import modelo.Cimiento;
 import modelo.Variante;
 
+import java.io.Serializable;
+
 public class VistaCimiento extends StackPane {
     private Cimiento cimiento;
-    private int id;
-    private Variante variante;
+    private VistaCarta vistaCarta;
 
-    public VistaCimiento(Cimiento cimiento, int id, Variante variante){
+    public VistaCimiento(Cimiento cimiento, int id, VistaCarta vistaCarta){
         this.cimiento = cimiento;
-        this.id = id;
         setLayoutX(288 + id * 88);
         setLayoutY(49);
-        this.variante = variante;
+        this.vistaCarta = vistaCarta;
         actualizar();
     }
 
     public void actualizar(){
         this.getChildren().clear();
         if (cimiento.estaVacia()) {
-            this.getChildren().add(new ImageView(VistaCarta.obtenerImagenNoCarta(variante)));
+            this.getChildren().add(new ImageView(vistaCarta.obtenerImagenNoCarta()));
         }
         for (Carta carta : cimiento) {
-            this.getChildren().add(new ImageView(VistaCarta.obtenerImagen(carta, variante)));
+            vistaCarta.obtenerImagen(carta).setTranslateY(0);
+            vistaCarta.obtenerImagen(carta).setTranslateX(0);
+            this.getChildren().add(vistaCarta.obtenerImagen(carta));
         }
     }
 

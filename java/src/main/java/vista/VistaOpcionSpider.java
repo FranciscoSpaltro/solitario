@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import modelo.*;
 
+import java.io.Serializable;
+
 public class VistaOpcionSpider {
     Stage stage;
     VistaSolitario vistaSolitario;
