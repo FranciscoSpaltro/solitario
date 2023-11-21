@@ -62,11 +62,9 @@ public class VistaCarta implements Serializable {
     }
 
     public void configurarEfecto(ImageView imagen) {
-        if (imagen.getImage().equals(vacio) || imagen.getImage().equals(dorso))
-            return;
         Carta carta = encontrarCarta(imagen);
 
-        if (carta == null) // No debería llegar a acá, debería entrar en el anterior.
+        if (carta == null) // Fondo vacío o dorso de carta
            return;
 
         if (!hayEfectoActivado) {

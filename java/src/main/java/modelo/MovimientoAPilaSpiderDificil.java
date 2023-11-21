@@ -7,26 +7,31 @@ public class MovimientoAPilaSpiderDificil implements IMovimientoAPilaStrategy, S
     @Override
     public void validarMovimientoAPila(ArrayList<Carta> cartasAMover, PilaDelTableau pilaDestino) throws InvalidMovementException {
         Carta primeraCartaAMover = cartasAMover.get(0);
-
-        if (!primeraCartaAMover.estaBocaArriba())
-            throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
-
-        for(Carta carta : cartasAMover)
-            if (carta.verPalo() != primeraCartaAMover.verPalo())
-                throw new InvalidMovementException(ErrorAlMover.CARTAS_A_MOVER_DISTINTO_PALO);
-
-        if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
-            throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_REY);
+        Carta ultimaCartaDestino;
+        Valor valorUltimaCartaDestino;
 
         if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() == Valor.REY)
             return;
 
-        Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
+        if (pilaDestino.estaVacia() && primeraCartaAMover.verValor() != Valor.REY)
+            throw new InvalidMovementException(ErrorAlMover.PILA_VACIA_NO_REY);
 
-        Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
-
+        // pilaDestino no está vacía
+        ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
+        valorUltimaCartaDestino = ultimaCartaDestino.verValor();
         if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
 
+        if (!primeraCartaAMover.estaBocaArriba())
+            throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
+
+        for (int i = 0; i < cartasAMover.size() - 1; i++) {
+            if (cartasAMover.get(i).verValor().ordinal() != cartasAMover.get(i + 1).verValor().ordinal() + 1)
+                throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
+            if (cartasAMover.get(i).verPalo() != primeraCartaAMover.verPalo())
+                throw new InvalidMovementException(ErrorAlMover.CARTAS_A_MOVER_DISTINTO_PALO);
+        }
+        if (cartasAMover.get(cartasAMover.size() - 1).verPalo() != primeraCartaAMover.verPalo())
+            throw new InvalidMovementException(ErrorAlMover.CARTAS_A_MOVER_DISTINTO_PALO);
     }
 }

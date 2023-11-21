@@ -18,8 +18,8 @@ public class VistaAlerta {
     private static String obtenerMensaje(ErrorAlMover error) {
         switch (error) {
             case PILA_VACIA_NO_REY : return "A una pila vacía solo puede moverse un rey";
-            case ORDEN_NO_DESCENDENTE : return "Las cartas en la pila deben colocarse en orden descendente";
-            case ORDEN_NO_ASCENDENTE : return "Las cartas en el cimiento deben colocarse en orden ascendente";
+            case ORDEN_NO_DESCENDENTE : return "Las cartas en la pila deben colocarse en orden descendente y continuo";
+            case ORDEN_NO_ASCENDENTE : return "Las cartas en el cimiento deben colocarse en orden ascendente y continuo";
             case CIMIENTO_VACIO_NO_AS : return "Los cimientos comienzan con un AS";
             case PILA_CARTAS_MISMO_COLOR : return "En esta versión del solitario, los colores de las cartas en la pila deben colocarse de forma intercalada";
             case CARTA_A_MOVER_NO_BOCA_ARRIBA : return "Para mover una carta, debe estar boca arriba";
