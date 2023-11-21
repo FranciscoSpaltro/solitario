@@ -1,8 +1,8 @@
 # Trabajo Práctico: Solitario
 ## (95.02) Algoritmos y Programación III
 
-## Mejoras a implementar
-- Realizar las vistas de inicio puramente en código para facilitar la escalabilidad
+## INFORMACIÓN ETAPA 3
+> Consultar PDF "Etapa 3"
 
 ## Integrantes
 | Alumno | Padrón | Correo | Usuario Github |
