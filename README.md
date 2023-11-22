@@ -26,7 +26,7 @@
      throw e; 
   ```
 - [ ]  Líneas 36-43 de Main hay DRY
-  ``` 
+    ``` 
   if(solitario.obtenerVariante() == Variante.KLONDIKE){ 
      var controladorKlondike = new ControladorKlondike(vistaSolitario, (Klondike) solitario); 
      controladorKlondike.actualizar(); 
@@ -35,7 +35,7 @@
      var controladorSpider = new ControladorSpider(vistaSolitario, (Spider) solitario); 
      controladorSpider.actualizar(); 
      vistaSolitario.iniciar(); 
-  ```
+    ```
 - [x] Línea 18 de Vista Alerta tal vez debería ser responsabilidad de ErrorAlMover (dado un ErrorAlMover error, invocar al método error.obtenerMensaje())
     ```
     private static String obtenerMensaje(ErrorAlMover error) { 
