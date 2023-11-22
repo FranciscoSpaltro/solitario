@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import modelo.*;
+import vista.VistaGanador;
 import vista.VistaSolitario;
 
 import java.util.ArrayList;
@@ -34,32 +35,9 @@ public abstract class ControladorSolitario {
     public abstract void actualizar();
     protected static void evaluarGanador() {
         if (solitario.jugadorGano()) {
-            StackPane root = new StackPane();
-            // Configurar el fondo en verde
-            root.setStyle("-fx-background-color: green;");
-
-            // Crear un mensaje Label
-            Label mensajeGanador = new Label(Constantes.MENSAJE_GANADOR);
-            mensajeGanador.setStyle("-fx-font-size: 24; -fx-text-fill: white;");
-            mensajeGanador.setTranslateY(-50);
-
-            Label mensajePuntos = new Label(Constantes.MENSAJE_GANADOR_PUNTOS + solitario.obtenerPuntos());
-            mensajePuntos.setStyle("-fx-font-size: 24; -fx-text-fill: white;");
-            mensajePuntos.setTranslateY(0);
-
-            // Agregar el mensaje Label al StackPane
-            root.getChildren().addAll(mensajeGanador, mensajePuntos);
-
-            Button boton = new Button("Salir");
-            boton.setOnAction(e -> System.exit(0));
-            boton.setTranslateY(100);
-            root.getChildren().add(boton);
-
-            // Crear la escena
-            Scene scene = new Scene(root, 640, 480, Color.GREEN);
-
+            var vistaGanador = new VistaGanador(solitario.obtenerPuntos());
             // Configurar la escena en el stage
-            vistaSolitario.configurarNuevaStage(scene);
+            vistaSolitario.configurarNuevaStage(vistaGanador.obtenerScene());
         }
     }
 }

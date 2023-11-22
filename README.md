@@ -27,11 +27,11 @@
   ```
 - [ ]  Líneas 36-43 de Main hay DRY
   ``` 
- if(solitario.obtenerVariante() == Variante.KLONDIKE){ 
+  if(solitario.obtenerVariante() == Variante.KLONDIKE){ 
      var controladorKlondike = new ControladorKlondike(vistaSolitario, (Klondike) solitario); 
      controladorKlondike.actualizar(); 
      vistaSolitario.iniciar(); 
- } else { 
+  } else { 
      var controladorSpider = new ControladorSpider(vistaSolitario, (Spider) solitario); 
      controladorSpider.actualizar(); 
      vistaSolitario.iniciar(); 
@@ -56,10 +56,11 @@
     ```
      if (datosMovimiento.esBasura(datosMovimiento.obtenerListaOrigen())) {
   ```
-- Línea 42 de ControladorSolitario, todo lo que tenga que ver con el estilo visual le corresponde a la vista
+- [x] Línea 42 de ControladorSolitario, todo lo que tenga que ver con el estilo visual le corresponde a la vista
     ```
    mensajeLabel.setStyle("-fx-font-size: 24; -fx-text-fill: white;");
   ```
+  > Cree VistaGanador (faltaría ver si la acción del botón se define ahí o en un controlador)
 
 ## Integrantes
 | Alumno | Padrón | Correo | Usuario Github |
