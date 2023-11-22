@@ -60,7 +60,6 @@ public class VistaSolitario {
         this.armarMenu();
         this.armarVentana();
         stage.setResizable(false);
-        centrarVentana(stage);
         stage.show();
     }
 
@@ -115,7 +114,6 @@ public class VistaSolitario {
         pane.getChildren().addAll(vistaPilas);
         pane.getChildren().addAll(vistaCimientos);
         stage.setScene(scene);
-        centrarVentana(stage);
         stage.show();
     }
 
@@ -164,7 +162,6 @@ public class VistaSolitario {
     public void configurarNuevaStage(Scene nuevaScene){
         scene = nuevaScene;
         stage.setScene(nuevaScene);
-        centrarVentana(stage);
         stage.show();
     }
 
@@ -186,6 +183,7 @@ public class VistaSolitario {
         return stage;
     }
 
+    /*
     public static void centrarVentana(Stage stage) {
         // Obtener la pantalla actual
         Screen screen = Screen.getPrimary();
@@ -199,4 +197,5 @@ public class VistaSolitario {
         stage.setX(centerX);
         stage.setY(centerY);
     }
+    */
 }

@@ -87,7 +87,7 @@ public class Klondike extends Solitario {
         try {
             validarMovimientoACimiento(ultimaCartaPila, cimiento);
         } catch (InvalidMovementException e) {
-            if (!pila.estaVacia() && !pila.verUltima().estaBocaArriba())  // Si solo quedaba una sola carta, al dar vuelta iba a fallar
+            if (!pila.estaVacia() && pila.verUltima().estaBocaArriba())  // Si solo quedaba una sola carta, al dar vuelta iba a fallar
                 pila.verUltima().darVuelta();
             pila.agregarCarta(ultimaCartaPila);
             throw e;

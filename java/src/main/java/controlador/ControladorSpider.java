@@ -28,8 +28,6 @@ public class ControladorSpider extends ControladorSolitario {
     public static void evaluarMovimiento() {
         if (!datosMovimiento.realizarMovimiento())
             return;
-        else
-            vistaSolitario.obtenerVistaCarta().eliminarEfectos();
         if (datosMovimiento.esPila(datosMovimiento.obtenerListaOrigen())) {
             if (datosMovimiento.esPila(datosMovimiento.obtenerListaDestino())) {
                 // Lógica para "Mover de Pila a Pila"
@@ -53,6 +51,6 @@ public class ControladorSpider extends ControladorSolitario {
                 datosMovimiento.resetear();
             }
         }
-
+        vistaSolitario.obtenerVistaCarta().eliminarEfectos();
     }
 }

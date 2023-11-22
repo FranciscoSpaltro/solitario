@@ -49,7 +49,6 @@ public class VistaInicio {
         stage.setScene(scene);
         stage.setTitle("Nuevo juego");
         stage.setResizable(false);
-        //VistaSolitario.centrarVentana(stage);
         stage.show();
     }
 }

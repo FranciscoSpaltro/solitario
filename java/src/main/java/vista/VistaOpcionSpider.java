@@ -54,7 +54,6 @@ public class VistaOpcionSpider {
         var scene = new Scene(ventana, 400, 400);
         stage.setScene(scene);
         stage.setTitle("Spider");
-        VistaSolitario.centrarVentana(stage);
         stage.show();
     }
 }

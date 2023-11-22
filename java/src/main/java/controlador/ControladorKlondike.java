@@ -31,9 +31,6 @@ public class ControladorKlondike extends ControladorSolitario {
     public static void evaluarMovimiento() {
         if (!datosMovimiento.realizarMovimiento())
             return;
-        else {
-            vistaSolitario.obtenerVistaCarta().eliminarEfectos();
-        }
         if (datosMovimiento.esBasura(datosMovimiento.obtenerListaOrigen())) {
             if (datosMovimiento.esCimiento(datosMovimiento.obtenerListaDestino())) {
                 // Lógica para "Mover de Basura a Cimiento"
@@ -81,6 +78,6 @@ public class ControladorKlondike extends ControladorSolitario {
         } else {
             datosMovimiento.resetear();
         }
-
+        vistaSolitario.obtenerVistaCarta().eliminarEfectos();
     }
 }

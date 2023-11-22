@@ -14,6 +14,8 @@ public class VistaCarta implements Serializable {
     private final Image vacio;
     private final Variante variante;
     boolean hayEfectoActivado;
+    private final DropShadow efecto = new DropShadow();
+    private Carta ultimaCartaSeleccionada;
 
     public VistaCarta(Solitario solitario) {
         // Cargar las imágenes de las cartas y asociarlas con las combinaciones de palo y valor
@@ -25,6 +27,8 @@ public class VistaCarta implements Serializable {
         dorso = obtenerImagenFondo();
         vacio = obtenerImagenNoCarta();
         hayEfectoActivado = false;
+        efecto.setRadius(50);
+        ultimaCartaSeleccionada = null;
     }
 
     public VistaCarta(Mazo mazo, Variante variante) {
@@ -64,17 +68,24 @@ public class VistaCarta implements Serializable {
     public void configurarEfecto(ImageView imagen) {
         Carta carta = encontrarCarta(imagen);
 
+        if (carta == ultimaCartaSeleccionada) {
+            eliminarEfectos();
+            hayEfectoActivado = false;
+            ultimaCartaSeleccionada = null;
+            return;
+        }
+
+        ultimaCartaSeleccionada = carta;
         if (carta == null) // Fondo vacío o dorso de carta
            return;
 
         if (!hayEfectoActivado) {
             hayEfectoActivado = true;
-            DropShadow sombra = new DropShadow();
-            sombra.setRadius(50);
-            catalogo.get(carta).setEffect(sombra);
+            catalogo.get(carta).setEffect(efecto);
         } else {
             eliminarEfectos();
             hayEfectoActivado = false;
+            catalogo.get(carta).setEffect(efecto);
         }
     }
 

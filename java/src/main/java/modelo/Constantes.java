@@ -18,7 +18,7 @@ public interface Constantes {
     int CANTIDAD_CARTAS_OCULTAS_INICIAL_TABLEAU_GRUPO_1_SPIDER = 5;
     int CANTIDAD_PILAS_TABLEAU_GRUPO_1_SPIDER = 4;
 
-    String RUTA_POR_DEFECTO = "solitario.txt";
+    String RUTA_POR_DEFECTO = "solitario.bin";
     int ANCHO_VENTANA_KLONDIKE = 640;
     int ALTO_VENTANA_KLONDIKE = 680;
     int ANCHO_VENTANA_SPIDER = 904;
@@ -27,8 +27,8 @@ public interface Constantes {
     double MARCO = 24;
     double ANCHO_CARTA = 64;
     double ESPACIADO_ENTRE_CARTAS = 26;
-    String MENSAJE_GANADOR = "    ¡Felicitaciones!\nGanaste con un puntaje de: ";
-    String RUTA_VISTA_CARTA = "vistaCarta.txt";
+    String MENSAJE_GANADOR = "¡Felicitaciones! ¡Ganaste el juego!";
+    String MENSAJE_GANADOR_PUNTOS = "Tu puntaje final es de: ";
 
     static int obtenerCantidadPilasTableau(Variante variante){
         if(variante == Variante.KLONDIKE)
