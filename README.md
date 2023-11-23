@@ -20,7 +20,7 @@
   > Agregué el botón en ControladorSolitario
 - [x] solitario.txt es binario, no corresponde el txt
   > Se modificó la extensión a .bin
-- [ ] Lineas 26-27 de Main, no hace falta el try/catch (relanza la excepción)
+- [x] Lineas 26-27 de Main, no hace falta el try/catch (relanza la excepción)
    ``` 
   } catch (LoadException e) { // Excepción que lanza si no encuentra el archivo 
      throw e; 
@@ -41,7 +41,7 @@
     private static String obtenerMensaje(ErrorAlMover error) { 
     ```
   > Ahora el mensaje lo devuelve la función static de ErrorAlMover
-- [ ] Línea 56 de VistaCarta, ese if y el de abajo son pocos escalables cuando haya N solitarios. Uno de los requisitos es que al agregar un solitario no sea necesario modificar las clases "comunes"
+- [x] Línea 56 de VistaCarta, ese if y el de abajo son pocos escalables cuando haya N solitarios. Uno de los requisitos es que al agregar un solitario no sea necesario modificar las clases "comunes"
     ```
     if (variante == Variante.KLONDIKE)
     ```

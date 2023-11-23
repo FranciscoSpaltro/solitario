@@ -48,21 +48,11 @@ public class VistaCarta implements Serializable {
     }
 
     public Image obtenerImagenFondo() {
-        if (variante == Variante.KLONDIKE)
-            return new Image("/cartas/bkg_klondike.png");
-        else if (variante == Variante.SPIDER)
-            return new Image("/cartas/bkg_spider.png");
-        else
-            return null;
+        return new Image ("/cartas/bkg_" + variante.toString().toLowerCase() + ".png");
     }
 
     public Image obtenerImagenNoCarta() {
-        if (variante == Variante.KLONDIKE)
-            return new Image("/cartas/vacio_klondike.png");
-        else if (variante == Variante.SPIDER)
-            return new Image("/cartas/vacio_spider.png");
-        else
-            return null;
+        return new Image ("/cartas/vacio_" + variante.toString().toLowerCase() + ".png");
     }
 
     public void configurarEfecto(ImageView imagen) {

@@ -20,12 +20,7 @@ public class Main extends Application {
         VistaSolitario vistaSolitario = null;
         if (!hayJuegoGuardado) {
             VistaInicio vistaInicio;
-            // Este try/catch lo sacaría porque simplemente burbujea y lo agarra el start y no haces ningun manejo sobre la excepción.
-            try {
-                 vistaInicio = new VistaInicio(stage, vistaSolitario, controladorArchivos);
-            } catch (LoadException e) { // Excepción que lanza si no encuentra el archivo
-                throw e;
-            }
+            vistaInicio = new VistaInicio(stage, vistaSolitario, controladorArchivos);
             vistaInicio.mostrar();
         } else {
             Solitario solitario = (Solitario) controladorArchivos.abrirJuegoGuardado();
@@ -33,15 +28,14 @@ public class Main extends Application {
             vistaSolitario = new VistaSolitario(stage, solitario, controladorArchivos, vistaCarta);
             vistaSolitario.iniciar();
 
+            ControladorSolitario controladorSolitario;
             if(solitario.obtenerVariante() == Variante.KLONDIKE){
-                var controladorKlondike = new ControladorKlondike(vistaSolitario, (Klondike) solitario);
-                controladorKlondike.actualizar();
-                vistaSolitario.iniciar();
+                controladorSolitario = new ControladorKlondike(vistaSolitario, (Klondike) solitario);
             } else {
-                var controladorSpider = new ControladorSpider(vistaSolitario, (Spider) solitario);
-                controladorSpider.actualizar();
-                vistaSolitario.iniciar();
+                controladorSolitario = new ControladorSpider(vistaSolitario, (Spider) solitario);
             }
+            controladorSolitario.actualizar();
+            vistaSolitario.iniciar();
         }
     }
 
