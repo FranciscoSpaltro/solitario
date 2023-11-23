@@ -15,14 +15,16 @@ public class MovimientoAPilaKlondike implements IMovimientoAPilaStrategy, Serial
             return;
 
         Carta ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
+        Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
+
+        if (valorUltimaCartaDestino == Valor.AS)
+            throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
 
         if (!primeraCartaAMover.estaBocaArriba())
             throw new InvalidMovementException(ErrorAlMover.CARTA_A_MOVER_NO_BOCA_ARRIBA);
 
         if(primeraCartaAMover.verPalo().mismoColor(ultimaCartaDestino.verPalo()))
             throw new InvalidMovementException(ErrorAlMover.PILA_CARTAS_MISMO_COLOR);
-
-        Valor valorUltimaCartaDestino = ultimaCartaDestino.verValor();
 
         if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);

@@ -25,7 +25,7 @@
   } catch (LoadException e) { // Excepción que lanza si no encuentra el archivo 
      throw e; 
   ```
-- [ ]  Líneas 36-43 de Main hay DRY
+- [x]  Líneas 36-43 de Main hay DRY
     ``` 
   if(solitario.obtenerVariante() == Variante.KLONDIKE){ 
      var controladorKlondike = new ControladorKlondike(vistaSolitario, (Klondike) solitario); 

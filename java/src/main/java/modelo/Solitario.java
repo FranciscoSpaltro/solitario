@@ -90,4 +90,8 @@ public abstract class Solitario implements Serializable {
             throw new InvalidMovementException(ErrorAlMover.ERROR_DE_PROGRAMA);
         }
     }
+
+    public boolean tieneBasura() {
+        return false;
+    }
 }

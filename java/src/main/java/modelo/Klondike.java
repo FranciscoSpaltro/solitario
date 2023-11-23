@@ -207,4 +207,9 @@ public class Klondike extends Solitario {
         if (cartaAMover.verValor() != Valor.values()[valorUltimaCartaCimiento.ordinal() + 1])
             throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_ASCENDENTE);
     }
+
+    @Override
+    public boolean tieneBasura() {
+        return true;
+    }
 }

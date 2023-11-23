@@ -40,7 +40,7 @@ public class VistaSolitario {
 
         this.vistaMazo = new VistaMazo(solitario.obtenerMazo(), vistaCarta);
 
-        if (solitario.obtenerVariante() == Variante.KLONDIKE)
+        if (solitario.tieneBasura())
             this.vistaBasura = new VistaBasura(solitario.obtenerBasura(), solitario.obtenerVariante(), vistaCarta);
 
         this.solitario = solitario;
@@ -83,7 +83,7 @@ public class VistaSolitario {
 
         pane.getChildren().add(vistaMazo);
 
-        if(solitario.obtenerVariante() == Variante.KLONDIKE)
+        if(solitario.tieneBasura())
             pane.getChildren().add(vistaBasura);
 
         pane.getChildren().addAll(vistaPilas);
@@ -97,7 +97,7 @@ public class VistaSolitario {
     public void actualizar(){
         pane.getChildren().clear();
         vistaMazo.actualizar();
-        if (solitario.obtenerVariante() == Variante.KLONDIKE)
+        if (solitario.tieneBasura())
             vistaBasura.actualizar();
         for (VistaCimiento vistaCimiento : vistaCimientos)
             vistaCimiento.actualizar();
@@ -109,7 +109,7 @@ public class VistaSolitario {
         puntajeLabel.setFont(new Font("Arial", 15));
         pane.getChildren().addAll(menuPane, puntajeLabel);
         pane.getChildren().add(vistaMazo);
-        if (solitario.obtenerVariante() == Variante.KLONDIKE)
+        if (solitario.tieneBasura())
             pane.getChildren().add(vistaBasura);
         pane.getChildren().addAll(vistaPilas);
         pane.getChildren().addAll(vistaCimientos);
@@ -151,13 +151,6 @@ public class VistaSolitario {
         menuPane.getChildren().addAll(nuevoJuegoButton, contactanosButton);
     }
 
-    public Button obtenerNuevoJuegoItem() {
-        return (Button) menuPane.getChildren().get(0);
-    }
-
-    public Button obtenerContactanosItem() {
-        return (Button) menuPane.getChildren().get(1);
-    }
 
     public void configurarNuevaStage(Scene nuevaScene){
         scene = nuevaScene;
@@ -179,23 +172,4 @@ public class VistaSolitario {
         return this.vistaPilas.get(i);
     }
 
-    public Stage obtenerStage() {
-        return stage;
-    }
-
-    /*
-    public static void centrarVentana(Stage stage) {
-        // Obtener la pantalla actual
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-
-        // Calcular las coordenadas para centrar la ventana
-        double centerX = bounds.getMinX() + (bounds.getWidth() - stage.getWidth()) / 2;
-        double centerY = bounds.getMinY() + (bounds.getHeight() - stage.getHeight()) / 2;
-
-        // Establecer las coordenadas de la ventana
-        stage.setX(centerX);
-        stage.setY(centerY);
-    }
-    */
 }

@@ -10,10 +10,11 @@ public class MovimientoAPilaSpiderFacil implements IMovimientoAPilaStrategy, Ser
         Carta ultimaCartaDestino;
         Valor valorUltimaCartaDestino;
 
+
         if (!pilaDestino.estaVacia()) {
             ultimaCartaDestino = pilaDestino.obtenerCarta(pilaDestino.cantidadCartas() - 1);
             valorUltimaCartaDestino = ultimaCartaDestino.verValor();
-            if (primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
+            if (valorUltimaCartaDestino == Valor.AS || primeraCartaAMover.verValor() != Valor.values()[valorUltimaCartaDestino.ordinal() - 1])
                 throw new InvalidMovementException(ErrorAlMover.ORDEN_NO_DESCENDENTE);
         }
 

@@ -110,4 +110,6 @@ public class VistaCarta implements Serializable {
             entry.getValue().setOnMouseClicked(null);
         }
     }
+
+
 }
