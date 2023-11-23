@@ -1,12 +1,7 @@
 package controlador;
 
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import modelo.*;
+import vista.VistaAlerta;
 import vista.VistaGanador;
 import vista.VistaSolitario;
 
@@ -32,7 +27,46 @@ public abstract class ControladorSolitario {
             controladoresPila.add(new ControladorPila(vistaSolitario, solitario.obtenerPilaDelTableau(i), datosMovimiento, this));
     }
 
-    public abstract void actualizar();
+    public void actualizar(){
+        evaluarMovimiento();
+        evaluarGanador();
+        vistaSolitario.obtenerVistaCarta().resetearControladores();
+        vistaSolitario.actualizar();
+        controladorMazo.iniciar(this);
+        for(ControladorCimiento controladorCimiento : controladoresCimiento)
+            controladorCimiento.actualizar(this);
+        for(ControladorPila controladorPila : controladoresPila)
+            controladorPila.actualizar(this);
+    }
+
+    public void evaluarMovimiento() {
+        if (!datosMovimiento.realizarMovimiento())
+            return;
+        else if (datosMovimiento.esPila(datosMovimiento.obtenerListaOrigen())) {
+            if (datosMovimiento.esPila(datosMovimiento.obtenerListaDestino())) {
+                // Lógica para "Mover de Pila a Pila"
+                try {
+                    solitario.moverPilaAPila((PilaDelTableau) datosMovimiento.obtenerListaOrigen(), (PilaDelTableau) datosMovimiento.obtenerListaDestino(), datosMovimiento.obtenerListaOrigen().cantidadCartas() - datosMovimiento.obtenerIndiceOrigen() + 1);
+                    datosMovimiento.resetear();
+                } catch (InvalidMovementException e) {
+                    VistaAlerta.mostrarAlerta(e);
+                }
+            } else if (datosMovimiento.esCimiento(datosMovimiento.obtenerListaDestino())) {
+                // Lógica para "Mover de Pila a Cimiento"
+                if (datosMovimiento.obtenerIndiceOrigen() == datosMovimiento.obtenerListaOrigen().cantidadCartas()) {
+                    try {
+                        solitario.moverPilaACimiento((PilaDelTableau) datosMovimiento.obtenerListaOrigen(), (Cimiento) datosMovimiento.obtenerListaDestino());
+                    } catch (InvalidMovementException e) {
+                        VistaAlerta.mostrarAlerta(e);
+                    }
+                }
+            }
+        } else {
+            datosMovimiento.resetear();
+        }
+        vistaSolitario.obtenerVistaCarta().eliminarEfectos();
+    }
+
     protected static void evaluarGanador() {
         if (solitario.jugadorGano()) {
             var vistaGanador = new VistaGanador(solitario.obtenerPuntos());

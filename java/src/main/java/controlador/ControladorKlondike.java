@@ -16,19 +16,12 @@ public class ControladorKlondike extends ControladorSolitario {
 
     @Override
     public void actualizar(){
-        evaluarMovimiento();
-        evaluarGanador();
-        vistaSolitario.obtenerVistaCarta().resetearControladores();
-        vistaSolitario.actualizar();
-        controladorMazo.iniciar(this);
+        super.actualizar();
         controladorBasura.actualizar(this);
-        for(ControladorCimiento controladorCimiento : controladoresCimiento)
-            controladorCimiento.actualizar(this);
-        for(ControladorPila controladorPila : controladoresPila)
-            controladorPila.actualizar(this);
     }
 
-    public static void evaluarMovimiento() {
+    @Override
+    public void evaluarMovimiento() {
         if (!datosMovimiento.realizarMovimiento())
             return;
         if (datosMovimiento.esBasura(datosMovimiento.obtenerListaOrigen())) {
@@ -56,28 +49,7 @@ public class ControladorKlondike extends ControladorSolitario {
                     VistaAlerta.mostrarAlerta(e);
                 }
             }
-        } else if (datosMovimiento.esPila(datosMovimiento.obtenerListaOrigen())) {
-            if (datosMovimiento.esPila(datosMovimiento.obtenerListaDestino())) {
-                // Lógica para "Mover de Pila a Pila"
-                try {
-                    klondike.moverPilaAPila((PilaDelTableau) datosMovimiento.obtenerListaOrigen(), (PilaDelTableau) datosMovimiento.obtenerListaDestino(), datosMovimiento.obtenerListaOrigen().cantidadCartas() - datosMovimiento.obtenerIndiceOrigen() + 1);
-                    datosMovimiento.resetear();
-                } catch (InvalidMovementException e) {
-                    VistaAlerta.mostrarAlerta(e);
-                }
-            } else if (datosMovimiento.esCimiento(datosMovimiento.obtenerListaDestino())) {
-                // Lógica para "Mover de Pila a Cimiento"
-                if (datosMovimiento.obtenerIndiceOrigen() == datosMovimiento.obtenerListaOrigen().cantidadCartas()) {
-                    try {
-                        klondike.moverPilaACimiento((PilaDelTableau) datosMovimiento.obtenerListaOrigen(), (Cimiento) datosMovimiento.obtenerListaDestino());
-                    } catch (InvalidMovementException e) {
-                        VistaAlerta.mostrarAlerta(e);
-                    }
-                }
-            }
-        } else {
-            datosMovimiento.resetear();
         }
-        vistaSolitario.obtenerVistaCarta().eliminarEfectos();
+        super.evaluarMovimiento();
     }
 }

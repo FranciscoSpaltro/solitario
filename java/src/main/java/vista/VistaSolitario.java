@@ -103,11 +103,13 @@ public class VistaSolitario {
             vistaCimiento.actualizar();
         for (VistaPila vistaPila : vistaPilas)
             vistaPila.actualizar();
+
         Label puntajeLabel = new Label("PUNTAJE: " + solitario.obtenerPuntos());
         puntajeLabel.setLayoutX(pane.getWidth() - 120);
         puntajeLabel.setLayoutY(5);
         puntajeLabel.setFont(new Font("Arial", 15));
         pane.getChildren().addAll(menuPane, puntajeLabel);
+
         pane.getChildren().add(vistaMazo);
         if (solitario.tieneBasura())
             pane.getChildren().add(vistaBasura);
