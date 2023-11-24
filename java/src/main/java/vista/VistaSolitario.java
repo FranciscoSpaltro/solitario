@@ -73,25 +73,18 @@ public class VistaSolitario {
         // Crear la escena
         scene = new Scene(pane, Constantes.obtenerAncho(solitario.obtenerVariante()), Constantes.obtenerAlto(solitario.obtenerVariante()));
 
-        Label puntajeLabel = new Label("PUNTAJE: " + solitario.obtenerPuntos());
+
+        menuPane.setLayoutY(0);
+        configurarEscena();
+        stage.show();
+    }
+
+    public Label generarLabelPuntaje(int puntos, Pane pane) {
+        Label puntajeLabel = new Label("PUNTAJE: " + puntos);
         puntajeLabel.setLayoutX(pane.getWidth() - 120);
         puntajeLabel.setLayoutY(5);
         puntajeLabel.setFont(new Font("Arial", 15));
-        menuPane.setLayoutY(0);
-        pane.getChildren().addAll(menuPane, puntajeLabel);
-
-
-        pane.getChildren().add(vistaMazo);
-
-        if(solitario.tieneBasura())
-            pane.getChildren().add(vistaBasura);
-
-        pane.getChildren().addAll(vistaPilas);
-
-        pane.getChildren().addAll(vistaCimientos);
-
-        // Configurar la escena en la etapa
-        stage.setScene(scene);
+        return puntajeLabel;
     }
 
     public void actualizar(){
@@ -104,10 +97,11 @@ public class VistaSolitario {
         for (VistaPila vistaPila : vistaPilas)
             vistaPila.actualizar();
 
-        Label puntajeLabel = new Label("PUNTAJE: " + solitario.obtenerPuntos());
-        puntajeLabel.setLayoutX(pane.getWidth() - 120);
-        puntajeLabel.setLayoutY(5);
-        puntajeLabel.setFont(new Font("Arial", 15));
+        configurarEscena();
+    }
+
+    public void configurarEscena() {
+        Label puntajeLabel = generarLabelPuntaje(solitario.obtenerPuntos(), pane);
         pane.getChildren().addAll(menuPane, puntajeLabel);
 
         pane.getChildren().add(vistaMazo);

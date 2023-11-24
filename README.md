@@ -44,7 +44,7 @@
     ```
     if (variante == Variante.KLONDIKE)
     ```
-- [ ] Lineas 107-110 y otras de VistaSolitario -> DRY
+- [x] Lineas 107-110 y otras de VistaSolitario -> DRY
     ```
      Label puntajeLabel = new Label("PUNTAJE: " + solitario.obtenerPuntos()); 
     puntajeLabel.setLayoutX(pane.getWidth() - 120);
