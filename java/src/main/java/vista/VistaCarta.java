@@ -55,7 +55,7 @@ public class VistaCarta implements Serializable {
         return new Image ("/cartas/vacio_" + variante.toString().toLowerCase() + ".png");
     }
 
-    public void configurarEfecto(ImageView imagen) {
+    public void configurarEfecto(ImageView imagen, boolean realizoMovimiento) {
         Carta carta = encontrarCarta(imagen);
 
         if (carta == ultimaCartaSeleccionada) {
@@ -76,6 +76,12 @@ public class VistaCarta implements Serializable {
             eliminarEfectos();
             hayEfectoActivado = false;
             catalogo.get(carta).setEffect(efecto);
+        }
+
+        if(realizoMovimiento) {
+            eliminarEfectos();
+            hayEfectoActivado = false;
+            ultimaCartaSeleccionada = null;
         }
     }
 
