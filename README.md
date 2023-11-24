@@ -9,7 +9,6 @@
     >En Klondike, había una negación demás en 
 
     ```if (!pila.estaVacia() && [!]pila.verUltima().estaBocaArriba())```
-    >Solucionado
 - [x] Sombreado de cartas falla [**PROBAR**]
     > Se editó VistaCarta y se agregó el atributo ultimaCartaSeleccionada. También se hizo que elimine los efectos al terminar de evaluar un movimiento (ControladorKlondike/Spider)
 - [x] Al arrancar el juego y hacer clic en una carta (caso: As de picas) parece que sale un error de "La basura está vacía", probablemente relacionado con el bug anterior
