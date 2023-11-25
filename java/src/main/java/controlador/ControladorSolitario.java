@@ -28,7 +28,11 @@ public abstract class ControladorSolitario {
     }
 
     public void actualizar(){
-        evaluarMovimiento();
+        try {
+            evaluarMovimiento();
+        } catch (InvalidMovementException e) {
+            VistaAlerta.mostrarAlerta(e);
+        }
         evaluarGanador();
         vistaSolitario.obtenerVistaCarta().resetearControladores();
         vistaSolitario.actualizar();
@@ -39,26 +43,21 @@ public abstract class ControladorSolitario {
             controladorPila.actualizar(this);
     }
 
-    public void evaluarMovimiento() {
+    public void evaluarMovimiento() throws InvalidMovementException {
         if (!datosMovimiento.realizarMovimiento())
             return;
-        else if (datosMovimiento.esPila(datosMovimiento.obtenerListaOrigen())) {
-            if (datosMovimiento.esPila(datosMovimiento.obtenerListaDestino())) {
+        ListaDeCartas listaOrigen = datosMovimiento.obtenerListaOrigen();
+        ListaDeCartas listaDestino = datosMovimiento.obtenerListaDestino();
+        if (listaOrigen.esPilaDelTableau()) {
+            if (listaDestino.esPilaDelTableau()) {
                 // Lógica para "Mover de Pila a Pila"
-                try {
-                    solitario.moverPilaAPila((PilaDelTableau) datosMovimiento.obtenerListaOrigen(), (PilaDelTableau) datosMovimiento.obtenerListaDestino(), datosMovimiento.obtenerListaOrigen().cantidadCartas() - datosMovimiento.obtenerIndiceOrigen() + 1);
-                    datosMovimiento.resetear();
-                } catch (InvalidMovementException e) {
-                    VistaAlerta.mostrarAlerta(e);
-                }
-            } else if (datosMovimiento.esCimiento(datosMovimiento.obtenerListaDestino())) {
+                solitario.moverPilaAPila((PilaDelTableau) listaOrigen, (PilaDelTableau) listaDestino, listaOrigen.cantidadCartas() - datosMovimiento.obtenerIndiceOrigen() + 1);
+                datosMovimiento.resetear();
+
+            } else if (listaDestino.esCimiento()) {
                 // Lógica para "Mover de Pila a Cimiento"
-                if (datosMovimiento.obtenerIndiceOrigen() == datosMovimiento.obtenerListaOrigen().cantidadCartas()) {
-                    try {
-                        solitario.moverPilaACimiento((PilaDelTableau) datosMovimiento.obtenerListaOrigen(), (Cimiento) datosMovimiento.obtenerListaDestino());
-                    } catch (InvalidMovementException e) {
-                        VistaAlerta.mostrarAlerta(e);
-                    }
+                if (datosMovimiento.obtenerIndiceOrigen() == listaOrigen.cantidadCartas()) {
+                    solitario.moverPilaACimiento((PilaDelTableau) listaOrigen, (Cimiento) listaDestino);
                 }
             }
         } else {

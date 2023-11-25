@@ -53,16 +53,4 @@ public class DatosMovimiento {
         return cartasAMover;
     }
 
-    public boolean esPila(ListaDeCartas lista) {
-        return lista instanceof PilaDelTableau;
-    }
-
-    public boolean esCimiento(ListaDeCartas lista) {
-        return lista instanceof Cimiento;
-    }
-
-    public boolean esBasura(ListaDeCartas lista) {
-        return lista instanceof Basura;
-    }
-
 }

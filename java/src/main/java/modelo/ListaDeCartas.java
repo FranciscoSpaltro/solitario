@@ -87,4 +87,20 @@ public abstract class ListaDeCartas implements Serializable, Iterable<Carta> {
     public boolean esLaUltimaCarta(Carta carta){
         return this.verUltima() == carta;
     }
+
+    public boolean esPilaDelTableau(){
+        return this instanceof PilaDelTableau;
+    }
+
+    public boolean esCimiento(){
+        return this instanceof Cimiento;
+    }
+
+    public boolean esMazo(){
+        return this instanceof Mazo;
+    }
+
+    public boolean esBasura(){
+        return this instanceof Basura;
+    }
 }
