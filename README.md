@@ -4,7 +4,8 @@
 ## INFORMACIÓN ETAPA 3
 > Consultar PDF "Etapa 3"
 
-## BUGS
+## RESOLVER
+- [x] Incluir el plugin de Maven en el pom.xml
 - [x] Al subir al cimiento una carta que no corresponde, da vuelta la anteúltima
     >En Klondike, había una negación demás en 
 
