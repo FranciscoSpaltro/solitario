@@ -52,17 +52,14 @@ public abstract class ControladorSolitario {
             if (listaDestino.esPilaDelTableau()) {
                 // Lógica para "Mover de Pila a Pila"
                 solitario.moverPilaAPila((PilaDelTableau) listaOrigen, (PilaDelTableau) listaDestino, listaOrigen.cantidadCartas() - datosMovimiento.obtenerIndiceOrigen() + 1);
-                datosMovimiento.resetear();
-
             } else if (listaDestino.esCimiento()) {
                 // Lógica para "Mover de Pila a Cimiento"
                 if (datosMovimiento.obtenerIndiceOrigen() == listaOrigen.cantidadCartas()) {
                     solitario.moverPilaACimiento((PilaDelTableau) listaOrigen, (Cimiento) listaDestino);
                 }
             }
-        } else {
-            datosMovimiento.resetear();
         }
+        datosMovimiento.resetear();
         vistaSolitario.obtenerVistaCarta().eliminarEfectos();
     }
 
